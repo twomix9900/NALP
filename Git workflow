@@ -25,3 +25,4 @@ IF PR NOT MERGED YET:
 
 GIT COMMIT MESSAGE:
 1. always add a prefix in paranthesis (eg. "(add) feature", "(remove) itemname.js", "(fix) issue")
+2. the comments should be in present tense 
