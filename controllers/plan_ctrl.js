@@ -34,6 +34,7 @@ module.exports = {
         })
       })
   },
+  // all plans user created but not done
   index_user: function(req, res) {
     User
       .find({_id: req.params.id}) // from session/jwt-token/local-storage - refers to current user.
@@ -47,6 +48,15 @@ module.exports = {
           })
       })
   },
+  // all plans user have completed
+  index_rated: function(req, res) {
+    
+  },
+  // plans of others that user wants to follow
+  index_bookmark: function(req, res) {
+
+  },
+
   update_plan_info: function(req, res) {
     Plan
       .findOne({_id: req.params.id})
