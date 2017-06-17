@@ -3,8 +3,8 @@ Very simple and quick git workflow:
 INITIAL SET UP:
 1. Fork the group repo: https://github.com/SuperchargedTodoList/
 2. Clone down YOUR FORK from github, NOT from the org (eg git clone http://github.com/twomix9900/SuperchargedTodoList)
-2. Set up remote connection to the org's git from local branch: git remote add central https://github.com/SuperchargedTodoList/SuperchargedTodoList
-3. Make sure the remote connection is set up properly: git remote -v
+3. Set up remote connection to the org's git from local branch: git remote add central https://github.com/SuperchargedTodoList/SuperchargedTodoList
+4. Make sure the remote connection is set up properly: git remote -v
 
 
 NORMAL WORKFLOW AFTER THE SET UP:
