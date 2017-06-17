@@ -16,7 +16,6 @@ NORMAL WORKFLOW AFTER THE SET UP:
 6. git push origin [YOUR BRANCH NAME HERE]
 7. submit PR via website
 8. ping Kay via slack with @kay_kim
-9. git checkout -b [YOUR BRANCH NAME HERE]
 
 IF PR MERGED:
 1. git checkout master
