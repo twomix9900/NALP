@@ -14,6 +14,7 @@ NORMAL WORKFLOW AFTER THE SET UP:
 5. git pull --rebase central master
 6. git push origin [YOUR BRANCH NAME HERE]
 7. submit PR via website
+8. ping Kay via slack with @kay_kim
 
 IF PR MERGED:
 1. git checkout master
