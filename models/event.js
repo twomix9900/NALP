@@ -10,6 +10,6 @@ var eventSchema = Schema({
   cost: { type: String }
 })
 
-var EventModel = mongoose.model('Event', eventSchema);
+// var EventModel = mongoose.model('Event', eventSchema);
 
-module.exports = EventModel;
+// module.exports = EventModel;
