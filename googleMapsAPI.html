@@ -36,7 +36,7 @@
 <body>
   <div id="floating-panel">
     <input id="address" type="textbox" value="Hack Reactor, Los Angeles, CA">
-    <input id="submit" type="button" value="Geocode">
+    <input id="submit" type="button" value="Add">
   </div>
   <div id="map"></div>
   <script>
@@ -44,6 +44,8 @@
     var resultsMaps = [];
 
     function initMap() {
+
+
       var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 15,
         maxZoom: 15,
@@ -60,6 +62,7 @@
     }
 
     function geocodeAddress(geocoder, resultsMap) {
+
       var directionsDisplay = new google.maps.DirectionsRenderer({
         map: resultsMap
       });
@@ -79,14 +82,27 @@
           var marker = new google.maps.Marker({
             map: resultsMap,
             draggable: false,
+            clickable: true,
             optimized: true,
             position: results[0].geometry.location,
+            title: address,
             icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' + (markers.length + 1) +
               '|FF0000|000000'
           });
+
+          infowindow = new google.maps.InfoWindow({
+            content: marker.title
+          });
+
+          marker.addListener('click', function () {
+            infowindow.setContent(marker.title);
+            infowindow.open(resultsMap, this);
+          });
+
           markers.push(marker);
           var bounds = new google.maps.LatLngBounds();
           for (let i = 0; i < markers.length; i++) {
+
             bounds.extend(markers[i].getPosition());
           }
           resultsMap.fitBounds(bounds);
@@ -103,7 +119,6 @@
               }, function (response, status) {
                 if (status === 'OK') {
                   directionsDisplay.setDirections(response);
-
                 } else {
                   console.log('Directions request failed: ', status);
                 }
