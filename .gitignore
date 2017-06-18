@@ -24,4 +24,5 @@ dist/
 
 # Dependency directorys
 node_modules/
+.env
 bower_components/
