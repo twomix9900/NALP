@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Geocoding service</title>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+  <style>
+    /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+
+    #map {
+      height: 100%;
+    }
+    /* Optional: Makes the sample page fill the window. */
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    #floating-panel {
+      position: absolute;
+      top: 10px;
+      left: 25%;
+      z-index: 5;
+      background-color: #fff;
+      padding: 5px;
+      border: 1px solid #999;
+      text-align: center;
+      font-family: 'Roboto', 'sans-serif';
+      line-height: 30px;
+      padding-left: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="floating-panel">
+    <input id="address" type="textbox" value="Mountain View, CA">
+    <input id="submit" type="button" value="Geocode">
+  </div>
+  <div id="map"></div>
+  <script>
+    var markers = [];
+    var resultsMaps = [];
+
+    function initMap() {
+
+
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 12,
+        center: {
+          lat: 37.4,
+          lng: -122.08
+        }
+      });
+      var geocoder = new google.maps.Geocoder();
+
+      document.getElementById('submit').addEventListener('click', function () {
+        geocodeAddress(geocoder, map);
+      });
+    }
+
+    function geocodeAddress(geocoder, resultsMap) {
+      var directionsDisplay = new google.maps.DirectionsRenderer({
+        map: resultsMap
+      });
+      var directionsService = new google.maps.DirectionsService;
+
+      var address = document.getElementById('address').value;
+      geocoder.geocode({
+        'address': address
+      }, function (results, status) {
+        console.log('results = ', results)
+        console.log('resultsmap = ', resultsMap)
+        if (status === 'OK') {
+          console.log('address? = ', results[0].geometry.location)
+          resultsMap.setCenter(results[0].geometry.location);
+          var marker = new google.maps.Marker({
+            map: resultsMap,
+            position: results[0].geometry.location,
+            icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' + (markers.length + 1) +
+              '|FF0000|000000'
+          });
+          console.log('marker = ', marker)
+          markers.push(marker);
+          var bounds = new google.maps.LatLngBounds();
+          for (let i = 0; i < markers.length; i++) {
+            bounds.extend(markers[i].getPosition());
+          }
+          resultsMap.fitBounds(bounds);
+
+
+          console.log('directionsservice at start = ', directionsService)
+          directionsDisplay.setMap(resultsMap);
+          directionsDisplay.setOptions({suppressMarkers: true})
+          console.log('results outside function = ', results[0].formatted_address)
+          resultsMaps.push(results[0].formatted_address);
+          var start = resultsMaps[resultsMaps.length - 2];
+          var end = resultsMaps[resultsMaps.length - 1];
+
+          console.log('start = ', start);
+          console.log('end = ', end);
+          console.log('typeof resultsMaps[0]', typeof(resultsMaps[0]))
+
+          function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+            console.log('resultsMaps from calculateanddisplayroute ', resultsMaps)
+            directionsService.route({
+              origin: start,
+              destination: end,
+
+              travelMode: 'DRIVING'
+            }, function (response, status) {
+              if (status === 'OK') {                
+                directionsDisplay.setDirections(response);
+                
+              } else {
+                console.log('Directions request failed: ', status);
+              }
+            });
+          }
+
+
+          calculateAndDisplayRoute(directionsService, directionsDisplay);
+
+
+
+
+
+
+
+          // (function calcRoute() {
+          //   var directionsDisplay;
+          //   var directionsService = new google.maps.DirectionsService();
+          //   var start = markers[markers.length - 2].marker.position;
+          //   var end = markers[markers.length - 1].marker.position;
+          //   var request = {
+          //     origin: start,
+          //     destination: end,
+          //     travelMode: googlemaps.TravelMode.DRIVING
+          //   }
+          //   directionsService.route(request, function (response, status) {
+          //     if (status == google.maps.DirectionsStatus.OK) {
+          //       directionsDisplay.setDirections(response);
+          //       directionsDisplay.setMap(map);
+          //     } else {
+          //       alert("Directions Request from " + start.toUrlValue(6) + " to " + end.toUrlValue(6) +
+          //         " failed: " + status);
+          //     }
+          //   })
+          // })()
+
+
+        } else {
+          alert('Invalid address! ERROR CODE: ' + status);
+        }
+      });
+    }
+  </script>
+  <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVzNx4R3D71W4Cg0RrD06Q5i-7UP5l-pU&callback=initMap">
+  </script>
+</body>
+
+</html>
