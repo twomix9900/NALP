@@ -12,6 +12,7 @@
   "dependencies": {
     "auth0-js": "^8.7.0",
     "body-parser": "^1.17.2",
+    "dotenv": "^4.0.0",
     "express": "^4.15.3",
     "mongoose": "^4.10.6",
     "morgan": "^1.8.2"
