@@ -3,10 +3,10 @@ const userRouter = express.Router();
 
 const UserController = require('../controllers/user_ctrl.js');
 
-userRouter.get('/users', UserController.index);
-userRouter.post('/users', UserController.create);
-userRouter.get('/users/:id', UserController.show);
-userRouter.put('/users/:id', UserController.update_user);
-userRouter.delete('/users/:id', UserController.detele_user);
+userRouter.get('/', UserController.index);
+userRouter.post('/', UserController.create);
+userRouter.get('/:id', UserController.show);
+userRouter.put('/:id', UserController.update_user);
+userRouter.delete('/:id', UserController.delete_user);
 
 module.exports = userRouter;
