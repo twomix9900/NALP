@@ -10,21 +10,31 @@ INITIAL SET UP:
 NORMAL WORKFLOW AFTER THE SET UP:
 1. git checkout master
 2. git pull --rebase central master
+
+Steps 1 + 2 are to make sure that YOUR MASTER BRANCH is up to date
+
 3. git checkout -b [YOUR BRANCH NAME HERE] 
-4. add/commit to git
-5. git pull --rebase central master
+4. git pull --rebase central master
+5. add/commit to git
+
+Steps 3 + 4 + 5 are to ensure that before you add any changes FROM YOUR WORK BRANCH that your WORK BRANCH is UP TO DATE.
+
 6. git push origin [YOUR BRANCH NAME HERE]
 7. submit PR via website
+See “ExamplePRScreeshot” image in the git for reference
+
 8. ping Kay via slack with @kay_kim
 
-IF PR MERGED:
-1. git checkout master
-2. git pull --rebase central master
 
-IF PR NOT MERGED YET:
-1. keep making commits to your branch
-2. git push origin [YOUR BRANCH HERE]
+
+RULES OF THUMB:
+1. You should never add/commit any work from YOUR MASTER BRANCH
+2. Make sure to git pull —rebase central master often from YOUR WORK BRANCH AND MASTER BRANCH
+3. If PR hasn’t been closed yet, feel free to keep working on the same project, any additional changes will still be added to the same PR if you do git add/commit
+4. You will likely be repeating steps 3-5 the most often out of all other steps (making sure that the branch you’re working on is up to date)
+
+
 
 GIT COMMIT MESSAGE:
-1. always add a prefix in paranthesis (eg. "(add) feature", "(remove) itemname.js", "(fix) issue")
+1. always add a prefix in parentheses (eg. "(add) feature", "(remove) itemname.js", "(fix) issue")
 2. the comments should be in present tense
