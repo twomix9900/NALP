@@ -1,1 +1,35 @@
-<h2>Inside Create HTML</h2>
+<h2>the Plan</h2>
+<div name='CreatePlan' ng-controller='CreateCtrl'>
+  <form>
+    <label>Title
+      <input type='text' name='title' ng-model='create.text' required>
+    </label>
+    <label>Location
+      <input type='text' name='location' ng-model='create.location' required>
+    </label>
+  </form>
+  <form>Events
+    <table>
+      <thead>
+        <tr>
+          <th>title</th>
+          <th>address</th>
+          <th>time</th>
+          <th>cost</th>
+          <th>photolink</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type='text'></td>
+          <td><input type='text'></td> 
+          <td><input type='text'></td>
+          <td><input type='text'></td>
+          <td>attach</td>
+          <td><button>Add Event</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+  <table>Events List
+  </table>
