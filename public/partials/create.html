@@ -1,11 +1,11 @@
 <h2>the Plan</h2>
-<div name='CreatePlan' ng-controller='CreateCtrl'>
+<div name='CreatePlan'>
   <form>
     <label>Title
-      <input type='text' name='title' ng-model='create.text' required>
+      <input type='text' name='title' ng-model='create_ctrl.newPlanInfo.title' required>
     </label>
     <label>Location
-      <input type='text' name='location' ng-model='create.location' required>
+      <input type='text' name='location' ng-model='create_ctrl.newPlanInfo.city' required>
     </label>
   </form>
   <form>Events
@@ -21,15 +21,33 @@
       </thead>
       <tbody>
         <tr>
-          <td><input type='text'></td>
-          <td><input type='text'></td> 
-          <td><input type='text'></td>
-          <td><input type='text'></td>
+          <td><input type='text' ng-model='create_ctrl.newEventInfo.event_type'></td>
+          <td><input type='text' ng-model='create_ctrl.newEventInfo.address'></td> 
+          <td><input type='text' ng-model='create_ctrl.newEventInfo.start_time'></td>
+          <td><input type='text' ng-model='create_ctrl.newEventInfo.cost'></td>
           <td>attach</td>
-          <td><button>Add Event</button></td>
+          <td><button ng-click='create_ctrl.userDidClickAddEvent()'>Add Event</button></td>
         </tr>
       </tbody>
     </table>
   </form>
   <table>Events List
+    <thead>
+      <th>title</th>
+      <th>address</th>
+      <th>time</th>
+      <th>cost</th>
+      <th>photolink</th>
+    </thead>
+    <tbody>
+      <tr ng-repeat='event in create_ctrl.addedEvents'>
+        <td><p>{{ event.event_type }}</p></td>
+        <td><p>{{ event.address }}</p></td>
+        <td><p>{{ event.start_time }}</p></td>
+        <td><p>{{ event.cost }}</p></td>
+        <td><p>some_photo_uri</p></td>
+        <td><button ng-click='create_ctrl.userDidClickRemoveFromAddedEvents(event)'>X</button></td>
+      </tr>
+    </tbody>
   </table>
+  <input ng-click='create_ctrl.userDidClickMakePlan()' type='button' value='Make Plan'>

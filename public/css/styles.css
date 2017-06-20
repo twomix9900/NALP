@@ -1,0 +1,6 @@
+.alert-complete {
+  position: absolute !important;
+  background: green !important;
+  color: black !important;
+  font-size: 22px !important;
+}
