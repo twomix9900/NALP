@@ -8,6 +8,7 @@ var path = require('path');
 var dotenv = require('dotenv').config()
 var userRoutes = require('./router/user_router.js');
 var planRoutes = require('./router/plan_router.js');
+var activityRoutes = require('./router/activity_router.js');
 
 // mongoose.connect('mongodb://localhost/plan_a_day', function(err) {
 //   if (err) return console.log(err)
@@ -18,7 +19,7 @@ var planRoutes = require('./router/plan_router.js');
 //   console.log('connected to MLab')
 // })
 
-mongoose.connect(process.env.DB_URI, function(err) {
+mongoose.connect('mongodb://admin:secure@ds127962.mlab.com:27962/plan_a_day_db', function(err) {
   if (err) return console.log(err)
   console.log('connected to mongo lab remote')
 })
@@ -32,6 +33,7 @@ app.use(bodyParser.json())
 // route middleware
 app.use('/users', userRoutes);
 app.use('/plans', planRoutes);
+app.use('/activities', activityRoutes);
 
 
 app.get('/', function(req, res) {

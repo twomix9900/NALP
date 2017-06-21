@@ -1,0 +1,13 @@
+ul.ActNav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li.ActNav {
+  float: left;
+  display: block;
+  text-align: center;
+  padding: 14px 12px;
+  background-color: #EEE;
+}
