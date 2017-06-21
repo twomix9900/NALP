@@ -18,6 +18,15 @@
     vm.newEventInfo = {};
     vm.newPlanInfo = {};
     vm.addedEvents = [];
+
+    // timepicker for start time input
+    $('#start_time_input').timepicker();
+    // $('#start_time_input').timepicker('setTime', new Date());
+
+   $('#google-address-input').css('width', '350px')
+  //  $('#added-events-address-p').css('width', '350px')
+
+
     var err_callback = function(err) {
       console.log('err >>', err);
     }
@@ -27,6 +36,7 @@
       for (var key in vm.newEventInfo) {
         event[key] = vm.newEventInfo[key]
       }
+      event['address'] = $('#google-address-input').val();
       vm.addedEvents.push(event);
       vm.newEventInfo = {};
     };
