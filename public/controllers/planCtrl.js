@@ -1,10 +1,49 @@
 (function() {
   angular.module('NALP')
-  .controller('planCtrl', planCtrl)
+  .controller('planCtrl', createCtrl)
 
-  planCtrl.$inject [];
+  createCtrl.$inject = ['plan_fac'];
 
-  function planCtrl() {
-    
+  function createCtrl(plan_fac) {
+    var vm = this;
+    vm.title = 'create plan view title'
+    vm.some_user_id = '5945a92adf00070c767a0592'; 
+    vm.newEventInfo = {};
+    vm.newPlanInfo = {};
+    vm.addedEvents = [];
+    var err_callback = function(err) {
+      console.log('err >>', err);
+    }
+    vm.userDidClickAddEvent = function() {
+      console.log(vm.newEventInfo);
+      var event = {};
+      for (var key in vm.newEventInfo) {
+        event[key] = vm.newEventInfo[key]
+      }
+      vm.addedEvents.push(event);
+      vm.newEventInfo = {};
+    };
+    vm.userDidClickMakePlan = function() {
+      var plan = {
+        title: vm.newPlanInfo.title,
+        city: vm.newPlanInfo.city,
+        events: vm.addedEvents
+      }
+      console.log(plan)
+      plan_fac
+        .createPlan(vm.some_user_id, plan)
+        .then(make_plan_res, err_callback)
+    }
+
+    function make_plan_res(res) {
+      console.log(res, 'success');
+      vm.addedEvents = [];
+      vm.newPlanInfo = {};
+
+    }
+
+    vm.userDidClickRemoveFromAddedEvents = function(event) {
+      vm.addedEvents.splice(vm.addedEvents.indexOf(event), 1);
+    }
   }
 })()
