@@ -1,11 +1,16 @@
-<link rel='stylesheet' href='../../styles.css'>
+<link rel='stylesheet' href='../styles.css'>
 <h2>Activities</h2>
-<div name='Activities'>
-  <nav class='ActNav' ng-controller='activitiesCtrl'>
+<div name='Activities' ng-controller='activitiesCtrl'>
+  <nav class='ActNav'>
     <ul class='ActNav'>
-      <li class='ActNav'>Bookmarked</li>
-      <li class='ActNav'>Created</li>
-      <li class='ActNav'>Completed</li>
+      <li class='ActNav' ng-click='userClickBookmarked'>Bookmarked</li>
+      <li class='ActNav' ng-click='userClickCreated'>Created</li>
+      <li class='ActNav' ng-click='userClickCompleted'>Completed</li>
     </ul>
   </nav>
+  <div ng-repeat='plan in vm.plans'>
+    {{plan.title}}
+    {{plan.city}}
+    {{plan.total_cost}}
+  </div>  
 </div>
