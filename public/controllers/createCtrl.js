@@ -61,7 +61,9 @@
           .then(function(res) {
             console.log(res.data.results, '<< success from yelp api test')
             vm.current_place_img = res.data.results.businesses[0].image_url;
-            event.photo = vm.current_place_img
+            console.log('>> place address from yelp', res.data.results.businesses[0].location.display_address.join(' '))
+            event.photo = vm.current_place_img;
+            event.address = res.data.results.businesses[0].location.display_address.join(' ');
             vm.addedEvents.push(event);
             vm.newEventInfo = {};
             vm.current_place_img = '';

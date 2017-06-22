@@ -17,6 +17,7 @@ var activityRoutes = require('./router/activity_router.js');
 //   if (err) return console.log(err)
 //   console.log('connected to mongo shell');
 // })
+
 mongoose.connect(process.env.DB_URL, function (err) {
   if (err){console.log('cant connect: ', err);}
   console.log('connected to MLab')
