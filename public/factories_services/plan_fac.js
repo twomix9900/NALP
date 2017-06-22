@@ -8,11 +8,15 @@
       var api = '/plans/';
       var service = {
         createPlan: createPlan,
+        getAllPlans: getAllPlans,
         auto_suggest: auto_suggest,
         show: show
       }
       function createPlan(id, data) {
         return $http.post(api + id, data);
+      }
+      function getAllPlans() {
+        return $http.get(api);
       }
       function auto_suggest(data) {
         return $http.post('/yelpapi', data);
