@@ -1,11 +1,11 @@
 <h2>Activities</h2>
 <div name='Activities' ng-controller='activitiesCtrl'>
   <div>
-    <nav>
+    <nav class='ActNav'>
       <ul class='ActNav'>
-        <li class='ActNav' ng-click='userClickBookmarked'>Bookmarked</li>
-        <li class='ActNav' ng-click='userClickCreated'>Created</li>
-        <li class='ActNav' ng-click='userClickCompleted'>Completed</li>
+        <li class='ActNav' ng-click='activities_ctrl.userClickBookmarked()'>Bookmarked</li>
+        <li class='ActNav' ng-click='activities_ctrl.userClickCreated()'>Created</li>
+        <li class='ActNav' ng-click='activities_ctrl.userClickCompleted()'>Completed</li>
       </ul>
     </nav>
   </div>

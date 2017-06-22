@@ -6,27 +6,43 @@
 
   function activitiesCtrl(selectedPlans_fac) {
     var vm = this;
+    vm.option = 'bookmarked';
+    //dummy data
+    vm.SOME_USER_ID = '594ae6c148ec2d34688f7c87';
 
     vm.userClickBookmarked = function(){
       console.log('i got bookmarked');
+      vm.option = 'bookmarked';
+      selectedPlans_fac.getPlans(vm.option, vm.SOME_USER_ID)
+      .then(renderPlans, function(err) {
+        if (err) throw err;
+      });
     };
 
     vm.userClickCreated = function() {
       console.log('i got created');
+      vm.option = 'created';
+      selectedPlans_fac.getPlans(vm.option, vm.SOME_USER_ID)
+      .then(renderPlans, function(err) {
+        if (err) throw err;
+      });
     };
 
     vm.userClickCompleted = function() {
-      console.log('i got rated');
+      console.log('i got completed');
+      vm.option = 'completed';
+      selectedPlans_fac.getPlans(vm.option, vm.SOME_USER_ID)
+      .then(renderPlans, function(err) {
+        if (err) throw err;
+      });
     };
 
     vm.userHover = function() {
     // highlight selection  
     };
-    //dummy data
-    var option = 'bookmarked'
-    var id = '594ae6c148ec2d34688f7c87'
 
-    selectedPlans_fac.getPlans(option, id)
+    // initialize view
+    selectedPlans_fac.getPlans(vm.option, vm.SOME_USER_ID)
       .then(renderPlans, function(err) {
         if (err) throw err;
       });
@@ -35,7 +51,5 @@
       console.log('res data ', res);
       vm.plans = res.data.plans;
     }
-  
   }
-
 })();
