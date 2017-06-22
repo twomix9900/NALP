@@ -59,6 +59,12 @@
       });
       var geocoder = new google.maps.Geocoder();
 
+      
+      var jqueryURL = window.location.href.slice(30);
+      jQuery.ajax(jqueryURL, function (data, status) {
+        console.log('data = ', data);
+      })
+
       for (let i = 0; i < addedEvents.length; i++) {
         address = addedEvents[i].address;
         geocodeAddress(geocoder, map);
@@ -66,14 +72,10 @@
     }
 
     function geocodeAddress(geocoder, resultsMap) {
-
       var directionsDisplay = new google.maps.DirectionsRenderer({
         map: resultsMap
       });
       var directionsService = new google.maps.DirectionsService;
-
-
-
 
       geocoder.geocode({
         'address': address
