@@ -15,3 +15,15 @@ li.ActNav {
 li.highlight {
   background-color: #AAA;
 }
+
+table {
+  width: 50%
+}
+.viewtitle .viewcity {
+  width: 20%;
+}
+
+.viewcosts {
+  width: 10%;
+}
+
