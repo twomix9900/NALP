@@ -19,10 +19,11 @@ module.exports = {
       })
   },
   create: function(req, res) {
+    console.log('create invoked from backend ctrl, req.params = ', req.params)
     User
       .findOne({_id: req.params.id}) // from session/jwt-token/local-storage - refers to current user.
       .exec(function(err, user) {
-        console.log(user);
+        console.log('user from ctrl2 = ', user);
         if (err) return console.log(err)
         var new_plan = new Plan( req.body ); // form data from create page with events, city, title, etc.
         new_plan.created_by_id = user._id;
