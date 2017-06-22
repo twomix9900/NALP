@@ -22,6 +22,7 @@ module.exports = {
     User
       .findOne({_id: req.params.id}) // from session/jwt-token/local-storage - refers to current user.
       .exec(function(err, user) {
+        console.log(user);
         if (err) return console.log(err)
         var new_plan = new Plan( req.body ); // form data from create page with events, city, title, etc.
         new_plan.created_by_id = user._id;

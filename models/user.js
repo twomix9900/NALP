@@ -10,6 +10,6 @@ var userSchema = Schema({
   bookmark_plans: [ {type: Schema.Types.ObjectId, ref: 'Plan'} ]
 })
 
-var User = mongoose.model('User', userSchema);
+var User = mongoose.model('User', userSchema);  
 
 module.exports = User;
