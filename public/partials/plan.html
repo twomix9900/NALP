@@ -4,28 +4,14 @@
   <style>
     #map {
       height: 50%;
-      width: 50%;
+      width: 30%;
+      padding: 150px;
     }
 
-    html,
     body {
       height: 100%;
       margin: 0;
       padding: 0;
-    }
-
-    #floating-panel {
-      position: absolute;
-      top: 10px;
-      left: 25%;
-      z-index: 5;
-      background-color: #fff;
-      padding: 5px;
-      border: 1px solid #999;
-      text-align: center;
-      font-family: 'Roboto', 'sans-serif';
-      line-height: 30px;
-      padding-left: 10px;
     }
   </style>
 </head>
@@ -156,7 +142,10 @@
   </script>
 
   <div name='CreatePlan'>
-
+    <input ng-click='create_ctrl.userDidClickMakePlan()' type='button' value='bookmarks'></button>
+    <input ng-click='create_ctrl.userDidClickMakePlan()' type='button' value='edit'></button>
+    600 bookmarks 57 completed
+    <br>
     <table>
       <thead>
         <tr>
@@ -174,15 +163,17 @@
             <p style='width: 150px;' id='added-events-address-p'>{{ event.address }}</p>
           </td>
           <td>
-            <p style='width: 50px;' id='added-events-address-p'>{{ event.time }}</p>
+            <p style='width: 50px;' id='added-events-address-p'>{{ event.start_time }}</p>
           </td>
           <td>
-            <p style='width: 50px;' id='added-events-address-p'>{{ event.start_time }}</p>
+            <p style='width: 50px;' id='added-events-address-p'>{{ event.cost }}</p>
           </td>
           <td><button ng-click='plan_ctrl.userDidClickRemoveFromAddedEvents(event)'>X</button></td>
         </tr>
       </tbody>
     </table>
+    <div style='width: 150px;'> total cost: </div>
+    <br>
     <input ng-click='create_ctrl.userDidClickMakePlan()' type='button' value='Mark As Complete'>
     <script>
       // autocomplete
