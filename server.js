@@ -9,10 +9,10 @@ var dotenv = require('dotenv').config()
 var userRoutes = require('./router/user_router.js');
 var planRoutes = require('./router/plan_router.js');
 
-// mongoose.connect('mongodb://localhost/plan_a_day', function(err) {
-//   if (err) return console.log(err)
-//   console.log('connected to mongo shell');
-// })
+mongoose.connect('mongodb://localhost/plan_a_day', function(err) {
+  if (err) return console.log(err)
+  console.log('connected to mongo shell');
+})
 // mongoose.connect(process.env.DB_URL, function (err) {
 //   if (err){console.log('cant connect: ', err);}
 //   console.log('connected to MLab')
