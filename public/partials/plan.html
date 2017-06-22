@@ -1,45 +1,54 @@
+<h2> The Plan View</h2>
+
 <head>
   <style>
     #map {
-      height: 100%;
+      height: 50%;
+      width: 30%;
+      padding: 150px;
     }
 
-    html,
     body {
       height: 100%;
       margin: 0;
       padding: 0;
     }
-
-    #floating-panel {
-      position: absolute;
-      top: 10px;
-      left: 25%;
-      z-index: 5;
-      background-color: #fff;
-      padding: 5px;
-      border: 1px solid #999;
-      text-align: center;
-      font-family: 'Roboto', 'sans-serif';
-      line-height: 30px;
-      padding-left: 10px;
-    }
   </style>
 </head>
 
 <body>
-  <div id="floating-panel">
-    <input id="address" type="textbox" value="Hack Reactor, Los Angeles, CA">
-    <input id="submit" type="button" value="Add">
-  </div>
   <div id="map"></div>
   <script>
     var markers = [];
     var resultsMaps = [];
+    addedEvents = [{
+        event_type: '',
+        address: 'Los Angeles, CA',
+        cost: '90',
+        start_time: '9:00'
+      },
+      {
+        event_type: '',
+        address: 'Pasadena, CA',
+        cost: '100',
+        start_time: '10:00'
+      },
+      {
+        event_type: '',
+        address: 'Azusa, CA',
+        cost: '110',
+        start_time: '11:00'
+      },
+      {
+        event_type: '',
+        address: 'Hollywood, CA',
+        cost: '120',
+        start_time: '12:00'
+      }
+    ];
+    var address = '';
 
     function initMap() {
-      console.log('testing....')
-
       var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 15,
         maxZoom: 15,
@@ -50,9 +59,10 @@
       });
       var geocoder = new google.maps.Geocoder();
 
-      document.getElementById('submit').addEventListener('click', function () {
+      for (let i = 0; i < addedEvents.length; i++) {
+        address = addedEvents[i].address;
         geocodeAddress(geocoder, map);
-      });
+      }
     }
 
     function geocodeAddress(geocoder, resultsMap) {
@@ -61,7 +71,9 @@
         map: resultsMap
       });
       var directionsService = new google.maps.DirectionsService;
-      var address = document.getElementById('address').value;
+
+
+
 
       geocoder.geocode({
         'address': address
@@ -128,70 +140,41 @@
   </script>
   <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVzNx4R3D71W4Cg0RrD06Q5i-7UP5l-pU&callback=initMap">
   </script>
-  <h2>the Plan</h2>
+
   <div name='CreatePlan'>
-    <form>
-      <label>Title
-      <input type='text' name='title' ng-model='create_ctrl.newPlanInfo.title' required>
-    </label>
-      <label>Location
-      <input type='text' name='location' ng-model='create_ctrl.newPlanInfo.city' required>
-    </label>
-    </form>
-    <form>Events
-      <table>
-        <thead>
-          <tr>
-            <th>title</th>
-            <th>address</th>
-            <th>time</th>
-            <th>cost ($)</th>
-            <th>photolink</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><input type='text' ng-model='create_ctrl.newEventInfo.event_type'></td>
-            <td><input type='text' ng-model='create_ctrl.newEventInfo.address' id='google-address-input'></td>
-            <td><input type='text' ng-model='create_ctrl.newEventInfo.start_time' id='start_time_input'></td>
-            <td><input type='text' ng-model='create_ctrl.newEventInfo.cost'></td>
-            <td>attach</td>
-            <td><button ng-click='create_ctrl.userDidClickAddEvent()'>Add Event</button></td>
-          </tr>
-        </tbody>
-      </table>
-    </form>
-    <table>Events List
+    <input ng-click='create_ctrl.userDidClickMakePlan()' type='button' value='bookmarks'></button>
+    <input ng-click='create_ctrl.userDidClickMakePlan()' type='button' value='edit'></button>
+    600 bookmarks 57 completed
+    <br>
+    <table>
       <thead>
-        <th>title</th>
-        <th>address</th>
-        <th>time</th>
-        <th>cost</th>
-        <th>photolink</th>
+        <tr>
+          <th style='width: 150px;'>Itinerary</th>
+          <th style='width: 50px;'>Time</th>
+          <th style='width: 50px;'>Cost</th>
+        </tr>
       </thead>
+    </table>
+
+    <table>
       <tbody>
-        <tr ng-repeat='event in create_ctrl.addedEvents'>
+        <tr ng-repeat='event in plan_ctrl.addedEvents'>
           <td>
-            <p>{{ event.event_type }}</p>
+            <p style='width: 150px;' id='added-events-address-p'>{{ event.address }}</p>
           </td>
           <td>
-            <p style='width: 350px;' id='added-events-address-p'>{{ event.address }}</p>
+            <p style='width: 50px;' id='added-events-address-p'>{{ event.start_time }}</p>
           </td>
           <td>
-            <p>{{ event.start_time }}</p>
+            <p style='width: 50px;' id='added-events-address-p'>{{ event.cost }}</p>
           </td>
-          <td>
-            <p>{{ event.cost | currency }}</p>
-          </td>
-          <td>
-            <p>some_photo_uri</p>
-          </td>
-          <td><button ng-click='create_ctrl.userDidClickRemoveFromAddedEvents(event)'>X</button></td>
+          <td><button ng-click='plan_ctrl.userDidClickRemoveFromAddedEvents(event)'>X</button></td>
         </tr>
       </tbody>
     </table>
-    <input ng-click='create_ctrl.userDidClickMakePlan()' type='button' value='Make Plan'>
-    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBVzNx4R3D71W4Cg0RrD06Q5i-7UP5l-pU&callback=initTest"></script>
+    <div style='width: 150px;'> total cost: </div>
+    <br>
+    <input ng-click='create_ctrl.userDidClickMakePlan()' type='button' value='Mark As Complete'>
     <script>
       // autocomplete
       function initTest() {

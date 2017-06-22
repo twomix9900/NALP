@@ -39,10 +39,10 @@
       templateUrl: 'partials/plan.html',
       controller: 'planCtrl as plan_ctrl'
     })
-    .state('profile', {
-      url: '/profile',
-      templateUrl: 'partials/profile.html',
-      controller: 'profileCtrl as profile_ctrl'
+    .state('activities', {
+      url: '/activities',
+      templateUrl: 'partials/activities.html',
+      controller: 'activitiesCtrl as activities_ctrl'
     })
 
   }
