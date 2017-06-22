@@ -44,27 +44,6 @@
       templateUrl: 'partials/activities.html',
       controller: 'activitiesCtrl as activities_ctrl'
     })
-    .state('callback', {
-      url: '/callback',
-      templateUrl: 'partials/search.html',
-      controller: 'callbackCtrl as callback_ctrl'
-    });
-
-    angularAuth0Provider.init({
-      clientID: 'pOJ2UcuFe1fISgSoTwFKENNpoqgu0BEo',
-      domain: 'shonozaki.auth0.com',
-      responseType: 'token id_token',
-      audience: 'https://shonozaki.auth0.com/userinfo',
-      redirectUri: 'http://localhost:3002/#/callback',
-      scope: 'openid'
-    });
-
-    $locationProvider.hashPrefix('');
-    .state('profile', {
-      url: '/profile',
-      templateUrl: 'partials/profile.html',
-      controller: 'profileCtrl as profile_ctrl'
-    })
 
   }
 })()
