@@ -1,1 +1,8 @@
-<h2>Inside Search HTML</h2>
+<h2>Find a Plan</h2>
+<form action="">
+  <input type="text" placeholder="Search Plans By City">
+</form>
+<button ng-click="search_ctrl.clickGetPlans()">Get All Plans</button>
+<div ng-repeat="plan in search_ctrl.data" ng-click="search_ctrl.goToPlan(plan._id)">
+  {{plan.title}}
+</div>
