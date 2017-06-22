@@ -26,6 +26,7 @@ dist/
 node_modules/
 .env
 bower_components/
+public/node_modules/
 
 # Misc
 .DS_Store

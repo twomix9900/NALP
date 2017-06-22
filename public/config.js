@@ -1,24 +1,29 @@
 (function() {
-  angular.module('NALP', ['auth0.auth0', 'ui.router'])
+  angular.module('NALP', ['auth0', 'angular-storage', 'angular-jwt', 'ngMaterial', 'ui.router'])
   .config(config)
 
   config.$inject = [
-    '$stateProvider',
+    '$provide',
+    'authProvider',
     '$urlRouterProvider',
-    '$locationProvider',
-    'angularAuth0Provider'
+    '$stateProvider',
+    '$httpProvider',
+    'jwtInterceptorProvider'
   ];
 
-  function config($stateProvider, $urlRouterProvider, $locationProvider, angularAuth0Provider) {
-    
-    $urlRouterProvider.otherwise('/login');
+  function config($provide, authProvider, $urlRouterProvider, $stateProvider, $httpProvider, jwtInterceptorProvider) {  
+    $urlRouterProvider.otherwise('/search');
+
+    authProvider.init({
+      clientID: 'p3YX25mAFylU7F6GadLITKleuETnTKiT',
+      domain: 'nalp.auth0.com'
+    });
+
+    jwtInterceptorProvider.tokenGetter = function(store) {
+      return store.get('id_token');
+    };
 
     $stateProvider
-    .state('login', {
-      url: '/login',
-      templateUrl: 'partials/login.html',
-      controller: 'loginCtrl as login_ctrl'
-    })
     .state('search', {
       url: '/search',
       templateUrl: 'partials/search.html',
@@ -55,6 +60,11 @@
     });
 
     $locationProvider.hashPrefix('');
+    .state('profile', {
+      url: '/profile',
+      templateUrl: 'partials/profile.html',
+      controller: 'profileCtrl as profile_ctrl'
+    })
 
   }
 })()
