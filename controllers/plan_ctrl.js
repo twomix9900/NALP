@@ -75,21 +75,13 @@ module.exports = {
           plan.total_cost = req.body.total_cost;
         }
         // removes all sub documents 
-        // plan.events.remove({});
-        // plan.events.forEach((event) => {
-        //   console.log(event._id, '<< eve')
-        //   plan.events.id(event._id).remove()
-        // })
-        for (var i = 0; i < plan.events.length; i++) {
-          console.log(plan.events[i]._id, '<< event')
-           plan.events.id(plan.events[i]._id).remove()
-           
+        while (plan.events.length) {
+          console.log(plan.events[0]._id, '<< event')
+          plan.events.id(plan.events[0]._id).remove();
         }
-        // console.log(req.body.events, '<<<<<< events<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<,')
-        // // plan.events.push(req.body.events);
-        // req.body.events.forEach((event) => { 
-        //   plan.events.push(event) 
-        // })
+        if (req.body.events) {
+          plan.events = req.body.events;
+        }
         plan.save(function(err, plan) {
           if (err) return console.log(err)
           res.json({success: true, message: 'plan info updated', plan: plan})

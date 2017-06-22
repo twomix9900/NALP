@@ -2,6 +2,7 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema;
 
 var userSchema = Schema({
+  //  username: { type: String, unique: true, required: true },
   email: { type: String, unique: true, required: true },
   password: { type: String, required: true },
   rated_plans: [ { type: Schema.Types.ObjectId, ref: 'Plan' } ],
