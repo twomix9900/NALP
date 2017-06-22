@@ -39,13 +39,13 @@
       console.log('err >>', err);
     }
 
-    plan_fac
-      .show($stateParams.plan_id)
-      .then(success_call, err_callback)
+    // plan_fac
+    //   .show($stateParams.plan_id)
+    //   .then(success_call, err_callback)
 
-    function success_call(res) {
-      console.log(res.data.plan.events)
-    }
+    // function success_call(res) {
+    //   console.log(res.data.plan.events)
+    // }
 
     vm.userDidClickAddEvent = function() {
       console.log(vm.newEventInfo);

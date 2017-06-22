@@ -14,7 +14,7 @@
   function createCtrl(plan_fac, $http, $state) {
     var vm = this;
     vm.title = 'create plan view title'
-    vm.some_user_id = '594c17fcd9ff1e28e82e2e6d'; // current: bob@gmail.com
+    vm.some_user_id = '5945a92adf00070c767a0592'; // current: bob@gmail.com
     vm.newEventInfo = {};
     vm.newPlanInfo = {};
     vm.addedEvents = [];
@@ -86,7 +86,7 @@
       console.log(res, 'success');
       vm.addedEvents = [];
       vm.newPlanInfo = {};
-      // $state.go('plan', {plan_id: res.data.plan._id})
+      $state.go('plan', {plan_id: res.data.plan._id})
       // Materialize.toast('Saved!! Plan successfully created!!', 50000000, 'alert-complete');
     }
 

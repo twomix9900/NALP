@@ -58,17 +58,24 @@
         }
       });
       var geocoder = new google.maps.Geocoder();
-
-      
       var jqueryURL = window.location.href.slice(30);
-      jQuery.ajax(jqueryURL, function (data, status) {
-        console.log('data = ', data);
-      })
+      $.ajax({
+          url: "/plans/" + jqueryURL,
+          method: "GET"
+        })
+        .done(function (data) {
+          console.log('success! data = ', data);
+          for (let i = 0; i < data.plan.events.length; i++) {
+            address = data.plan.events[i].address;
+            geocodeAddress(geocoder, map);
+          }
+        })
+        .fail(function (err) {
+          console.log('error! ', err);
+        });
 
-      for (let i = 0; i < addedEvents.length; i++) {
-        address = addedEvents[i].address;
-        geocodeAddress(geocoder, map);
-      }
+
+
     }
 
     function geocodeAddress(geocoder, resultsMap) {
@@ -170,7 +177,6 @@
           <td>
             <p style='width: 50px;' id='added-events-address-p'>{{ event.cost }}</p>
           </td>
-          <td><button ng-click='plan_ctrl.userDidClickRemoveFromAddedEvents(event)'>X</button></td>
         </tr>
       </tbody>
     </table>
