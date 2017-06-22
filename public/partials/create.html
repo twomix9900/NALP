@@ -38,9 +38,13 @@
       <tbody>
         <tr>
           <td><input type='text' ng-model='create_ctrl.newEventInfo.event_type'></td>
-          <td><input type='text' ng-model='create_ctrl.newEventInfo.address' id='google-address-input'></td> 
+          <td><input type='text' ng-model='create_ctrl.newEventInfo.address' id='google-address-input' ng-keyup='create_ctrl.showAutoSuggestions()' list='suggest-from-yelp-list'></td> 
+          <datalist id='suggest-from-yelp-list'>
+            <option ng-repeat='suggestion in create_ctrl.allPlaceSuggestions' ng-value="suggestion.name"></option>
+          </datalist>
           <td><input type='text' ng-model='create_ctrl.newEventInfo.start_time' id='start_time_input'></td>
           <td><input type='text' ng-model='create_ctrl.newEventInfo.cost'></td>
+          <!--<td><img ng-src="create_ctrl.current_place_img"></td>-->
           <td>attach</td>
           <td><button ng-click='create_ctrl.userDidClickAddEvent()'>Add Event</button></td>
         </tr>
@@ -61,7 +65,7 @@
         <td><p style='width: 350px;' id='added-events-address-p'>{{ event.address }}</p></td>
         <td><p>{{ event.start_time }}</p></td>
         <td><p>{{ event.cost | currency }}</p></td>
-        <td><p>some_photo_uri</p></td>
+        <td><img style='width: 200px; height: 200px;' ng-src="{{event.photo}}"></td>
         <td><button ng-click='create_ctrl.userDidClickRemoveFromAddedEvents(event)'>X</button></td>
       </tr>
     </tbody>
@@ -71,8 +75,9 @@
   <script>
     // autocomplete
     function initTest() {
-      var new_event_address = document.querySelector('#google-address-input');
-      var new_event_address_auto_complete = new google.maps.places.Autocomplete(new_event_address);
+      // var new_event_address = document.querySelector('#google-address-input');
+      // var new_event_address_auto_complete = new google.maps.places.Autocomplete(new_event_address);
     }
   </script>
+
   </body>

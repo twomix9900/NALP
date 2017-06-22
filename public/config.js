@@ -35,7 +35,7 @@
       controller: 'createCtrl as create_ctrl'
     })
     .state('plan', {
-      url: '/plan/:id',
+      url: '/plan/:plan_id',
       templateUrl: 'partials/plan.html',
       controller: 'planCtrl as plan_ctrl'
     })

@@ -4,6 +4,7 @@ module.exports = {
   index: function(req, res) {
     User
       .find({})
+ 
       .exec( function(err, users) {
         if (err) return console.log(err)
         res.json({ success: true, message: 'all users', users: users })

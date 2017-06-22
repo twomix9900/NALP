@@ -9,15 +9,36 @@
   //   }
   // }];
 
-  createCtrl.$inject = ['plan_fac'];
+  createCtrl.$inject = ['plan_fac', '$http', '$state'];
 
-  function createCtrl(plan_fac) {
+  function createCtrl(plan_fac, $http, $state) {
     var vm = this;
     vm.title = 'create plan view title'
     vm.some_user_id = '594c17fcd9ff1e28e82e2e6d'; // current: bob@gmail.com
     vm.newEventInfo = {};
     vm.newPlanInfo = {};
     vm.addedEvents = [];
+    vm.cityLoc = {};
+
+    var err_callback = function(err) {
+      console.log('err >>', err);
+    }
+
+    vm.showAutoSuggestions = function() {
+      console.log(vm.newPlanInfo.city, '<< city')
+        plan_fac
+          .auto_suggest({ search_term: vm.newEventInfo.address, search_location: vm.newPlanInfo.city })
+          .then(function(res) {
+            console.log(res.data.results, '<< success from yelp api test')
+            vm.allPlaceSuggestions = res.data.results.businesses;
+          }, err_callback)
+        // $http.get('https://api.yelp.com/v3/businesses/search?term=' + vm.newEventInfo.address + '&location=' + vm.newPlanInfo.city, {headers: {"Authorization": "Bearer 3AzZB1KiGE5YLQPGCNBu6kW6JmSAwRVF6YzmYBiXbDnAG6by-I2Zhg5Jdq5av1ugKKkssNPsasUGS9Ja9k0oly8FTK9yvWru6tHqubcryaW1bpGoQdlJRxH01vlKWXYx"}})
+        //   .then(function(res) {
+        //     console.log(res, '<< success from yelp api')  
+        //   }, err_callback)
+    }
+
+    
 
     // timepicker for start time input
     $('#start_time_input').timepicker();
@@ -27,9 +48,7 @@
   //  $('#added-events-address-p').css('width', '350px')
 
 
-    var err_callback = function(err) {
-      console.log('err >>', err);
-    }
+    
     vm.userDidClickAddEvent = function() {
       console.log(vm.newEventInfo);
       var event = {};
@@ -37,8 +56,17 @@
         event[key] = vm.newEventInfo[key]
       }
       event['address'] = $('#google-address-input').val();
-      vm.addedEvents.push(event);
-      vm.newEventInfo = {};
+      plan_fac
+          .auto_suggest({ search_term: event.address, search_location: vm.newPlanInfo.city })
+          .then(function(res) {
+            console.log(res.data.results, '<< success from yelp api test')
+            vm.current_place_img = res.data.results.businesses[0].image_url;
+            event.photo = vm.current_place_img
+            vm.addedEvents.push(event);
+            vm.newEventInfo = {};
+            vm.current_place_img = '';
+          }, err_callback)
+     
     };
     vm.userDidClickMakePlan = function() {
       var plan = {
@@ -56,6 +84,7 @@
       console.log(res, 'success');
       vm.addedEvents = [];
       vm.newPlanInfo = {};
+      // $state.go('plan', {plan_id: res.data.plan._id})
       // Materialize.toast('Saved!! Plan successfully created!!', 50000000, 'alert-complete');
     }
 

@@ -19,7 +19,7 @@
       })
     }
     vm.goToPlan = function(p_id) {
-      $state.go('plan', { id: p_id });
+      $state.go('plan', { plan_id: p_id });
     }
   }
 })()
