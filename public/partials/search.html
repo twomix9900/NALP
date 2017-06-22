@@ -1,1 +1,7 @@
-<h2>Inside Search HTML</h2>
+<h2>Find a Plan</h2>
+<form action="">
+  <input type="text" placeholder="Search Plans">
+</form>
+<div ng-repeat="plan in search_ctrl.dummydata">
+  {{plan.title}}
+</div>
