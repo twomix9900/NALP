@@ -1,24 +1,29 @@
 (function() {
-  angular.module('NALP', ['auth0.auth0', 'ui.router'])
+  angular.module('NALP', ['auth0', 'angular-storage', 'angular-jwt', 'ngMaterial', 'ui.router'])
   .config(config)
 
   config.$inject = [
-    '$stateProvider',
+    '$provide',
+    'authProvider',
     '$urlRouterProvider',
-    '$locationProvider',
-    'angularAuth0Provider'
+    '$stateProvider',
+    '$httpProvider',
+    'jwtInterceptorProvider'
   ];
 
-  function config($stateProvider, $urlRouterProvider, $locationProvider, angularAuth0Provider) {
-    
-    $urlRouterProvider.otherwise('/login');
+  function config($provide, authProvider, $urlRouterProvider, $stateProvider, $httpProvider, jwtInterceptorProvider) {  
+    $urlRouterProvider.otherwise('/search');
+
+    authProvider.init({
+      clientID: 'p3YX25mAFylU7F6GadLITKleuETnTKiT',
+      domain: 'nalp.auth0.com'
+    });
+
+    jwtInterceptorProvider.tokenGetter = function(store) {
+      return store.get('id_token');
+    };
 
     $stateProvider
-    .state('login', {
-      url: '/login',
-      templateUrl: 'partials/login.html',
-      controller: 'loginCtrl as login_ctrl'
-    })
     .state('search', {
       url: '/search',
       templateUrl: 'partials/search.html',
@@ -34,22 +39,11 @@
       templateUrl: 'partials/plan.html',
       controller: 'planCtrl as plan_ctrl'
     })
-    .state('callback', {
-      url: '/callback',
-      templateUrl: 'partials/search.html',
-      controller: 'callbackCtrl as callback_ctrl'
-    });
-
-    angularAuth0Provider.init({
-      clientID: 'pOJ2UcuFe1fISgSoTwFKENNpoqgu0BEo',
-      domain: 'shonozaki.auth0.com',
-      responseType: 'token id_token',
-      audience: 'https://shonozaki.auth0.com/userinfo',
-      redirectUri: 'http://localhost:3002/#/callback',
-      scope: 'openid'
-    });
-
-    $locationProvider.hashPrefix('');
+    .state('activities', {
+      url: '/activities',
+      templateUrl: 'partials/activities.html',
+      controller: 'activitiesCtrl as activities_ctrl'
+    })
 
   }
 })()

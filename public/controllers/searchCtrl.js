@@ -2,7 +2,7 @@
   angular.module('NALP')
   .controller('searchCtrl', searchCtrl)
 
-  searchCtrl.$inject [];
+  searchCtrl.$inject = [];
 
   function searchCtrl() {
     
