@@ -2,9 +2,9 @@
   angular.module('NALP')
   .controller('activitiesCtrl', activitiesCtrl)
 
-  activitiesCtrl.$inject = ['selectedPlans_fac'];
+  activitiesCtrl.$inject = ['selectedPlans_fac', '$state'];
 
-  function activitiesCtrl(selectedPlans_fac) {
+  function activitiesCtrl(selectedPlans_fac, $state) {
     var vm = this;
     vm.option = 'bookmarked';
     //dummy data
@@ -37,13 +37,17 @@
       });
     };
 
-    vm.userHover = function() {
-    // highlight selection  
+    vm.userMouseEnter = function() {
+      vm.highlight = true;
     };
+
+    vm.userMouseExit = function() {
+      vm.highlight = false;
+    }
     
-    vm.userClickPlanEntry = function() {
-      console.log('i want to view this entry');
-      // call planCtrl
+    vm.userClickPlanEntry = function(p_id) {
+      console.log('i want to view this entry', p_id);
+      $state.go('plan', { plan_id: p_id})
     }
 
 
