@@ -15,8 +15,8 @@
       function createPlan(id, data) {
         return $http.post(api + id, data);
       }
-      function getAllPlans() {
-        return $http.get(api);
+      function getAllPlans(params) {
+        return $http.get(api + params);
       }
       function auto_suggest(data) {
         return $http.post('/yelpapi', data);

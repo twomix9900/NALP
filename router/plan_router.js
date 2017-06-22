@@ -5,6 +5,7 @@ const PlanController = require('../controllers/plan_ctrl.js');
 
 planRouter.get('/:id', PlanController.show);
 planRouter.get('/', PlanController.index);
+planRouter.get('/city/:city', PlanController.index);
 planRouter.post('/:id', PlanController.create);
 planRouter.put('/:id', PlanController.update_plan_info);
 planRouter.get('/created/:id', PlanController.index_user);

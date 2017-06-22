@@ -11,8 +11,12 @@ module.exports = {
       })
   },
   index: function(req, res) {
+    var searchBy = {};
+    if (req.params.city) {
+      searchBy['city'] = req.params.city
+    }
     Plan
-      .find({})
+      .find(searchBy)
       .exec(function(err, plans) {
         if (err) return console.log(err)
         res.json({success: true, message: 'all plans', plans: plans});
