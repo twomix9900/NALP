@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="stylesheet" href="node_modules/angular-material/angular-material.css">
   <!-- Login Widget Latest major release -->
   <script src="https://cdn.auth0.com/js/lock-9.min.js"></script>
   <!--scale view for mobile-->
@@ -13,12 +15,6 @@
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script> <!-- jquery cdn -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.min.js'></script>
 
-  <script src="config.js"></script>
-  <script src='./controllers/createCtrl.js'></script>
-  <script src='./controllers/planCtrl.js'></script>
-  <script src="angular-auth0.js"></script>
-  <script src="./factories_services/plan_fac.js"></script>
-
   <title>NALP</title>
 </head>
 <body ng-app="NALP">
@@ -26,7 +22,7 @@
   <navbar></navbar>
 
   <div layout-padding>
-    <ui-view>Loading NALP</ui-view>
+    <ui-view>{{ 1 + 1 }}</ui-view>
   </div>
 
   <script src="node_modules/angular/angular.js"></script>
@@ -36,7 +32,7 @@
   <script src="node_modules/angular-jwt/dist/angular-jwt.js"></script>
   <script src="node_modules/angular-storage/dist/angular-storage.js"></script>
   <script src="node_modules/auth0-angular/build/auth0-angular.js"></script>
-  <script src="node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="node_modules/@uirouter/angularjs/release/angular-ui-router.js"></script>
 
   <script src="config.js"></script>
 
@@ -45,5 +41,6 @@
   <script src="./controllers/searchCtrl.js"></script>
 
   <script src='./controllers/createCtrl.js'></script>
+  <script src='./controllers/planCtrl.js'></script>
   <script src="./factories_services/plan_fac.js"></script>
 </html>

@@ -11,8 +11,7 @@
     'jwtInterceptorProvider'
   ];
 
-  function config($stateProvider, $urlRouterProvider, $locationProvider, angularAuth0Provider) {
-    
+  function config($provide, authProvider, $urlRouterProvider, $stateProvider, $httpProvider, jwtInterceptorProvider) {  
     $urlRouterProvider.otherwise('/search');
 
     authProvider.init({
