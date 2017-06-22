@@ -1,6 +1,6 @@
 <h2>Find a Plan</h2>
-<form action="">
-  <input type="text" placeholder="Search Plans By City">
+<form ng-submit="search_ctrl.searchByCity(search_ctrl.search)">
+  <input type="text" placeholder="Search Plans By City" ng-model="search_ctrl.search.city">
 </form>
 <button ng-click="search_ctrl.clickGetPlans()">Get All Plans</button>
 <div ng-repeat="plan in search_ctrl.data" ng-click="search_ctrl.goToPlan(plan._id)">

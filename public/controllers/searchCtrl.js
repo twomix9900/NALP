@@ -7,7 +7,19 @@
   function searchCtrl(plan_fac, $state) {
     var vm = this;
 
+    vm.search = {};
     vm.plans = [];
+
+    vm.searchByCity = function(cityName) {
+      console.log('SUBMITTED', cityName.city)
+      plan_fac.getAllPlans('city/' + cityName.city)
+      .then((plans) => {
+        vm.data = plans.data.plans;
+      })
+      .catch((err) => {
+        console.log('error getting plans', err);
+      })
+    }
 
     vm.clickGetPlans = function() {
       plan_fac.getAllPlans()
