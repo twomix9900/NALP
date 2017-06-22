@@ -11,3 +11,19 @@ li.ActNav {
   padding: 14px 12px;
   background-color: #EEE;
 }
+
+li.highlight {
+  background-color: #AAA;
+}
+
+table {
+  width: 50%
+}
+.viewtitle .viewcity {
+  width: 20%;
+}
+
+.viewcosts {
+  width: 10%;
+}
+
