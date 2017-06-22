@@ -34,6 +34,11 @@
       templateUrl: 'partials/plan.html',
       controller: 'planCtrl as plan_ctrl'
     })
+    .state('activities', {
+      url: '/activities',
+      templateUrl: 'partials/activities.html',
+      controller: 'activitiesCtrl as activities_ctrl'
+    })
     .state('callback', {
       url: '/callback',
       templateUrl: 'partials/search.html',
