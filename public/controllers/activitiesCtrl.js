@@ -40,6 +40,12 @@
     vm.userHover = function() {
     // highlight selection  
     };
+    
+    vm.userClickPlanEntry = function() {
+      console.log('i want to view this entry');
+      // call planCtrl
+    }
+
 
     // initialize view
     selectedPlans_fac.getPlans(vm.option, vm.SOME_USER_ID)
