@@ -2,9 +2,9 @@
   angular.module('NALP')
   .controller('planCtrl', createCtrl)
 
-  createCtrl.$inject = ['plan_fac'];
+  createCtrl.$inject = ['plan_fac', '$stateParams'];
 
-  function createCtrl(plan_fac) {
+  function createCtrl(plan_fac, $stateParams) {
     var vm = this;
     vm.title = 'create plan view title'
     vm.some_user_id = '5945a92adf00070c767a0592'; 
@@ -14,6 +14,15 @@
     var err_callback = function(err) {
       console.log('err >>', err);
     }
+
+    plan_fac
+      .show($stateParams.plan_id)
+      .then(success_call, err_callback)
+
+    function success_call(res) {
+      console.log(res.data.plan.events)
+    }
+
     vm.userDidClickAddEvent = function() {
       console.log(vm.newEventInfo);
       var event = {};
