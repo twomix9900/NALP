@@ -1,3 +1,4 @@
+<body>
 <h2>the Plan</h2>
 <div name='CreatePlan'>
   <form>
@@ -30,15 +31,15 @@
           <th>title</th>
           <th>address</th>
           <th>time</th>
-          <th>cost</th>
+          <th>cost ($)</th>
           <th>photolink</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td><input type='text' ng-model='create_ctrl.newEventInfo.event_type'></td>
-          <td><input type='text' ng-model='create_ctrl.newEventInfo.address'></td> 
-          <td><input type='text' ng-model='create_ctrl.newEventInfo.start_time'></td>
+          <td><input type='text' ng-model='create_ctrl.newEventInfo.address' id='google-address-input'></td> 
+          <td><input type='text' ng-model='create_ctrl.newEventInfo.start_time' id='start_time_input'></td>
           <td><input type='text' ng-model='create_ctrl.newEventInfo.cost'></td>
           <td>attach</td>
           <td><button ng-click='create_ctrl.userDidClickAddEvent()'>Add Event</button></td>
@@ -57,12 +58,21 @@
     <tbody>
       <tr ng-repeat='event in create_ctrl.addedEvents'>
         <td><p>{{ event.event_type }}</p></td>
-        <td><p>{{ event.address }}</p></td>
+        <td><p style='width: 350px;' id='added-events-address-p'>{{ event.address }}</p></td>
         <td><p>{{ event.start_time }}</p></td>
-        <td><p>{{ event.cost }}</p></td>
+        <td><p>{{ event.cost | currency }}</p></td>
         <td><p>some_photo_uri</p></td>
         <td><button ng-click='create_ctrl.userDidClickRemoveFromAddedEvents(event)'>X</button></td>
       </tr>
     </tbody>
   </table>
   <input ng-click='create_ctrl.userDidClickMakePlan()' type='button' value='Make Plan'>
+  <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBVzNx4R3D71W4Cg0RrD06Q5i-7UP5l-pU&callback=initTest"></script>
+  <script>
+    // autocomplete
+    function initTest() {
+      var new_event_address = document.querySelector('#google-address-input');
+      var new_event_address_auto_complete = new google.maps.places.Autocomplete(new_event_address);
+    }
+  </script>
+  </body>
