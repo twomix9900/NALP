@@ -14,7 +14,7 @@ module.exports = {
           if (err) return console.log(err);
           var planInfo = [];
             for (var idx = 0; idx < plans.length; idx ++) {
-              planInfo.push({ title: plans[idx].title, city: plans[idx].city, totalCost: plans[idx].total_cost });
+              planInfo.push({ title: plans[idx].title, city: plans[idx].city, totalCost: plans[idx].total_cost, p_id: plans[idx]._id });
             }
           console.log('plan object: ', planInfo);
           res.json({ success: true, message: 'bm plans found', plans: planInfo});
@@ -36,7 +36,7 @@ module.exports = {
           if (err) return console.log(err);
           var planInfo = [];
             for (var idx = 0; idx < plans.length; idx ++) {
-              planInfo.push({ title: plans[idx].title, city: plans[idx].city, totalCost: plans[idx].total_cost });
+              planInfo.push({ title: plans[idx].title, city: plans[idx].city, totalCost: plans[idx].total_cost, p_id: plans[idx]._id });
             }
           console.log('plan object: ', planInfo);
           res.json({ success: true, message: 'cr plans found', plans: planInfo});
@@ -58,7 +58,7 @@ module.exports = {
           if (err) return console.log(err);
           var planInfo = [];
             for (var idx = 0; idx < plans.length; idx ++) {
-              planInfo.push({ title: plans[idx].title, city: plans[idx].city, totalCost: plans[idx].total_cost });
+              planInfo.push({ title: plans[idx].title, city: plans[idx].city, totalCost: plans[idx].total_cost, p_id: plans[idx]._id });
             }
           console.log('plan object: ', planInfo);
           res.json({ success: true, message: 'co plans found', plans: planInfo});
