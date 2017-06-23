@@ -7,9 +7,10 @@
   function planCtrl(selectedPlans_fac, $state, plan_fac, $stateParams) {
     var vm = this;
     vm.title = 'plan view title'
-    vm.some_user_id = '5945a92adf00070c767a0592';
+    vm.some_user_id = '594d54c3562e2b151e419e2b';
     vm.addedEvents = [];
     vm.totalCost = 0;
+    vm.isNotComplete = false;
 
     var err_callback = function (err) {
       console.log('err >>', err);
@@ -21,6 +22,12 @@
 
     function success_call(res) {
       vm.addedEvents = res.data.plan.events;
+      vm.currentPlanId = res.data.plan._id;
+      vm.currentPlanUserId = res.data.plan.created_by_id;
+      vm.Ratings = res.data.plan.ratings.length
+      if (!res.data.plan.ratings.includes(vm.currentPlanUserId)) {
+        vm.isNotComplete = true;
+      }
       for (let i = 0; i < vm.addedEvents.length; i++) {
         vm.totalCost += parseFloat(vm.addedEvents[i].cost);
         console.log('vm total cost = ', vm.totalCost)
@@ -30,10 +37,29 @@
     vm.userDidClickMarkAsComplete = function () {
       console.log('button clicked!');
       vm.option = 'completed';
-      selectedPlans_fac.getPlans(vm.option, vm.SOME_USER_ID)
-        .then(renderPlans, function (err) {
-          if (err) throw err;
-        });
+      // selectedPlans_fac.getPlans(vm.option, vm.SOME_USER_ID)
+      //   .then(renderPlans, function (err) {
+      //     if (err) throw err;
+      //   });
+      plan_fac
+        .mark_plan_complete(vm.currentPlanId, { user_id: vm.some_user_id })
+        .then(mark_com_res, err_callback)
+    }
+
+    function mark_com_res(res) {
+      console.log(res, '< success')
+      vm.isNotComplete = false;
+    }
+
+    vm.userDidClickMarkAsIncomplete = function() {
+      console.log('clicked incomplete')
+      plan_fac
+        .mark_plan_incomplete(vm.currentPlanId, {user_id: vm.some_user_id})
+        .then(mark_incomplete_res, err_callback)
+    }
+
+    function mark_incomplete_res(res) {
+      console.log(res, '<< successfully marked incomplete');
     }
 
   }

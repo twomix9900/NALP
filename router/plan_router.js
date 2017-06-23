@@ -12,5 +12,7 @@ planRouter.get('/created/:id', PlanController.index_user);
 planRouter.get('/rated', PlanController.index_rated);
 planRouter.get('/bookmarks', PlanController.index_bookmark);
 planRouter.get('/delete/:id', PlanController.delete_plan);
+planRouter.post('/mark-complete/:id', PlanController.mark_plan_complete);
+planRouter.post('/mark-incomplete/:id', PlanController.mark_plan_incomplete);
 
 module.exports = planRouter;

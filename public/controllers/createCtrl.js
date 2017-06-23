@@ -14,7 +14,7 @@
   function createCtrl(plan_fac, $http, $state) {
     var vm = this;
     vm.title = 'create plan view title'
-    vm.some_user_id = '594c17fcd9ff1e28e82e2e6d'; // current: bob@gmail.com
+    vm.some_user_id = '594952f0c6752208937c6797'; // current: bob@gmail.com
     vm.newEventInfo = {};
     vm.newPlanInfo = {};
     vm.addedEvents = [];
