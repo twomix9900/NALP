@@ -27,7 +27,6 @@ module.exports = {
           res.json({ success: true, message: 'bm plans found', plans: planInfo});
         })  
       } else {
-        console.log('i got nothing');
         res.json({ success: false, message: 'no plans available', plans: [{ title: '', city: 'Sorry, you do not have any plans bookmarked', total_cost: null }, { title: '', city: 'Please bookmark some plans first', total_cost: null }] });
       }
     });
@@ -73,7 +72,7 @@ module.exports = {
           res.json({ success: true, message: 'co plans found', plans: planInfo});
         })  
       } else {
-        res.json({ success: false, message: 'no plans available', plans: [{ title: '', city: 'Sorry, you have no completed any of your plans', total_cost: null }, { title: '', city: 'Finish a plan and rate your day', total_cost: null }] });
+        res.json({ success: false, message: 'no plans available', plans: [{ title: '', city: 'Sorry, you have not completed any of your plans', total_cost: null }, { title: '', city: 'Finish a plan and rate your day', total_cost: null }] });
       }
     });
   },
