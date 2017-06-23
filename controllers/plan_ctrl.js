@@ -196,6 +196,41 @@ module.exports = {
           })
       })
   },
+
+  toggle_bookmark: function(req, res) {
+    // req.body => { user_id: 'some val', bookmark: (true or false) }
+    User
+      .findOne({_id: req.body.user_id}) // from front end body
+      .exec(function(err, user) {
+        if (err) return console.log(err)
+        Plan
+          .findOne({_id: req.params.id})
+          .exec(function(err, plan){
+            if (err) return console.log(err)
+            if (req.body.bookmark) {  // from front end body r
+              plan.bookmarks.push(user._id);
+              plan.save(function(err, plan) {
+                if (err) return console.log(err)
+                user.bookmark_plans.push(plan._id)
+                user.save(function(err, user) {
+                  if (err) return console.log(err)
+                  res.json({success: true, message: 'plan has been bookmarked', plan: plan, user: user});
+                })
+              })
+            } else {
+              plan.bookmarks.splice(plan.bookmarks.indexOf(user._id), 1);
+              plan.save(function(err, plan) {
+                if (err) return console.log(err)
+                user.bookmark_plans.splice(user.bookmark_plans.indexOf(plan._id), 1);
+                user.save(function(err, user) {
+                  if (err) return console.log(err)
+                  res.json({success: true, message: 'plan has been removed from bookmarks', plan: plan, user: user});
+                })
+              })
+            }
+          })
+      })
+  },
   
 
   completed: (req, res) => {
