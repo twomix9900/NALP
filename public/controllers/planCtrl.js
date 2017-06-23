@@ -1,10 +1,10 @@
 (function () {
   angular.module('NALP')
-    .controller('planCtrl', planCtrl)
+  .controller('planCtrl', planCtrl)
 
-  planCtrl.$inject = ['plan_fac', '$stateParams', '$http'];
+  planCtrl.$inject = ['selectedPlans_fac', '$state', 'plan_fac', "$stateParams"];
 
-  function planCtrl(plan_fac, $stateParams, $http) {
+  function planCtrl(selectedPlans_fac, $state, plan_fac, $stateParams) {
     var vm = this;
     vm.title = 'plan view title'
     vm.some_user_id = '5945a92adf00070c767a0592';
@@ -29,15 +29,11 @@
 
     vm.userDidClickMarkAsComplete = function () {
       console.log('button clicked!');
-      // var plan = {
-      //   title: vm.newPlanInfo.title,
-      //   city: vm.newPlanInfo.city,
-      //   events: vm.addedEvents
-      // }
-      // console.log(plan)
-      // plan_fac
-      //   .createPlan(vm.some_user_id, plan)
-      //   .then(make_plan_res, err_callback)
+      vm.option = 'completed';
+      selectedPlans_fac.getPlans(vm.option, vm.SOME_USER_ID)
+        .then(renderPlans, function (err) {
+          if (err) throw err;
+        });
     }
 
   }
