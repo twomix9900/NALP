@@ -13,18 +13,25 @@ var fetch = require('node-fetch');
 var activityRoutes = require('./router/activity_router.js');
 
 //authentication
-
-
-
-// mongoose.connect('mongodb://localhost/plan_a_day', function(err) {
-//   if (err) return console.log(err)
-//   console.log('connected to mongo shell');
-// })
-
-mongoose.connect(process.env.DB_URL, function (err) {
-  if (err){console.log('cant connect: ', err);}
-  console.log('connected to MLab')
+var jwt = require('express-jwt');
+var cors = require('cors');
+app.use(cors());
+var authCheck = jwt({
+  secret: new Buffer('WxgUVTWBJjGQPwprOqLrmZLklcUTGFiWAGtua9cmgUWBnM9rjULeRENjDGIqCzvR', 'base64'),
+  audience: 'p3YX25mAFylU7F6GadLITKleuETnTKiT'
 })
+
+
+
+mongoose.connect('mongodb://localhost/plan_a_day', function(err) {
+  if (err) return console.log(err)
+  console.log('connected to mongo shell');
+})
+
+// mongoose.connect(process.env.DB_URL, function (err) {
+//   if (err){console.log('cant connect: ', err);}
+//   console.log('connected to MLab')
+// })
 
 app.use('/', express.static(path.join(__dirname, 'public')));
 
