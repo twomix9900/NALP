@@ -3,24 +3,28 @@
   <div>
     <nav>
       <ul class='ActNav'>
-        <li class='ActNav' ng-click='activities_ctrl.userClickBookmarked()'>Bookmarked</li>
-        <li class='ActNav' ng-click='activities_ctrl.userClickCreated()'>Created</li>
-        <li class='ActNav' ng-click='activities_ctrl.userClickCompleted()'>Completed</li>
+        <li class='ActNav' ng-click='activities_ctrl.userClickBookmarked()'
+          ng-class='bm' ng-mouseenter='bm = "highlight"' ng-mouseleave='bm = "normal"'
+          >Bookmarked</li>
+        <li class='ActNav' ng-click='activities_ctrl.userClickCreated()'
+          ng-class='cr' ng-mouseenter='cr = "highlight"' ng-mouseleave='cr = "normal"' 
+          >Created</li>
+        <li class='ActNav' ng-click='activities_ctrl.userClickCompleted()'
+          ng-class='co' ng-mouseenter='co = "highlight"' ng-mouseleave='co = "normal"'
+          >Completed</li>
       </ul>
     </nav>
   </div>
   <div>
     <br></br>
     <p></p>
-    <table>
+    <table class='activity_header'>
       <thead>
-      <th>
         <tr>
-          <td class='viewtitle'>Title</td>
-          <td class='viewcity'>City</td>
-          <td class='viewcosts'>Costs</td>
+          <th class='viewtitle'>Title</th>
+          <th class='viewcity'>City</th>
+          <th class='viewcosts'>Costs</th>
         </tr>
-      </th>
       </thead>
       <tbody>
         <tr ng-repeat='plan in activities_ctrl.plans' ng-dblclick='activities_ctrl.userClickPlanEntry(plan.p_id)'>

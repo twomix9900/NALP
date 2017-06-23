@@ -7,11 +7,11 @@ module.exports = {
     User.findOne({_id: req.params.id})
     .select('bookmark_plans')
     .exec(function(err, plans) {
-      if (err) return console.log(err);
+      if (err) return sendStatus(404);
       if (plans.bookmark_plans.length) {
-        Plan.find({ _id: { $all : plans.bookmark_plans } })
+        Plan.find({ _id: { $in : plans.bookmark_plans } })
           .exec(function(err, plans) {
-          if (err) return console.log(err);
+          if (err) return sendStatus(404);
           var planInfo = [];
             for (var idx = 0; idx < plans.length; idx ++) {
               planInfo.push({ title: plans[idx].title, city: plans[idx].city, totalCost: plans[idx].total_cost, p_id: plans[idx]._id });
@@ -29,11 +29,11 @@ module.exports = {
     User.findOne({_id: req.params.id})
     .select('created_plans')
     .exec(function(err, plans) {
-      if (err) return console.log(err);
+      if (err) return sendStatus(404);
       if (plans.created_plans.length) {
-        Plan.find({ _id: { $all : plans.created_plans } })
+        Plan.find({ _id: { $in : plans.created_plans } })
           .exec(function(err, plans) {
-          if (err) return console.log(err);
+          if (err) return sendStatus(404);
           var planInfo = [];
             for (var idx = 0; idx < plans.length; idx ++) {
               planInfo.push({ title: plans[idx].title, city: plans[idx].city, totalCost: plans[idx].total_cost, p_id: plans[idx]._id });
@@ -51,11 +51,11 @@ module.exports = {
     User.findOne({_id: req.params.id})
     .select('rated_plans')
     .exec(function(err, plans) {
-      if (err) return console.log(err);
+      if (err) return sendStatus(404);
       if (plans.rated_plans.length) {
-        Plan.find({ _id: { $all : plans.rated_plans } })
+        Plan.find({ _id: { $in : plans.rated_plans } })
           .exec(function(err, plans) {
-          if (err) return console.log(err);
+          if (err) return sendStatus(404);
           var planInfo = [];
             for (var idx = 0; idx < plans.length; idx ++) {
               planInfo.push({ title: plans[idx].title, city: plans[idx].city, totalCost: plans[idx].total_cost, p_id: plans[idx]._id });
