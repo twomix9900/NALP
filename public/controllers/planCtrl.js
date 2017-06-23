@@ -7,7 +7,7 @@
   function planCtrl(selectedPlans_fac, $state, plan_fac, $stateParams, store) {
     var vm = this;
     vm.title = 'plan view title'
-    vm.SOME_USER_ID = store.get('current_user_id');
+    vm.some_user_id = store.get('current_user_id');
     vm.addedEvents = [];
     vm.totalCost = 0;
     vm.isNotComplete = false;
@@ -82,6 +82,7 @@
     function bookmark_res(res) {
       console.log(res, 'success bookmark res')
       vm.isBookmarked = true;
+      vm.bookmarks = res.data.plan.bookmarks.length;
     }
 
     vm.userDidClickRemoveBookmark = function () {
@@ -97,6 +98,7 @@
     function remove_bookmark_res(res) {
       console.log(res, 'success, bookmark removed')
       vm.isBookmarked = false;
+      vm.bookmarks = res.data.plan.bookmarks.length;
     }
 
   }

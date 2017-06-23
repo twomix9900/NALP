@@ -17,8 +17,8 @@ var planSchema = Schema({
   created_by_id: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   total_cost: { type: Number },
   events: [ eventSchema ],
-  ratings: [ { type: Schema.Types.ObjectId, ref: 'User' } ],
-  bookmarks: [ { type: Schema.Types.ObjectId, ref: 'User' } ]
+  ratings: [ { type: Schema.Types.ObjectId, ref: 'User', unique: true } ],
+  bookmarks: [ { type: Schema.Types.ObjectId, ref: 'User', unique: true } ]
 })
 
 
