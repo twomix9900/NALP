@@ -3,9 +3,15 @@
   <div>
     <nav>
       <ul class='ActNav'>
-        <li class='ActNav' ng-click='activities_ctrl.userClickBookmarked()'>Bookmarked</li>
-        <li class='ActNav' ng-click='activities_ctrl.userClickCreated()'>Created</li>
-        <li class='ActNav' ng-click='activities_ctrl.userClickCompleted()'>Completed</li>
+        <li class='ActNav' ng-click='activities_ctrl.userClickBookmarked()'
+          ng-class='bm' ng-mouseenter='bm = "highlight"' ng-mouseleave='bm = "normal"'
+          >Bookmarked</li>
+        <li class='ActNav' ng-click='activities_ctrl.userClickCreated()'
+          ng-class='cr' ng-mouseenter='cr = "highlight"' ng-mouseleave='cr = "normal"' 
+          >Created</li>
+        <li class='ActNav' ng-click='activities_ctrl.userClickCompleted()'
+          ng-class='co' ng-mouseenter='co = "highlight"' ng-mouseleave='co = "normal"'
+          >Completed</li>
       </ul>
     </nav>
   </div>
@@ -13,7 +19,7 @@
     <br></br>
     <p></p>
     <table>
-      <thead>
+      <thead class='eventHeader'>
       <th>
         <tr>
           <td class='viewtitle'>Title</td>

@@ -8,7 +8,7 @@
     var vm = this;
     vm.option = 'bookmarked';
     //dummy data
-    vm.SOME_USER_ID = '594ae6c148ec2d34688f7c87';
+    vm.SOME_USER_ID = '5945a92adf00070c767a0592';
 
     vm.userClickBookmarked = function(){
       console.log('i got bookmarked');

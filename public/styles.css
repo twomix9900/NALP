@@ -9,11 +9,11 @@ li.ActNav {
   display: block;
   text-align: center;
   padding: 14px 12px;
-  background-color: #EEE;
+  background-color: #d5e1df;
 }
 
 li.highlight {
-  background-color: #AAA;
+  background-color: #b5e7a0;
 }
 
 table {
@@ -27,3 +27,6 @@ table {
   width: 10%;
 }
 
+.eventHeader {
+  font-weight: bold;
+}
