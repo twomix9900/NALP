@@ -8,7 +8,7 @@
     var vm = this;
     vm.option = 'bookmarked';
 
-    vm.SOME_USER_ID = store.get('current_user_id');
+    vm.user_id = store.get('current_user_id');
 
     vm.userClickBookmarked = function(){
       console.log('i got bookmarked');
