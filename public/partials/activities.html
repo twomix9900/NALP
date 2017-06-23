@@ -28,9 +28,9 @@
       </thead>
       <tbody>
         <tr ng-repeat='plan in activities_ctrl.plans' ng-dblclick='activities_ctrl.userClickPlanEntry(plan.p_id)'>
-          <td>{{plan.title}}</td>
-          <td>{{plan.city}}</td>
-          <td>{{plan.total_cost}}</td>
+          <td class='viewtitle'>{{plan.title}}</td>
+          <td class='viewcity'>{{plan.city}}</td>
+          <td class='viewcosts'>{{plan.total_cost | currency}}</td>
         </tr>
       </tbody>
   </div>  

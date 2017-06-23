@@ -13,21 +13,21 @@ var fetch = require('node-fetch');
 var activityRoutes = require('./router/activity_router.js');
 
 //authentication
-var jwt = require('express-jwt');
-var cors = require('cors');
-app.use(cors());
-var authCheck = jwt({
-  secret: new Buffer('WxgUVTWBJjGQPwprOqLrmZLklcUTGFiWAGtua9cmgUWBnM9rjULeRENjDGIqCzvR'),
-  audience: 'p3YX25mAFylU7F6GadLITKleuETnTKiT'
-})
+// var jwt = require('express-jwt');
+// var cors = require('cors');
+// app.use(cors());
+// var authCheck = jwt({
+//   secret: new Buffer('WxgUVTWBJjGQPwprOqLrmZLklcUTGFiWAGtua9cmgUWBnM9rjULeRENjDGIqCzvR'),
+//   audience: 'p3YX25mAFylU7F6GadLITKleuETnTKiT'
+// })
 
 
-app.get('/api/public', function(req, res) {
-  res.json({ message: 'In Public route'});
-});
-app.get('/api/private', authCheck, function(req, res) {
-  res.json({ message: 'In private route'});
-});
+// app.get('/api/public', function(req, res) {
+//   res.json({ message: 'In Public route'});
+// });
+// app.get('/api/private', authCheck, function(req, res) {
+//   res.json({ message: 'In private route'});
+// });
 
 
 // mongoose.connect('mongodb://localhost/plan_a_day', function(err) {

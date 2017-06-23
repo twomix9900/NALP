@@ -15,13 +15,21 @@ li.highlight {
   background-color: #b5e7a0;
 }
 table.activity_header {
-  width: 50%;
+  position: absolute;
+  width: 100%;
+  min-width: 500px;
 }
-.viewtitle .viewcity {
-  width: 20%;
+.viewtitle {
+  width: 25%;
+  text-align: left;
+}
+.viewcity {
+  width: 65%;
+  text-align: left;
 }
 .viewcosts {
   width: 10%;
+  text-align: left;
 }
 .eventHeader {
   font-weight: bold;
