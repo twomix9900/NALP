@@ -13,6 +13,7 @@ module.exports = {
   create: function(req, res) {
     var newUser = new User(req.body);
     newUser.save(function(err, user) {
+      if (!user) return res.json({success: false, message: 'user already exists'})
       if (err) return console.log(err)
       res.json({success: true, message: 'user created', user: user});
     })
