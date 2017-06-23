@@ -6,17 +6,37 @@
     <span flex></span>
 
     <md-button
-    ng-click="navbar_ctrl.login()">
+    ui-sref="search">
+    Search
+    </md-button>
+    
+    <md-button
+    ui-sref="activities"
+    ng-if="navbar_ctrl.auth.isAuthenticated">
+    Saved
+    </md-button>
+
+    <md-button
+    ui-sref="create"
+    ng-if="navbar_ctrl.auth.isAuthenticated">
+    Create
+    </md-button>
+
+    <md-button
+    ng-click="navbar_ctrl.login()"
+    ng-if="!navbar_ctrl.auth.isAuthenticated">
     Login
     </md-button>
 
     <md-button
-    ui-sref="profile">
+    ui-sref="profile"
+    ng-if="navbar_ctrl.auth.isAuthenticated">
     Profile
     </md-button>
 
     <md-button
-    ng-click="navbar_ctrl.logout()">
+    ng-click="navbar_ctrl.logout()"
+    ng-if="navbar_ctrl.auth.isAuthenticated">
     Logout
     </md-button>
 

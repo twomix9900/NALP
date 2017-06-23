@@ -21,31 +21,7 @@
   <script>
     var markers = [];
     var resultsMaps = [];
-    addedEvents = [{
-        event_type: '',
-        address: 'Los Angeles, CA',
-        cost: '90',
-        start_time: '9:00'
-      },
-      {
-        event_type: '',
-        address: 'Pasadena, CA',
-        cost: '100',
-        start_time: '10:00'
-      },
-      {
-        event_type: '',
-        address: 'Azusa, CA',
-        cost: '110',
-        start_time: '11:00'
-      },
-      {
-        event_type: '',
-        address: 'Hollywood, CA',
-        cost: '120',
-        start_time: '12:00'
-      }
-    ];
+    var addedEvents = [];
     var address = '';
 
     function initMap() {
@@ -59,26 +35,24 @@
       });
       var geocoder = new google.maps.Geocoder();
       var jqueryURL = window.location.href.slice(30);
+
       $.ajax({
           url: "/plans/" + jqueryURL,
           method: "GET"
         })
         .done(function (data) {
-          console.log('success! data = ', data);
+          console.log('success! jquery data = ', data);
           for (let i = 0; i < data.plan.events.length; i++) {
             address = data.plan.events[i].address;
-            geocodeAddress(geocoder, map);
+            geocodeAddress(geocoder, map, i);
           }
         })
         .fail(function (err) {
           console.log('error! ', err);
         });
-
-
-
     }
 
-    function geocodeAddress(geocoder, resultsMap) {
+    function geocodeAddress(geocoder, resultsMap, i) {
       var directionsDisplay = new google.maps.DirectionsRenderer({
         map: resultsMap
       });
@@ -101,7 +75,7 @@
             optimized: true,
             position: results[0].geometry.location,
             title: address,
-            icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' + (markers.length + 1) +
+            icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' + (i + 1) +
               '|FF0000|000000'
           });
 
@@ -150,10 +124,8 @@
   <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVzNx4R3D71W4Cg0RrD06Q5i-7UP5l-pU&callback=initMap">
   </script>
 
-  <div name='CreatePlan'>
-    <input ng-click='create_ctrl.userDidClickMakePlan()' type='button' value='bookmarks'></button>
-    <input ng-click='create_ctrl.userDidClickMakePlan()' type='button' value='edit'></button>
-    600 bookmarks 57 completed
+  <div name='plans'>
+
     <br>
     <table>
       <thead>
@@ -175,19 +147,12 @@
             <p style='width: 50px;' id='added-events-address-p'>{{ event.start_time }}</p>
           </td>
           <td>
-            <p style='width: 50px;' id='added-events-address-p'>{{ event.cost }}</p>
+            <p style='width: 50px;' id='added-events-address-p'>${{ event.cost }}</p>
           </td>
         </tr>
       </tbody>
     </table>
-    <div style='width: 150px;'> total cost: </div>
+    <div style='width: 150px;'> total cost: ${{plan_ctrl.totalCost}}</div>
     <br>
-    <input ng-click='create_ctrl.userDidClickMakePlan()' type='button' value='Mark As Complete'>
-    <script>
-      // autocomplete
-      function initTest() {
-        var new_event_address = document.querySelector('#google-address-input');
-        var new_event_address_auto_complete = new google.maps.places.Autocomplete(new_event_address);
-      }
-    </script>
+    <input ng-click='plan_ctrl.userDidClickMarkAsComplete()' type='button' value='Mark As Complete'>
 </body>

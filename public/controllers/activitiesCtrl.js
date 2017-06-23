@@ -7,8 +7,8 @@
   function activitiesCtrl(selectedPlans_fac, $state) {
     var vm = this;
     vm.option = 'bookmarked';
-    //dummy data
-    vm.SOME_USER_ID = '5945a92adf00070c767a0592';
+
+    vm.SOME_USER_ID = '594c17fcd9ff1e28e82e2e6d';
 
     vm.userClickBookmarked = function(){
       console.log('i got bookmarked');
