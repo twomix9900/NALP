@@ -14,5 +14,6 @@ planRouter.get('/bookmarks', PlanController.index_bookmark);
 planRouter.get('/delete/:id', PlanController.delete_plan);
 planRouter.post('/mark-complete/:id', PlanController.mark_plan_complete);
 planRouter.post('/mark-incomplete/:id', PlanController.mark_plan_incomplete);
+planRouter.post('/bookmark/:id', PlanController.toggle_bookmark);
 
 module.exports = planRouter;

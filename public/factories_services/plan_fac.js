@@ -12,7 +12,8 @@
         auto_suggest: auto_suggest,
         show: show,
         mark_plan_complete: mark_plan_complete,
-        mark_plan_incomplete: mark_plan_incomplete
+        mark_plan_incomplete: mark_plan_incomplete,
+        bookmark: bookmark
       }
       function createPlan(id, data) {
         return $http.post(api + id, data);
@@ -31,6 +32,9 @@
       }
       function mark_plan_incomplete(id, data) {
         return $http.post(api + '/mark-incomplete/' + id, data);
+      }
+      function bookmark(id, data) {
+        return $http.post(api + '/bookmark/' + id, data);
       }
       return service;
     }

@@ -11,6 +11,7 @@
     vm.addedEvents = [];
     vm.totalCost = 0;
     vm.isNotComplete = false;
+    vm.isBookmarked = false;
 
     var err_callback = function (err) {
       console.log('err >>', err);
@@ -60,6 +61,31 @@
 
     function mark_incomplete_res(res) {
       console.log(res, '<< successfully marked incomplete');
+      vm.isNotComplete = true;
+    }
+
+    vm.userDidClickBookmark = function() {
+      console.log('clicked bookmark')
+      plan_fac
+        .bookmark(vm.currentPlanId, { user_id: vm.some_user_id, bookmark: true })
+        .then(bookmark_res, err_callback)
+    }
+
+    function bookmark_res(res) {
+      console.log(res, 'success bookmark res')
+      vm.isBookmarked = true;
+    }
+
+    vm.userDidClickRemoveBookmark = function() {
+      console.log('clicked remove bookmark');
+      plan_fac
+        .bookmark(vm.currentPlanId, { user_id: vm.some_user_id, bookmark: false })
+        .then(remove_bookmark_res, err_callback)
+    }
+
+    function remove_bookmark_res(res) {
+      console.log(res, 'success, bookmark removed')
+      vm.isBookmarked = false;
     }
 
   }
