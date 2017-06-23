@@ -158,13 +158,14 @@ module.exports = {
           .findOne({_id: req.params.id})
           .exec(function(err, plan) {
             if (err) return console.log(err)
-            if (!plan.ratings.includes(user._id)) {
+           
+            if (plan.ratings.indexOf(user._id) === -1) {
               plan.ratings.push(user._id);
             }
             plan
               .save(function(err, plan) {
                 if (err) return console.log(err)
-                if (!user.rated_plans.includes(plan._id)) {
+                if (user.rated_plans.indexOf(user._id) === -1) {
                   user.rated_plans.push(plan._id);
                 }
                 user
@@ -212,12 +213,12 @@ module.exports = {
           .exec(function(err, plan){
             if (err) return console.log(err)
             if (req.body.bookmark) {  // from front end body r
-              if (!plan.bookmarks.includes(user._id)) {
+              if (plan.bookmarks.indexOf(user._id) === -1) {
                 plan.bookmarks.push(user._id);
               }
               plan.save(function(err, plan) {
                 if (err) return console.log(err)
-                if (!user.bookmark_plans.includes(plan._id)) {
+                if (user.bookmark_plans.indexOf(user._id) === -1) {
                   user.bookmark_plans.push(plan._id)
                 }
                 user.save(function(err, user) {
