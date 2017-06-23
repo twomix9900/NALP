@@ -50,5 +50,7 @@
       controller: 'profileCtrl as profile_ctrl'
     })
 
+    $httpProvider.interceptors.push('jwtInterceptor');
+
   }
 })()
