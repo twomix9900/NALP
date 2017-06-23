@@ -39,13 +39,10 @@
     vm.userDidClickMarkAsComplete = function () {
       console.log('button clicked!');
       vm.option = 'completed';
-      // selectedPlans_fac.getPlans(vm.option, vm.SOME_USER_ID)
-      //   .then(renderPlans, function (err) {
-      //     if (err) throw err;
-      //   });
       plan_fac
         .mark_plan_complete(vm.currentPlanId, {
-          user_id: vm.some_user_id
+          user_id: vm.some_user_id,
+          completed: true
         })
         .then(mark_com_res, err_callback)
     }
@@ -53,13 +50,15 @@
     function mark_com_res(res) {
       console.log(res, '< success')
       vm.isNotComplete = false;
+      vm.ratings = res.data.plan.ratings.length;
     }
 
     vm.userDidClickMarkAsIncomplete = function () {
       console.log('clicked incomplete')
       plan_fac
         .mark_plan_incomplete(vm.currentPlanId, {
-          user_id: vm.some_user_id
+          user_id: vm.some_user_id,
+          completed: false
         })
         .then(mark_incomplete_res, err_callback)
     }
@@ -67,6 +66,7 @@
     function mark_incomplete_res(res) {
       console.log(res, '<< successfully marked incomplete');
       vm.isNotComplete = true;
+      vm.ratings = res.data.plan.ratings.length;
     }
 
     vm.userDidClickBookmark = function () {
