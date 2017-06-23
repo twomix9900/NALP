@@ -23,8 +23,10 @@
       auth.signin({}, function(profile, token) {
         store.set('profile', profile);
         store.set('id_token', token);
-        $http.post(api, { email: profile.email, password: 'hello' } )
+        $http.post(api, { email: profile.email } )
         .then((newUser) => {
+          // var profile = store.get('profile') // 
+          store.set('current_user_id', newUser.data.user._id);
           console.log('new user : ', newUser);
         })
         .catch((err) => {
