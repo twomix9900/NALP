@@ -149,6 +149,54 @@ module.exports = {
         })
       })
   },
+  mark_plan_complete: function(req, res) {
+    User
+      .findOne({_id: req.body.user_id})
+      .exec(function(err, user) {
+        if (err) return console.log(err)
+        Plan
+          .findOne({_id: req.params.id})
+          .exec(function(err, plan) {
+            if (err) return console.log(err)
+            plan.ratings.push(user._id);
+            plan
+              .save(function(err, plan) {
+                if (err) return console.log(err)
+                user.rated_plans.push(plan._id);
+                user
+                  .save(function(err, user) {
+                    if (err) return console.log(err)
+                    res.json({success: true, message: 'plan has been marked as complete', plan: plan, user: user})
+                  })
+              })
+          })
+      })
+  },
+
+  mark_plan_incomplete: function(req, res) {
+    User
+      .findOne({_id: req.body.user_id})
+      .exec(function(err, user) {
+        if (err) return console.log(err)
+        Plan
+          .findOne({_id: req.params.id})
+          .exec(function(err, plan) {
+            if (err) return console.log(err)
+            plan.ratings.splice(plan.ratings.indexOf(user._id), 1);
+            plan
+              .save(function(err, plan) {
+                if (err) return console.log(err)
+                user.rated_plans.splice(user.rated_plans.indexOf(plan._id), 1);
+                user
+                  .save(function(err, user) {
+                    if (err) return console.log(err)
+                    res.json({success: true, message: 'plan has been marked as incomplete', plan: plan, user: user})
+                  })
+              })
+          })
+      })
+  },
+  
 
   completed: (req, res) => {
     User.findOne({
