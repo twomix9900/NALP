@@ -1,13 +1,13 @@
 (function () {
   angular.module('NALP')
-  .controller('planCtrl', planCtrl)
+    .controller('planCtrl', planCtrl)
 
-  planCtrl.$inject = ['selectedPlans_fac', '$state', 'plan_fac', "$stateParams"];
+  planCtrl.$inject = ['selectedPlans_fac', '$state', 'plan_fac', "$stateParams", 'store'];
 
-  function planCtrl(selectedPlans_fac, $state, plan_fac, $stateParams) {
+  function planCtrl(selectedPlans_fac, $state, plan_fac, $stateParams, store) {
     var vm = this;
     vm.title = 'plan view title'
-    vm.some_user_id = '594d54c3562e2b151e419e2b';
+    vm.SOME_USER_ID = store.get('current_user_id');
     vm.addedEvents = [];
     vm.totalCost = 0;
     vm.isNotComplete = false;
@@ -25,13 +25,14 @@
       vm.addedEvents = res.data.plan.events;
       vm.currentPlanId = res.data.plan._id;
       vm.currentPlanUserId = res.data.plan.created_by_id;
-      vm.Ratings = res.data.plan.ratings.length
+      vm.ratings = res.data.plan.ratings.length;
+      vm.bookmarks = res.data.plan.bookmarks.length;
+      console.log('res.data.plan = ', res.data.plan)
       if (!res.data.plan.ratings.includes(vm.currentPlanUserId)) {
         vm.isNotComplete = true;
       }
       for (let i = 0; i < vm.addedEvents.length; i++) {
         vm.totalCost += parseFloat(vm.addedEvents[i].cost);
-        console.log('vm total cost = ', vm.totalCost)
       }
     }
 
@@ -43,7 +44,9 @@
       //     if (err) throw err;
       //   });
       plan_fac
-        .mark_plan_complete(vm.currentPlanId, { user_id: vm.some_user_id })
+        .mark_plan_complete(vm.currentPlanId, {
+          user_id: vm.some_user_id
+        })
         .then(mark_com_res, err_callback)
     }
 
@@ -52,10 +55,12 @@
       vm.isNotComplete = false;
     }
 
-    vm.userDidClickMarkAsIncomplete = function() {
+    vm.userDidClickMarkAsIncomplete = function () {
       console.log('clicked incomplete')
       plan_fac
-        .mark_plan_incomplete(vm.currentPlanId, {user_id: vm.some_user_id})
+        .mark_plan_incomplete(vm.currentPlanId, {
+          user_id: vm.some_user_id
+        })
         .then(mark_incomplete_res, err_callback)
     }
 
@@ -64,10 +69,13 @@
       vm.isNotComplete = true;
     }
 
-    vm.userDidClickBookmark = function() {
+    vm.userDidClickBookmark = function () {
       console.log('clicked bookmark')
       plan_fac
-        .bookmark(vm.currentPlanId, { user_id: vm.some_user_id, bookmark: true })
+        .bookmark(vm.currentPlanId, {
+          user_id: vm.some_user_id,
+          bookmark: true
+        })
         .then(bookmark_res, err_callback)
     }
 
@@ -76,10 +84,13 @@
       vm.isBookmarked = true;
     }
 
-    vm.userDidClickRemoveBookmark = function() {
+    vm.userDidClickRemoveBookmark = function () {
       console.log('clicked remove bookmark');
       plan_fac
-        .bookmark(vm.currentPlanId, { user_id: vm.some_user_id, bookmark: false })
+        .bookmark(vm.currentPlanId, {
+          user_id: vm.some_user_id,
+          bookmark: false
+        })
         .then(remove_bookmark_res, err_callback)
     }
 

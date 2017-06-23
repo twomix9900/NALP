@@ -44,7 +44,7 @@
           console.log('success! jquery data = ', data);
           for (let i = 0; i < data.plan.events.length; i++) {
             address = data.plan.events[i].address;
-            geocodeAddress(geocoder, map, i);
+            geocodeAddress(geocoder, map, i, address);
           }
         })
         .fail(function (err) {
@@ -52,7 +52,7 @@
         });
     }
 
-    function geocodeAddress(geocoder, resultsMap, i) {
+    function geocodeAddress(geocoder, resultsMap, i, address) {
       var directionsDisplay = new google.maps.DirectionsRenderer({
         map: resultsMap
       });
@@ -125,7 +125,7 @@
   </script>
 
   <div name='plans'>
-
+    Completions: {{plan_ctrl.ratings}} Bookmarks: {{plan_ctrl.bookmarks}} 
     <br>
     <table>
       <thead>
