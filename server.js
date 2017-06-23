@@ -12,6 +12,9 @@ var http = require('http')
 var fetch = require('node-fetch');
 var activityRoutes = require('./router/activity_router.js');
 
+//authentication
+
+
 
 mongoose.connect('mongodb://localhost/plan_a_day', function(err) {
   if (err) return console.log(err)
