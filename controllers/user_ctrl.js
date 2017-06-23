@@ -25,6 +25,14 @@ module.exports = {
         res.json({success: true, message: 'user found', user: user});
       })
   },
+  show_email: function(req, res) {
+    User
+      .findOne({email: req.params.email})
+      .exec(function(err, user) {
+        if (err) return console.log(err)
+        res.json({success: true, message: 'user found', user: user});
+      })
+  },
   update_user: function(req, res) {
     User
       .findOne({_id: req.params.id})
