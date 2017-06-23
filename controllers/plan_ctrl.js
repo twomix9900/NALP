@@ -158,11 +158,15 @@ module.exports = {
           .findOne({_id: req.params.id})
           .exec(function(err, plan) {
             if (err) return console.log(err)
-            plan.ratings.push(user._id);
+            if (!plan.ratings.includes(user._id)) {
+              plan.ratings.push(user._id);
+            }
             plan
               .save(function(err, plan) {
                 if (err) return console.log(err)
-                user.rated_plans.push(plan._id);
+                if (!user.rated_plans.includes(plan._id)) {
+                  user.rated_plans.push(plan._id);
+                }
                 user
                   .save(function(err, user) {
                     if (err) return console.log(err)
@@ -208,10 +212,14 @@ module.exports = {
           .exec(function(err, plan){
             if (err) return console.log(err)
             if (req.body.bookmark) {  // from front end body r
-              plan.bookmarks.push(user._id);
+              if (!plan.bookmarks.includes(user._id)) {
+                plan.bookmarks.push(user._id);
+              }
               plan.save(function(err, plan) {
                 if (err) return console.log(err)
-                user.bookmark_plans.push(plan._id)
+                if (!user.bookmark_plans.includes(plan._id)) {
+                  user.bookmark_plans.push(plan._id)
+                }
                 user.save(function(err, user) {
                   if (err) return console.log(err)
                   res.json({success: true, message: 'plan has been bookmarked', plan: plan, user: user});
