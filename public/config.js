@@ -44,6 +44,11 @@
       templateUrl: 'partials/activities.html',
       controller: 'activitiesCtrl as activities_ctrl'
     })
+    .state('profile', {
+      url: '/profile',
+      templateUrl: 'partials/profile.html',
+      controller: 'profileCtrl as profile_ctrl'
+    })
 
   }
 })()
