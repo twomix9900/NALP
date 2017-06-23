@@ -13,7 +13,7 @@
     vm.userClickBookmarked = function(){
       console.log('i got bookmarked');
       vm.option = 'bookmarked';
-      selectedPlans_fac.getPlans(vm.option, vm.SOME_USER_ID)
+      selectedPlans_fac.getPlans(vm.option, vm.user_id)
       .then(renderPlans, function(err) {
         if (err) throw err;
       });
@@ -22,7 +22,7 @@
     vm.userClickCreated = function() {
       console.log('i got created');
       vm.option = 'created';
-      selectedPlans_fac.getPlans(vm.option, vm.SOME_USER_ID)
+      selectedPlans_fac.getPlans(vm.option, vm.user_id)
       .then(renderPlans, function(err) {
         if (err) throw err;
       });
@@ -31,7 +31,7 @@
     vm.userClickCompleted = function() {
       console.log('i got completed');
       vm.option = 'completed';
-      selectedPlans_fac.getPlans(vm.option, vm.SOME_USER_ID)
+      selectedPlans_fac.getPlans(vm.option, vm.user_id)
       .then(renderPlans, function(err) {
         if (err) throw err;
       });
@@ -52,7 +52,7 @@
 
 
     // initialize view
-    selectedPlans_fac.getPlans(vm.option, vm.SOME_USER_ID)
+    selectedPlans_fac.getPlans(vm.option, vm.user_id)
       .then(renderPlans, function(err) {
         if (err) throw err;
       });
