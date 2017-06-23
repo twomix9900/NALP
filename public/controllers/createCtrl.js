@@ -14,11 +14,7 @@
   function createCtrl(plan_fac, $http, $state, store) {
     var vm = this;
     vm.title = 'create plan view title'
-<<<<<<< 9f93b1106235f8986ee93e048590ab452193ed05
     vm.some_user_id = store.get('current_user_id');
-=======
-    vm.some_user_id = store.get('current_user_id'); // current: bob@gmail.com
->>>>>>> (fixes) use dynamic user id
     vm.newEventInfo = {};
     vm.newPlanInfo = {};
     vm.addedEvents = [];
