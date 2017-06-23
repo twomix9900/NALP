@@ -11,22 +11,31 @@ li.ActNav {
   padding: 14px 12px;
   background-color: #d5e1df;
 }
-
 li.highlight {
   background-color: #b5e7a0;
 }
-
-table {
-  width: 50%
+table.activity_header {
+  width: 50%;
 }
 .viewtitle .viewcity {
   width: 20%;
 }
-
 .viewcosts {
   width: 10%;
 }
-
 .eventHeader {
   font-weight: bold;
+}
+
+table.create_header {
+  width: 100%;
+}
+th .cr_title {
+  width: 15%;
+}
+th .cr_address {
+  width: 40%;
+}
+th .cr_time .cr_cost {
+  width: 10%
 }

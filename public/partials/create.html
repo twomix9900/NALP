@@ -24,15 +24,16 @@
   }
   </script>
   </div-->
-  <form>Events
-    <table>
+  <br></br>
+  <form><strong>Events</strong>
+    <table class='create_header'>
       <thead>
         <tr>
-          <th>title</th>
-          <th>address</th>
-          <th>time</th>
-          <th>cost ($)</th>
-          <th>photolink</th>
+          <th class='cr_title'>title</th>
+          <th class='cr_address'>address</th>
+          <th class='cr_time'>time</th>
+          <th class='cr_cost'>cost ($)</th>
+          <th class='cr_photo'>photolink</th>
         </tr>
       </thead>
       <tbody>
@@ -51,13 +52,13 @@
       </tbody>
     </table>
   </form>
-  <table>Events List
+  <table class='create_header'>Events List
     <thead>
-      <th>title</th>
-      <th>address</th>
-      <th>time</th>
-      <th>cost</th>
-      <th>photolink</th>
+      <th class='cr_title'>title</th>
+      <th class='cr_address'>address</th>
+      <th class='cr_time'>time</th>
+      <th class='cr_cost'>cost</th>
+      <th class='cr_photolink'>photolink</th>
     </thead>
     <tbody>
       <tr ng-repeat='event in create_ctrl.addedEvents'>

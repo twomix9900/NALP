@@ -18,15 +18,13 @@
   <div>
     <br></br>
     <p></p>
-    <table>
-      <thead class='eventHeader'>
-      <th>
+    <table class='activity_header'>
+      <thead>
         <tr>
-          <td class='viewtitle'>Title</td>
-          <td class='viewcity'>City</td>
-          <td class='viewcosts'>Costs</td>
+          <th class='viewtitle'>Title</th>
+          <th class='viewcity'>City</th>
+          <th class='viewcosts'>Costs</th>
         </tr>
-      </th>
       </thead>
       <tbody>
         <tr ng-repeat='plan in activities_ctrl.plans' ng-dblclick='activities_ctrl.userClickPlanEntry(plan.p_id)'>
