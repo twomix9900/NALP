@@ -12,8 +12,9 @@
 
     vm.searchByCity = function(cityName) {
       console.log('SUBMITTED', cityName.city)
-      plan_fac.getAllPlans('city/' + cityName.city)
+      plan_fac.getPlansByCity('city/' + cityName.city)
       .then((plans) => {
+        console.log('plans = ', plans)
         vm.data = plans.data.plans;
       })
       .catch((err) => {
@@ -22,6 +23,7 @@
     }
 
     vm.clickGetPlans = function() {
+      console.log('clicked')
       plan_fac.getAllPlans()
       .then((plans) => {
         console.log(plans.data.plans)
