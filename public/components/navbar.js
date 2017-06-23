@@ -56,6 +56,7 @@
     function logout() {
       store.remove('profile');
       store.remove('id_token');
+      store.remove('current_user_id');
       auth.signout();
       $location.path('/search');
     }
