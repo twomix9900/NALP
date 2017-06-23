@@ -9,7 +9,7 @@ module.exports = {
     .exec(function(err, plans) {
       if (err) return sendStatus(404);
       if (plans.bookmark_plans.length) {
-        Plan.find({ _id: { $all : plans.bookmark_plans } })
+        Plan.find({ _id: { $in : plans.bookmark_plans } })
           .exec(function(err, plans) {
           if (err) return sendStatus(404);
           var planInfo = [];
@@ -31,7 +31,7 @@ module.exports = {
     .exec(function(err, plans) {
       if (err) return sendStatus(404);
       if (plans.created_plans.length) {
-        Plan.find({ _id: { $all : plans.created_plans } })
+        Plan.find({ _id: { $in : plans.created_plans } })
           .exec(function(err, plans) {
           if (err) return sendStatus(404);
           var planInfo = [];
@@ -53,7 +53,7 @@ module.exports = {
     .exec(function(err, plans) {
       if (err) return sendStatus(404);
       if (plans.rated_plans.length) {
-        Plan.find({ _id: { $all : plans.rated_plans } })
+        Plan.find({ _id: { $in : plans.rated_plans } })
           .exec(function(err, plans) {
           if (err) return sendStatus(404);
           var planInfo = [];

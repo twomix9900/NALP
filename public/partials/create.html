@@ -63,7 +63,7 @@
     <tbody>
       <tr ng-repeat='event in create_ctrl.addedEvents'>
         <td><p>{{ event.event_type }}</p></td>
-        <td><p style='width: 350px;' id='added-events-address-p'>{{ event.address }}</p></td>
+        <td><p id='added-events-address-p'>{{ event.address }}</p></td>
         <td><p>{{ event.start_time }}</p></td>
         <td><p>{{ event.cost | currency }}</p></td>
         <td><img style='width: 200px; height: 200px;' ng-src="{{event.photo}}"></td>
