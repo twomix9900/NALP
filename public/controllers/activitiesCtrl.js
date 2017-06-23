@@ -2,13 +2,13 @@
   angular.module('NALP')
   .controller('activitiesCtrl', activitiesCtrl)
 
-  activitiesCtrl.$inject = ['selectedPlans_fac', '$state'];
+  activitiesCtrl.$inject = ['selectedPlans_fac', '$state', 'store'];
 
-  function activitiesCtrl(selectedPlans_fac, $state) {
+  function activitiesCtrl(selectedPlans_fac, $state, store) {
     var vm = this;
     vm.option = 'bookmarked';
 
-    vm.SOME_USER_ID = '594c17fcd9ff1e28e82e2e6d';
+    vm.SOME_USER_ID = store.get('current_user_id');
 
     vm.userClickBookmarked = function(){
       console.log('i got bookmarked');
