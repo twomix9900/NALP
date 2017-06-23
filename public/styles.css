@@ -15,10 +15,16 @@ li.highlight {
   background-color: #b5e7a0;
 }
 table.activity_header {
-  width: 60%;
+  position: absolute;
+  width: 100%;
+  min-width: 500px;
 }
-.viewtitle .viewcity {
+.viewtitle {
   width: 25%;
+  text-align: left;
+}
+.viewcity {
+  width: 65%;
   text-align: left;
 }
 .viewcosts {
