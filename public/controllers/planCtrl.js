@@ -29,13 +29,21 @@
       vm.currentPlanUserId = res.data.plan.created_by_id;
       vm.ratings = res.data.plan.ratings.length;
       vm.bookmarks = res.data.plan.bookmarks.length;
-      console.log('res.data.plan.events = ', res.data.plan.events)
-      if (!res.data.plan.ratings.includes(vm.currentPlanUserId)) {
-        vm.isNotComplete = true;
-      }
+      console.log('res.data.plan.bookmarks = ', res.data.plan)
+
       for (let i = 0; i < vm.addedEvents.length; i++) {
         vm.totalCost += parseFloat(vm.addedEvents[i].cost);
       }
+
+      if (res.data.plan.ratings.indexOf(vm.currentPlanId) === -1) {
+        vm.isNotComplete = false;
+      }
+
+      if (res.data.plan.bookmarks.indexOf(vm.currentPlanId) === -1) {
+        vm.isBookmarked = true;
+      }
+
+
     }
 
     vm.userDidClickMarkAsComplete = function () {
