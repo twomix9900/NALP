@@ -5,6 +5,9 @@
   profileCtrl.$inject = ['$http', 'store'];
 
   function profileCtrl($http, store) {
+
+    document.body.background = "";
+    
     var vm = this;
     vm.getMessage = getMessage;
     vm.getSecretMessage = getSecretMessage;

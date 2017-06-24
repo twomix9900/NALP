@@ -12,6 +12,9 @@
   createCtrl.$inject = ['plan_fac', '$http', '$state', 'store'];
 
   function createCtrl(plan_fac, $http, $state, store) {
+
+    document.body.background = "";
+    
     var vm = this;
     vm.title = 'create plan view title'
     vm.some_user_id = store.get('current_user_id');

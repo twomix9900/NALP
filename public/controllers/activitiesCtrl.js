@@ -5,6 +5,9 @@
   activitiesCtrl.$inject = ['selectedPlans_fac', '$state', 'store'];
 
   function activitiesCtrl(selectedPlans_fac, $state, store) {
+    
+    document.body.background = "";
+    
     var vm = this;
     var viewtitle = '';
     var viewcity = '';
