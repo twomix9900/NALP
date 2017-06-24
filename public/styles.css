@@ -9,50 +9,49 @@ li.ActNav {
   display: block;
   text-align: center;
   padding: 14px 12px;
-  background-color: #d5e1df;
+  background-color: #aacfd0;
 }
 li.highlight {
-  background-color: #b5e7a0;
+  background-color: #5da0a2;
 }
-table.activity_header {
+
+table.activity_head {
   position: absolute;
+  border-collapse: separate;
+  border-spacing: 10px;
+  width: 100%;
   min-width: 400px;
-  margin: 10px 15px 10px 15px;  
+  margin: 10px 0px 10px 0px;  
+}
+tr {
+  margin: 10px;
+  padding: 25px;
 }
 .viewtitle {
   width: 25%;
-  height: 50px
+  height: 50px; 
   text-align: left;
+  padding: 10px;
 }
 .viewcity {
-  width: 65%;
+  width: 60%;
   height: 50px;
   text-align: left;
+  padding: 10px;
 }
 .viewcosts {
-  width: 10%;
+  width: 15%;
   height: 50px;
+  margin: 0px;
   text-align: right;
+  padding: 10px;
 }
 .eventHeader {
   font-weight: bold;
 }
 
-table.create_header {
-  width: 100%;
-}
-th .cr_title {
-  width: 15%;
-}
-th .cr_address {
-  width: 40%;
-}
-th .cr_time .cr_cost {
-  width: 10%
-}
-
 .md-toolbar-tools {
-  background-color: rgb(63, 81, 181);
+  background-color: #34495E;
   position: fixed;
   top: 0px;
   width: 100%;
@@ -61,4 +60,16 @@ th .cr_time .cr_cost {
 
 .main {
   margin-top: 50  px;
+  background-size: cover;
 }
+
+.table-striped>tbody>tr:nth-child(odd)>td, 
+.table-striped>tbody>tr:nth-child(odd)>th {
+   background-color: #d8dfe2;
+   padding: 10px;
+ }
+
+.table-striped>tbody>tr:nth-child(even)>td, 
+.table-striped>tbody>tr:nth-child(even)>th {
+   padding: 10px;
+ }

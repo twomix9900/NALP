@@ -5,8 +5,10 @@
   searchCtrl.$inject = ['plan_fac', '$state'];
 
   function searchCtrl(plan_fac, $state) {
-    var vm = this;
 
+    document.body.background = "https://static.pexels.com/photos/196667/pexels-photo-196667.jpeg";
+
+    var vm = this;
     vm.search = {};
     vm.plans = [];
 

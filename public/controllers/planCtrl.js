@@ -5,6 +5,9 @@
   planCtrl.$inject = ['selectedPlans_fac', '$state', 'plan_fac', "$stateParams", 'store'];
 
   function planCtrl(selectedPlans_fac, $state, plan_fac, $stateParams, store) {
+
+    document.body.background = "";
+    
     var vm = this;
     vm.title = 'plan view title'
     vm.some_user_id = store.get('current_user_id');
