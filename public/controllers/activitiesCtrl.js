@@ -7,7 +7,6 @@
   function activitiesCtrl(selectedPlans_fac, $state, store) {
     var vm = this;
     vm.option = 'bookmarked';
-
     vm.user_id = store.get('current_user_id');
 
     vm.userClickBookmarked = function(){

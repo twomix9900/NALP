@@ -10,8 +10,9 @@
     vm.some_user_id = store.get('current_user_id');
     vm.addedEvents = [];
     vm.totalCost = 0;
-    vm.isNotComplete = false;
-    vm.isBookmarked = false;
+    vm.isNotComplete;
+    vm.isBookmarked;
+
 
     var err_callback = function (err) {
       console.log('err >>', err);
@@ -22,12 +23,13 @@
       .then(success_call, err_callback)
 
     function success_call(res) {
+      vm.totalCompleted = res.data.plan.ratings.length;
       vm.addedEvents = res.data.plan.events;
       vm.currentPlanId = res.data.plan._id;
       vm.currentPlanUserId = res.data.plan.created_by_id;
       vm.ratings = res.data.plan.ratings.length;
       vm.bookmarks = res.data.plan.bookmarks.length;
-      console.log('res.data.plan = ', res.data.plan)
+      console.log('res.data.plan.events = ', res.data.plan.events)
       if (!res.data.plan.ratings.includes(vm.currentPlanUserId)) {
         vm.isNotComplete = true;
       }

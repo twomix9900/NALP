@@ -15,6 +15,7 @@
     var vm = this;
     vm.title = 'create plan view title'
     vm.some_user_id = store.get('current_user_id');
+
     vm.newEventInfo = {};
     vm.newPlanInfo = {};
     vm.addedEvents = [];

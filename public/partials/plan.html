@@ -41,7 +41,6 @@
           method: "GET"
         })
         .done(function (data) {
-          console.log('success! jquery data = ', data);
           for (let i = 0; i < data.plan.events.length; i++) {
             address = data.plan.events[i].address;
             geocodeAddress(geocoder, map, i, address);
@@ -125,12 +124,13 @@
   </script>
 
   <div name='plans'>
-    Completions: {{plan_ctrl.ratings}} Bookmarks: {{plan_ctrl.bookmarks}} 
+    Completions: {{plan_ctrl.ratings}} Bookmarks: {{plan_ctrl.bookmarks}}
     <br>
     <table>
       <thead>
         <tr>
-          <th style='width: 250px;'>Itinerary</th>
+          <th style='width: 250px;'>Event</th>
+          <th style='width: 250px;'>Address</th>
           <th style='width: 100px;'>Time</th>
           <th style='width: 50px;'>Cost</th>
         </tr>
@@ -140,6 +140,9 @@
     <table>
       <tbody>
         <tr ng-repeat='event in plan_ctrl.addedEvents'>
+          <td>
+            <p style='width: 250px;' id='added-events-address-p'>{{ event.event_type }}</p>
+          </td>
           <td>
             <p style='width: 250px;' id='added-events-address-p'>{{ event.address }}</p>
           </td>
@@ -154,8 +157,8 @@
     </table>
     <div style='width: 400px;'> total cost: {{plan_ctrl.totalCost | currency}}</div>
     <br>
-    <input ng-if='plan_ctrl.isNotComplete' ng-click='plan_ctrl.userDidClickMarkAsComplete()' type='button' value='Mark As Complete'>
-    <input ng-if='!plan_ctrl.isNotComplete' ng-click='plan_ctrl.userDidClickMarkAsIncomplete()' type='button' value='Mark As Not Complete'>
-    <input ng-if='!plan_ctrl.isBookmarked' type='button' value='Bookmark' ng-click='plan_ctrl.userDidClickBookmark()'>
-    <input ng-if='plan_ctrl.isBookmarked' type='button' value='Remove plan from bookmarks' ng-click='plan_ctrl.userDidClickRemoveBookmark()'>
+    <input ng-if='plan_ctrl.isNotComplete' ng-click='plan_ctrl.userDidClickMarkAsComplete()' type='button' value='Complete'>
+    <input ng-if='!plan_ctrl.isNotComplete' ng-click='plan_ctrl.userDidClickMarkAsIncomplete()' type='button' value='Undo Complete'>
+    <input ng-if='!plan_ctrl.isBookmarked' ng-click='plan_ctrl.userDidClickBookmark()' type='button' value='Bookmark'>
+    <input ng-if='plan_ctrl.isBookmarked' ng-click='plan_ctrl.userDidClickRemoveBookmark()' type='button' value='Undo Bookmark'>
 </body>
