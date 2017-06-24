@@ -18,6 +18,7 @@
 
     vm.newEventInfo = {};
     vm.newPlanInfo = {};
+    vm.newPlanInfo.total_cost = 0;
     vm.addedEvents = [];
     vm.cityLoc = {};
 
@@ -57,8 +58,10 @@
         event[key] = vm.newEventInfo[key];
         console.log('what is this: ', event[key], key);
 
-      }
+      };
+      console.log('cost ', event.cost, Number(event.cost));
       vm.newPlanInfo.total_cost += Number(event.cost);
+      console.log('newPlanInfo Object: ', vm.newPlanInfo, 'newPlanInfo total cost', vm.newPlanInfo.total_cost);
       event['address'] = $('#google-address-input').val();
       plan_fac
           .auto_suggest({ search_term: event.address, search_location: vm.newPlanInfo.city })

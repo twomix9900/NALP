@@ -21,13 +21,13 @@ module.exports = {
           if (err) errHandler(err, 404);
           var planInfo = [];
             for (var idx = 0; idx < plans.length; idx ++) {
-              planInfo.push({ title: plans[idx].title, city: plans[idx].city, totalCost: plans[idx].total_cost, p_id: plans[idx]._id });
+              planInfo.push({ title: plans[idx].title, city: plans[idx].city, total_cost: plans[idx].total_cost, p_id: plans[idx]._id, empty: false });
             }
           console.log('plan object: ', planInfo);
           res.json({ success: true, message: 'bm plans found', plans: planInfo});
         })  
       } else {
-        res.json({ success: false, message: 'no plans available', plans: [{ title: '', city: 'Sorry, you do not have any plans bookmarked', total_cost: null }, { title: '', city: 'Please bookmark some plans first', total_cost: null }] });
+        res.json({ success: false, message: 'no plans available', plans: [{ title: '', city: 'Sorry, you do not have any plans bookmarked', total_cost: null, empty: true }, { title: '', city: 'Please bookmark some plans first', total_cost: null }] });
       }
     });
   },
@@ -43,14 +43,14 @@ module.exports = {
           if (err) errHandler(err, 404);
           var planInfo = [];
             for (var idx = 0; idx < plans.length; idx ++) {
-              planInfo.push({ title: plans[idx].title, city: plans[idx].city, totalCost: plans[idx].total_cost, p_id: plans[idx]._id });
+              planInfo.push({ title: plans[idx].title, city: plans[idx].city, total_cost: plans[idx].total_cost, p_id: plans[idx]._id, empty: false });
             }
           console.log('plan object: ', planInfo);
           res.json({ success: true, message: 'cr plans found', plans: planInfo});
 
         })  
       } else {
-        res.json({ success: false, message: 'no plans available', plans: [{ title: '', city: 'Sorry, you have not created any plans', total_cost: null }, { title: '', city: 'Create some plans first', total_cost: null }] });
+        res.json({ success: false, message: 'no plans available', plans: [{ title: '', city: 'Sorry, you have not created any plans', total_cost: null, empty: true }, { title: '', city: 'Create some plans first', total_cost: null }] });
       }
     });
 },
@@ -66,13 +66,13 @@ module.exports = {
           if (err) errHandler(err, 404);
           var planInfo = [];
             for (var idx = 0; idx < plans.length; idx ++) {
-              planInfo.push({ title: plans[idx].title, city: plans[idx].city, totalCost: plans[idx].total_cost, p_id: plans[idx]._id });
+              planInfo.push({ title: plans[idx].title, city: plans[idx].city, total_cost: plans[idx].total_cost, p_id: plans[idx]._id, empty: false });
             }
           console.log('plan object: ', planInfo);
           res.json({ success: true, message: 'co plans found', plans: planInfo});
         })  
       } else {
-        res.json({ success: false, message: 'no plans available', plans: [{ title: '', city: 'Sorry, you have not completed any of your plans', total_cost: null }, { title: '', city: 'Finish a plan and rate your day', total_cost: null }] });
+        res.json({ success: false, message: 'no plans available', plans: [{ title: '', city: 'Sorry, you have not completed any of your plans', total_cost: null, empty: true }, { title: '', city: 'Finish a plan and rate your day', total_cost: null }] });
       }
     });
   },

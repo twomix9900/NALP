@@ -6,6 +6,10 @@
 
   function activitiesCtrl(selectedPlans_fac, $state, store) {
     var vm = this;
+    var viewtitle = '';
+    var viewcity = '';
+    var viewcost = '';
+
     vm.option = 'bookmarked';
     vm.user_id = store.get('current_user_id');
 
@@ -57,7 +61,6 @@
       });
 
     function renderPlans(res) {
-      console.log('res data ', res);
       vm.plans = res.data.plans;
     }
   }
