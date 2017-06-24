@@ -6,7 +6,7 @@
 
   function activitiesCtrl(selectedPlans_fac, $state, store) {
     
-    document.body.background = "";
+    document.body.background = "https://cdn.pixabay.com/photo/2014/07/01/12/25/roller-skates-381216_960_720.jpg";
     
     var vm = this;
     var viewtitle = '';
@@ -17,7 +17,6 @@
     vm.user_id = store.get('current_user_id');
 
     vm.userClickBookmarked = function(){
-      console.log('i got bookmarked');
       vm.option = 'bookmarked';
       selectedPlans_fac.getPlans(vm.option, vm.user_id)
       .then(renderPlans, function(err) {
@@ -26,7 +25,6 @@
     };
 
     vm.userClickCreated = function() {
-      console.log('i got created');
       vm.option = 'created';
       selectedPlans_fac.getPlans(vm.option, vm.user_id)
       .then(renderPlans, function(err) {
@@ -35,7 +33,6 @@
     };
 
     vm.userClickCompleted = function() {
-      console.log('i got completed');
       vm.option = 'completed';
       selectedPlans_fac.getPlans(vm.option, vm.user_id)
       .then(renderPlans, function(err) {
@@ -52,7 +49,6 @@
     }
     
     vm.userClickPlanEntry = function(p_id) {
-      console.log('i want to view this entry', p_id);
       $state.go('plan', { plan_id: p_id})
     }
 
