@@ -75,16 +75,20 @@
   run.$inject = ['$rootScope', 'auth', 'store', 'jwtHelper', '$location'];
 
   function run($rootScope, auth, store, jwtHelper, $location) {
-    var token = store.get('id_token');
-    if(token) {
-      if(!jwtHelper.isTokenExpired(token)) {
-        if(auth.isAuthenticated) {
-          auth.authenticate(store.get('profile'), token);
+   
+    $rootScope.$on('$locationChangeStart', function() {
+      var token = store.get('id_token');
+      if(token) {
+        if(!jwtHelper.isTokenExpired(token)) {
+          if(!auth.isAuthenticated) {
+            auth.authenticate(store.get('profile'), token);
+          }
         }
       }
-    }
-    else{
-      $location.path('/search');
-    }
+      else{
+        $location.path('/search');
+      }
+   });
+   
   }
 })()
