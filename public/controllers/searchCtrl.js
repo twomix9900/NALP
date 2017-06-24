@@ -2,9 +2,9 @@
   angular.module('NALP')
   .controller('searchCtrl', searchCtrl)
 
-  searchCtrl.$inject = ['plan_fac', '$state'];
+  searchCtrl.$inject = ['plan_fac', '$state', 'store'];
 
-  function searchCtrl(plan_fac, $state) {
+  function searchCtrl(plan_fac, $state, store) {
     var vm = this;
 
     vm.search = {};
@@ -34,6 +34,7 @@
     }
     vm.goToPlan = function(p_id) {
       $state.go('plan', { plan_id: p_id });
+      store.set('plan_id', p_id);
     }
   }
 })()
