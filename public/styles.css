@@ -16,8 +16,8 @@ li.highlight {
 }
 table.activity_header {
   position: absolute;
-  width: 100%;
-  min-width: 500px;
+  min-width: 400px;
+  margin: 10px 15px 10px 15px;  
 }
 .viewtitle {
   width: 25%;
@@ -29,7 +29,7 @@ table.activity_header {
 }
 .viewcosts {
   width: 10%;
-  text-align: left;
+  text-align: right;
 }
 .eventHeader {
   font-weight: bold;
@@ -46,4 +46,16 @@ th .cr_address {
 }
 th .cr_time .cr_cost {
   width: 10%
+}
+
+.md-toolbar-tools {
+  background-color: rgb(63, 81, 181);
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.main {
+  margin-top: 50  px;
 }
