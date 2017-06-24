@@ -33,6 +33,7 @@ tr {
   text-align: left;
   padding: 10px;
 }
+
 .viewcity {
   width: 60%;
   height: 50px;
@@ -46,6 +47,10 @@ tr {
   text-align: right;
   padding: 10px;
 }
+th.viewtitle, th.viewcity, th.viewcosts {
+  color: white;
+}
+
 .eventHeader {
   font-weight: bold;
 }
