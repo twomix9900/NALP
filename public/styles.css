@@ -21,14 +21,17 @@ table.activity_header {
 }
 .viewtitle {
   width: 25%;
+  height: 50px
   text-align: left;
 }
 .viewcity {
   width: 65%;
+  height: 50px;
   text-align: left;
 }
 .viewcosts {
   width: 10%;
+  height: 50px;
   text-align: right;
 }
 .eventHeader {
