@@ -10,8 +10,10 @@
     vm.some_user_id = store.get('current_user_id');
     vm.addedEvents = [];
     vm.totalCost = 0;
-    vm.isNotComplete;
+    vm.isCompleted;
     vm.isBookmarked;
+    vm.showButtons = false;
+
 
 
     var err_callback = function (err) {
@@ -29,13 +31,25 @@
       vm.currentPlanUserId = res.data.plan.created_by_id;
       vm.ratings = res.data.plan.ratings.length;
       vm.bookmarks = res.data.plan.bookmarks.length;
-      console.log('res.data.plan.events = ', res.data.plan.events)
-      if (!res.data.plan.ratings.includes(vm.currentPlanUserId)) {
-        vm.isNotComplete = true;
-      }
+      console.log('res.data.plan.bookmarks = ', res.data.plan)
+
       for (let i = 0; i < vm.addedEvents.length; i++) {
         vm.totalCost += parseFloat(vm.addedEvents[i].cost);
       }
+
+      if (res.data.plan.ratings.indexOf(vm.currentPlanId) === -1) {
+        vm.isCompleted = false;
+      }
+
+      if (res.data.plan.bookmarks.indexOf(vm.currentPlanId) === -1) {
+        vm.isBookmarked = true;
+      }
+
+      if (vm.some_user_id) {
+        vm.showButtons = true;
+      }
+
+
     }
 
     vm.userDidClickMarkAsComplete = function () {
@@ -51,7 +65,7 @@
 
     function mark_com_res(res) {
       console.log(res, '< success')
-      vm.isNotComplete = false;
+      vm.isCompleted = true;
       vm.ratings = res.data.plan.ratings.length;
     }
 
@@ -67,7 +81,7 @@
 
     function mark_incomplete_res(res) {
       console.log(res, '<< successfully marked incomplete');
-      vm.isNotComplete = true;
+      vm.isCompleted = false;
       vm.ratings = res.data.plan.ratings.length;
     }
 
