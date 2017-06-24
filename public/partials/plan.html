@@ -4,7 +4,7 @@
   <style>
     #map {
       height: 55%;
-      width: 100%;
+      width: 80%;
       padding: 150px;
     }
 
@@ -124,7 +124,17 @@
   </script>
 
   <div name='plans'>
-    <h4 class="bg-primary">Completions: {{plan_ctrl.ratings}} Bookmarks: {{plan_ctrl.bookmarks}}</h4>
+    <h4>Completions: {{plan_ctrl.ratings}} Bookmarks: {{plan_ctrl.bookmarks}}</h4>
+    <div ng-if='plan_ctrl.showButtons'>
+      <input ng-if='plan_ctrl.isCompleted' ng-click='plan_ctrl.userDidClickMarkAsComplete()' type='button' class="btn btn-primary btn-xs"
+        value='Complete'>
+      <input ng-if='!plan_ctrl.isCompleted' ng-click='plan_ctrl.userDidClickMarkAsIncomplete()' type='button' class="btn btn-primary btn-xs"
+        value='Undo Complete'>
+      <input ng-if='!plan_ctrl.isBookmarked' ng-click='plan_ctrl.userDidClickBookmark()' type='button' class="btn btn-primary btn-xs"
+        value='Bookmark'>
+      <input ng-if='plan_ctrl.isBookmarked' ng-click='plan_ctrl.userDidClickRemoveBookmark()' type='button' class="btn btn-primary btn-xs"
+        value='Undo Bookmark'>
+    </div>
     <span style="display:block; height: 50px;"></span>
     <table class="table-hover">
       <thead>
@@ -156,16 +166,6 @@
           </td>
         </tr>
       </tbody>
-
     </table>
     <div style='width: 1650px' class='text-center'> <strong>{{plan_ctrl.totalCost | currency}}</strong></div>
-    <span style="display:block; height: 50px;"></span>
-    <input ng-if='plan_ctrl.isNotComplete' ng-click='plan_ctrl.userDidClickMarkAsComplete()' type='button' class="btn btn-primary btn-xs"
-      value='Complete'>
-    <input ng-if='!plan_ctrl.isNotComplete' ng-click='plan_ctrl.userDidClickMarkAsIncomplete()' type='button' class="btn btn-primary btn-xs"
-      value='Undo Complete'>
-    <input ng-if='!plan_ctrl.isBookmarked' ng-click='plan_ctrl.userDidClickBookmark()' type='button' class="btn btn-primary btn-xs"
-      value='Bookmark'>
-    <input ng-if='plan_ctrl.isBookmarked' ng-click='plan_ctrl.userDidClickRemoveBookmark()' type='button' class="btn btn-primary btn-xs"
-      value='Undo Bookmark'>
 </body>

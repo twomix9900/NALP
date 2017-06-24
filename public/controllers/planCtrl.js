@@ -10,8 +10,10 @@
     vm.some_user_id = store.get('current_user_id');
     vm.addedEvents = [];
     vm.totalCost = 0;
-    vm.isNotComplete;
+    vm.isCompleted;
     vm.isBookmarked;
+    vm.showButtons = false;
+
 
 
     var err_callback = function (err) {
@@ -36,11 +38,15 @@
       }
 
       if (res.data.plan.ratings.indexOf(vm.currentPlanId) === -1) {
-        vm.isNotComplete = false;
+        vm.isCompleted = false;
       }
 
       if (res.data.plan.bookmarks.indexOf(vm.currentPlanId) === -1) {
         vm.isBookmarked = true;
+      }
+
+      if (vm.some_user_id) {
+        vm.showButtons = true;
       }
 
 
@@ -59,7 +65,7 @@
 
     function mark_com_res(res) {
       console.log(res, '< success')
-      vm.isNotComplete = false;
+      vm.isCompleted = true;
       vm.ratings = res.data.plan.ratings.length;
     }
 
@@ -75,7 +81,7 @@
 
     function mark_incomplete_res(res) {
       console.log(res, '<< successfully marked incomplete');
-      vm.isNotComplete = true;
+      vm.isCompleted = false;
       vm.ratings = res.data.plan.ratings.length;
     }
 
