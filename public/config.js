@@ -72,9 +72,9 @@
 
   }
 
-  run.$inject = ['$rootScope', 'auth', 'store', 'jwtHelper', '$location'];
+  run.$inject = ['$rootScope', 'auth', 'store', 'jwtHelper', '$location', '$state'];
 
-  function run($rootScope, auth, store, jwtHelper, $location) {
+  function run($rootScope, auth, store, jwtHelper, $location, $state) {
    
     $rootScope.$on('$locationChangeStart', function() {
       var token = store.get('id_token');
@@ -86,7 +86,9 @@
         }
       }
       else{
-        $location.path('/search');
+        if(!$state.is('plan')) {
+          $location.path('/search');
+        }
       }
    });
    
