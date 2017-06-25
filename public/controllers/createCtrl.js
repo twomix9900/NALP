@@ -9,11 +9,10 @@
   //   }
   // }];
 
-  createCtrl.$inject = ['plan_fac', '$http', '$state', 'store'];
+  createCtrl.$inject = ['plan_fac', '$http', '$state', 'store', 'auth_fac'];
 
-  function createCtrl(plan_fac, $http, $state, store) {
-
-    document.body.background = "";
+  function createCtrl(plan_fac, $http, $state, store, auth_fac) {
+    auth_fac.private();
     
     var vm = this;
     vm.title = 'create plan view title'

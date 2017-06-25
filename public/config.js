@@ -13,7 +13,7 @@
   ];
 
   function config($provide, authProvider, $urlRouterProvider, $stateProvider, $httpProvider, jwtInterceptorProvider) {  
-    $urlRouterProvider.otherwise('/search');
+    $urlRouterProvider.otherwise('/home');
 
     authProvider.init({
       clientID: 'p3YX25mAFylU7F6GadLITKleuETnTKiT',
@@ -28,28 +28,39 @@
     .state('search', {
       url: '/search',
       templateUrl: 'partials/search.html',
-      controller: 'searchCtrl as search_ctrl'
+      controller: 'searchCtrl as search_ctrl',
+      authenticate: false
     })
     .state('create', {
       url: '/create',
       templateUrl: 'partials/create.html',
-      controller: 'createCtrl as create_ctrl'
+      controller: 'createCtrl as create_ctrl',
+      authenticate: true
     })
     .state('plan', {
       url: '/plan/:plan_id',
       templateUrl: 'partials/plan.html',
-      controller: 'planCtrl as plan_ctrl'
+      controller: 'planCtrl as plan_ctrl',
+      authenticate: false
     })
     .state('activities', {
       url: '/activities',
       templateUrl: 'partials/activities.html',
-      controller: 'activitiesCtrl as activities_ctrl'
+      controller: 'activitiesCtrl as activities_ctrl',
+      authenticate: true
     })
     .state('profile', {
       url: '/profile',
       templateUrl: 'partials/profile.html',
-      controller: 'profileCtrl as profile_ctrl'
-    });
+      controller: 'profileCtrl as profile_ctrl',
+      authenticate: true
+    })
+    .state('home', {
+      url: '/home',
+      templateUrl: 'partials/home.html',
+      controller: 'homeCtrl as home_ctrl',
+      authenticate: false
+    })
 
     // function redirect($q, $injector, auth, store, $location) {
     //   return {
@@ -76,20 +87,21 @@
 
   function run($rootScope, auth, store, jwtHelper, $location, $state) {
    
-    $rootScope.$on('$locationChangeStart', function() {
-      var token = store.get('id_token');
-      if(token) {
-        if(!jwtHelper.isTokenExpired(token)) {
-          if(!auth.isAuthenticated) {
-            auth.authenticate(store.get('profile'), token);
+    $rootScope.$on('$locationChangeSuccess', function() {
+      console.log('state = ', $state)
+      if(!$state.current.name === 'plan' || !$state.current.name === 'search' || !$state.current.name === 'home') {
+        var token = store.get('id_token');
+        if(token) {
+          if(!jwtHelper.isTokenExpired(token)) {
+            if(!auth.isAuthenticated) {
+              auth.authenticate(store.get('profile'), token);
+            }
           }
         }
-      }
-      else{
-        if(!$state.is('plan')) {
-          $location.path('/search');
+        else{
+          $state.go('home');
         }
-      }
+      } 
    });
    
   }

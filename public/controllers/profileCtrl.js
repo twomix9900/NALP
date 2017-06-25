@@ -2,11 +2,10 @@
   angular.module('NALP')
   .controller('profileCtrl', profileCtrl);
 
-  profileCtrl.$inject = ['$http', 'store'];
+  profileCtrl.$inject = ['$http', 'store', 'auth_fac'];
 
-  function profileCtrl($http, store) {
-
-    document.body.background = "";
+  function profileCtrl($http, store, auth_fac) {
+    auth_fac.private();
     
     var vm = this;
     vm.getMessage = getMessage;
