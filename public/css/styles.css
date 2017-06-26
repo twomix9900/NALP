@@ -1,3 +1,5 @@
+
+
 .alert-complete {
   position: absolute !important;
   background: green !important;
@@ -7,3 +9,19 @@
 /*#google-address-input {
   width: 350px !important;
 }*/
+
+.profilePic {
+  /*background-color: lightgreen;*/
+  background-color: lightblue;
+  margin-top: 20px;
+  height: 50%
+  }
+
+.lightblue {
+  background-color: lightblue;
+  text-align: center;
+  padding: 10px;
+  height: 50%
+  }
+
+

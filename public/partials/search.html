@@ -1,14 +1,17 @@
-<h2>Find a Plan</h2>
-<form ng-submit="search_ctrl.searchByCity(search_ctrl.search)">
-  <input type="text" placeholder="Search Plans By City" ng-model="search_ctrl.search.city">
-</form>
-<button ng-click="search_ctrl.clickGetPlans()">Get All Plans</button>
-<table class='table-striped'>
-  <div>
-    <br></br>
-    <tr ng-repeat="plan in search_ctrl.data" ng-click="search_ctrl.goToPlan(plan._id)" style='height: 40px'>  
-      <td><strong>{{ plan.title }}</strong></td>
-      <!--td>{{ plan creator by username MVP+ feature }}</td-->
-    </tr>
-  </div>
-</table>
+<div class="spacer"></div>
+<div class="jumbotron" >
+  <h2>Find a Nalp</h2>
+  <form ng-submit="search_ctrl.searchByCity(search_ctrl.search)">
+    <input type="text" placeholder="Search Nalps By City" ng-model="search_ctrl.search.city">
+  </form>
+  <button ng-click="search_ctrl.clickGetPlans()">Get All Plans</button>
+  <table class='table-striped'>
+    <div>
+      <br></br>
+      <tr ng-repeat="plan in search_ctrl.data" ng-click="search_ctrl.goToPlan(plan._id)" style='height: 40px'>  
+        <td><strong>{{ plan.title }}</strong></td>
+        <!--td>{{ plan creator by username MVP+ feature }}</td-->
+      </tr>
+    </div>
+  </table>
+</div>

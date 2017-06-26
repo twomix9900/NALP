@@ -1,48 +1,17 @@
-<md-toolbar>
-  <div class="md-toolbar-tools">
-    <h2>
-      <span
-      ui-sref="home">
-      NALP
-      </span>
-    </h2>
-    <span flex></span>
-
-    <md-button
-    ui-sref="search">
-    Search
-    </md-button>
-    
-    <md-button
-    ui-sref="activities"
-    ng-if="navbar_ctrl.auth.isAuthenticated">
-    Saved
-    </md-button>
-
-    <md-button
-    ui-sref="create"
-    ng-if="navbar_ctrl.auth.isAuthenticated">
-    Create
-    </md-button>
-
-    <md-button
-    ng-click="navbar_ctrl.login()"
-    ng-if="!navbar_ctrl.auth.isAuthenticated">
-    Login
-    </md-button>
-
-    <md-button
-    ui-sref="profile"
-    ng-if="navbar_ctrl.auth.isAuthenticated">
-    Profile
-    </md-button>
-
-    <md-button
-    ng-click="navbar_ctrl.logout()"
-    ng-if="navbar_ctrl.auth.isAuthenticated">
-    Logout
-    </md-button>
-
-    
-  </div>
-</md-toolbar>
+<nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header" ui-sref="home"><a class="navbar-brand navbar-link" href="#" style="color:#333333;">NALP</a>
+                <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+            </div>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active" role="presentation"><a href="#" style="color:#333333;" ui-sref="search">Search </a></li>
+                    <li role="presentation"><a href="#" style="color:#333333;" ui-sref="activities" ng-if="navbar_ctrl.auth.isAuthenticated">Saved </a></li>
+                    <li role="presentation"><a href="#" style="color:#333333;" ui-sref="create" ng-if="navbar_ctrl.auth.isAuthenticated">Create </a></li>
+                    <li role="presentation"><a href="#" style="color:#333333;" ng-click="navbar_ctrl.login()" ng-if="!navbar_ctrl.auth.isAuthenticated">Login </a></li>
+                    <li role="presentation"><a href="#" style="color:#333333;" ui-sref="profile" ng-if="navbar_ctrl.auth.isAuthenticated">Profile </a></li>
+                    <li role="presentation"><a href="#" style="color:#333333;" ng-click="navbar_ctrl.logout()" ng-if="navbar_ctrl.auth.isAuthenticated">Logout </a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>

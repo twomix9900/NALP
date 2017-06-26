@@ -6,7 +6,6 @@
 
 
   function searchCtrl(plan_fac, $state, store) {
-    document.body.background = "https://static.pexels.com/photos/196667/pexels-photo-196667.jpeg";
 
     var vm = this;
     vm.search = {};

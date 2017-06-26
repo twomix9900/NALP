@@ -7,7 +7,6 @@
   function activitiesCtrl(selectedPlans_fac, $state, store, auth_fac) {
     auth_fac.private();
     
-    document.body.background = "https://cdn.pixabay.com/photo/2014/07/01/12/25/roller-skates-381216_960_720.jpg";
     
     var vm = this;
     var viewtitle = '';

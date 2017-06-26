@@ -1,5 +1,5 @@
 (function() {
-  angular.module('NALP', ['auth0', 'angular-storage', 'angular-jwt', 'ngMaterial', 'ui.router'])
+  angular.module('NALP', ['auth0', 'angular-storage', 'angular-jwt', 'ui.router'])
   .config(config)
   .run(run)
 
@@ -89,17 +89,18 @@
    
     $rootScope.$on('$locationChangeSuccess', function() {
       console.log('state = ', $state)
-      if(!$state.current.name === 'plan' || !$state.current.name === 'search' || !$state.current.name === 'home') {
-        var token = store.get('id_token');
-        if(token) {
-          if(!jwtHelper.isTokenExpired(token)) {
-            if(!auth.isAuthenticated) {
-              auth.authenticate(store.get('profile'), token);
-            }
+      
+      var token = store.get('id_token');
+      if(token) {
+        if(!jwtHelper.isTokenExpired(token)) {
+          if(!auth.isAuthenticated) {
+            auth.authenticate(store.get('profile'), token);
           }
         }
-        else{
-          $state.go('home');
+      }
+      else{
+        if(!$state.current.name === 'plan' || !$state.current.name === 'search' || !$state.current.name === 'home') {
+        $state.go('home');
         }
       } 
    });
