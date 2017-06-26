@@ -55,26 +55,3 @@ th.viewtitle, th.viewcity, th.viewcosts {
   font-weight: bold;
 }
 
-.md-toolbar-tools {
-  background-color: #34495E;
-  position: fixed;
-  top: 0px;
-  width: 100%;
-  overflow: hidden;
-}
-
-.main {
-  margin-top: 50  px;
-  background-size: cover;
-}
-
-.table-striped>tbody>tr:nth-child(odd)>td, 
-.table-striped>tbody>tr:nth-child(odd)>th {
-   background-color: #d8dfe2;
-   padding: 10px;
- }
-
-.table-striped>tbody>tr:nth-child(even)>td, 
-.table-striped>tbody>tr:nth-child(even)>th {
-   padding: 10px;
- }
