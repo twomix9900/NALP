@@ -24,7 +24,7 @@
       auth.signin({}, function (profile, token) {
         store.set('profile', profile);
         store.set('id_token', token);
-
+        
         $http.post(api, {
             email: profile.email
           })
@@ -34,7 +34,6 @@
           }, function (err) {
             var profile = store.get('profile');
             console.log('profile = ', profile)
-
           })
           .catch((err) => {
             console.log('couldnt post user', err);

@@ -20,6 +20,10 @@
     vm.addedEvents = [];
     vm.cityLoc = {};
 
+     $(document).ready(function(){
+      $('.parallax').parallax();
+    });
+
     var err_callback = function(err) {
       console.log('err >>', err);
     }
