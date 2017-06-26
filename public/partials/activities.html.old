@@ -1,0 +1,40 @@
+<br>
+<h2 style='color: #AA3939; font-size: 30pt'><strong>Saved Plans & Activities</strong></h2>
+<br>
+<div class='Activities' ng-controller='activitiesCtrl'>
+  <div>
+    <nav class='ActNavbar'>
+      <ul class='ActNav'>
+        <li class='ActNav' ng-click='activities_ctrl.userClickBookmarked()'
+          ng-class='bm' ng-mouseenter='bm = "highlight"' ng-mouseleave='bm = "normal"'
+          >Bookmarked</li>
+        <li class='ActNav' ng-click='activities_ctrl.userClickCreated()'
+          ng-class='cr' ng-mouseenter='cr = "highlight"' ng-mouseleave='cr = "normal"' 
+          >Created</li>
+        <li class='ActNav' ng-click='activities_ctrl.userClickCompleted()'
+          ng-class='co' ng-mouseenter='co = "highlight"' ng-mouseleave='co = "normal"'
+          >Completed</li>
+      </ul>
+    </nav>
+  </div>
+  <div>
+    <br>
+    <p></p>
+    <table class='table-striped activity_head'>
+      <thead>
+          <br>
+        <tr>
+          <th class='viewtitle' ng-show='!activities_ctrl.plans[0].empty'>Title</th>
+          <th class='viewcity' ng-show='!activities_ctrl.plans[0].empty'>City</th>
+          <th class='viewcosts' ng-show='!activities_ctrl.plans[0].empty'>Total Cost</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat='plan in activities_ctrl.plans' ng-dblclick='activities_ctrl.userClickPlanEntry(plan.p_id)'>
+          <td class='viewtitle'>{{ plan.title }}</td>
+          <td class='viewcity'>{{ plan.city }}</td>
+          <td class='viewcosts'>{{ plan.total_cost | currency }}</td>
+        </tr>
+      </tbody>
+  </div>  
+</div>

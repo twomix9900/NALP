@@ -1,3 +1,11 @@
+.Activities { 
+  font-family: "Raleway","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+nav.ActNavbar {
+  font-family: "Raleway","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
 ul.ActNav {
   list-style-type: none;
   margin: 0;
@@ -16,6 +24,7 @@ li.highlight {
 }
 
 table.activity_head {
+  font-family: "Raleway","Helvetica Neue",Helvetica,Arial,sans-serif;
   position: absolute;
   border-collapse: separate;
   border-spacing: 10px;
