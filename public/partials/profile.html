@@ -1,32 +1,60 @@
-
 <div class="container">
-  <div class="spacer"></div>
-  <div class="jumbotron">
-    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-      <img src="{{ profile_ctrl.profile.picture }}" alt="profile-picture">
+    <div class="row product">
+        <div class="col-md-5 col-md-offset-0"><img class="img-responsive profile-img" src="{{ profile_ctrl.profile.picture }}"></div>
+        <div class="col-lg-7 col-lg-offset-0 col-md-7 profile-content">
+            <h2 style="font-size:50px;"><strong>{{ profile_ctrl.profile.nickname }}</strong></h2>
+            <h4 style="font-size:30px;">About me:</h4>
+            <p style="font-size:20px;">Always trying new restaurants and hikes! Hope you enjoy my Nalps!!!!</p>
+        </div>
     </div>
-    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-      <p>
-      Email: {{ profile_ctrl.profile.email }}
-      </p> 
+    <div class="page-header">
+        <h3>Created Nalps</h3>
+        <div class="row product-list">
+            <div class="col-md-4 col-sm-6 product-item">
+                <div class="product-container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a href="#" class="product-image"><img src="assets/img/unnamed.png"></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-xs-8">
+                            <h2><a href="#">Best night </a>Germany</h2></div>
+                    </div>
+                    <div class="product-rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i><a href="#" class="small-text">24 reviews</a></div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 product-item">
+                <div class="product-container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a href="#" class="product-image"><img src="assets/img/unnamed.png"></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-xs-8">
+                            <h2><a href="#">Ultimate taco run</a></h2></div>
+                    </div>
+                    <div class="product-rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i><a href="#" class="small-text">93 reviews</a></div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 product-item">
+                <div class="product-container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a href="#" class="product-image"><img src="assets/img/unnamed.png"></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-xs-8">
+                            <h2><a href="#">Beach Day Fun</a></h2></div>
+                    </div>
+                    <div class="product-rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i><a href="#" class="small-text">30 reviews</a></div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="jumbotron"></div>
-  </div>
+    <div class="media">
+        <div class="media-body"></div>
+    </div>
 </div>
-
-
-
-
-<!--<div layout="row" layout-fill layout-align="center " class="jumbotron">
-  <div >
-    <img src="{{ profile_ctrl.profile.picture }}" alt="profile-picture">
-  <div>
-    {{ profile_ctrl.profile.nickname }}
-  </div>
-  <div>
-    {{ profile_ctrl.profile.email }}
-  </div>  
-  </div>
-</div>-->
-        
-     
