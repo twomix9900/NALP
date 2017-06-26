@@ -1,4 +1,4 @@
-<h2>Plan Details</h2>
+<!--<h2>Plan Details</h2>
 
 <head>
   <style>
@@ -179,4 +179,223 @@
     </table>
     <span style="display:block; height: 50px;"></span>
     <p1> <strong>TOTAL COST: {{plan_ctrl.totalCost | currency}}</strong></p1>
+</body>-->
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Page</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/readable/bootstrap.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,700">
+  <link rel="stylesheet" href="assets/css/user.css">
+  <link rel="stylesheet" href="assets/css/Map-Clean.css">
+
+
+  <style>
+    #map {
+      height: 55%;
+      width: 100%;
+      padding: 150px;
+    }
+
+    body {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    #table {
+      width: 100%;
+      text-align: left;
+    }
+
+    #table {
+      width: 100%;
+      text-align: left;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div id="map"></div>
+    <script>
+      var markers = [];
+      var resultsMaps = [];
+      var addedEvents = [];
+      var address = '';
+
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 15,
+          maxZoom: 15,
+          center: {
+            lat: 33.976175,
+            lng: -118.390773
+          }
+        });
+        var geocoder = new google.maps.Geocoder();
+        var planIdURL = window.location.href.slice(30);
+
+        setTimeout(function () {
+          $.ajax({
+              url: "/plans/" + planIdURL,
+              method: "GET"
+            })
+            .done(function (data) {
+              for (let i = 0; i < data.plan.events.length; i++) {
+                address = data.plan.events[i].address;
+                geocodeAddress(geocoder, map, i, address);
+              }
+            })
+            .fail(function (err) {
+              console.log('AJAX get request error! ', err);
+            });
+        }, 500);
+      }
+
+      function geocodeAddress(geocoder, resultsMap, i, address) {
+        var directionsDisplay = new google.maps.DirectionsRenderer({
+          map: resultsMap
+        });
+        var directionsService = new google.maps.DirectionsService;
+
+        geocoder.geocode({
+          'address': address
+        }, function (results, status) {
+          if (status === 'OK') {
+            directionsDisplay.setMap(resultsMap);
+            directionsDisplay.setOptions({
+              suppressMarkers: true,
+              preserveViewport: true
+            });
+            resultsMap.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+              map: resultsMap,
+              draggable: false,
+              clickable: true,
+              optimized: true,
+              position: results[0].geometry.location,
+              title: address,
+              icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' + (i + 1) +
+                '|FF0000|000000'
+            });
+
+            infowindow = new google.maps.InfoWindow({
+              content: marker.title
+            });
+
+            marker.addListener('click', function () {
+              infowindow.setContent(marker.title);
+              infowindow.open(resultsMap, this);
+            });
+
+            markers.push(marker);
+            var bounds = new google.maps.LatLngBounds();
+            for (let i = 0; i < markers.length; i++) {
+
+              bounds.extend(markers[i].getPosition());
+            }
+            resultsMap.fitBounds(bounds);
+            resultsMaps.push(results[0].formatted_address);
+            var start = resultsMaps[resultsMaps.length - 2];
+            var end = resultsMaps[resultsMaps.length - 1];
+
+            function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+              if (start) {
+                directionsService.route({
+                  origin: start,
+                  destination: end,
+                  travelMode: 'DRIVING'
+                }, function (response, status) {
+                  if (status === 'OK') {
+                    directionsDisplay.setDirections(response);
+                  } else {
+                    console.log('Directions request failed: ', status);
+                  }
+                });
+              }
+            }
+            calculateAndDisplayRoute(directionsService, directionsDisplay);
+          } else {
+            alert('Invalid address! ERROR CODE: ' + status);
+          }
+        });
+      }
+    </script>
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVzNx4R3D71W4Cg0RrD06Q5i-7UP5l-pU&callback=initMap">
+    </script>
+    <div class="row product">
+      <div class="col-md-12">
+        <div class="table-responsive">
+          <div ng-if='plan_ctrl.showButtons'>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Completions: {{plan_ctrl.ratings}}
+                    <input ng-if='!plan_ctrl.isNotComplete' ng-click='plan_ctrl.userDidClickMarkAsComplete()' type='button' class="btn btn-default .btn-primary: hover"
+                      value='Complete'>
+                    <input ng-if='plan_ctrl.isNotComplete' ng-click='plan_ctrl.userDidClickMarkAsIncomplete()' type='button' class="btn btn-default .btn-primary: hover"
+                      value='Undo Complete'>
+                  </th>
+                  <th>Bookmarks: {{plan_ctrl.bookmarks}}
+                    <input ng-if='plan_ctrl.isBookmarked' ng-click='plan_ctrl.userDidClickBookmark()' type='button' class="btn btn-default .btn-primary: hover"
+                      value='Bookmark'>
+                    <input ng-if='!plan_ctrl.isBookmarked' ng-click='plan_ctrl.userDidClickRemoveBookmark()' type='button' class="btn btn-default .btn-primary: hover"
+                      value='Undo Bookmark'>
+                  </th>
+          </div>
+          </tr>
+          </thead>
+          <tbody>
+
+            <tr></tr>
+          </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="page-header">
+      <h3>NALP cost: {{plan_ctrl.totalCost | currency}} </h3>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Event </th>
+            <th>Address </th>
+            <th>Time </th>
+            <th>Cost </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat='event in plan_ctrl.addedEvents'>
+            <td class="text-capitalize">{{ event.event_type }} </td>
+            <td>{{ event.address }}</td>
+            <td>{{ event.start_time }}</td>
+            <td>{{ event.cost | currency}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
+
+</html>
