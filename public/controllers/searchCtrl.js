@@ -7,6 +7,8 @@
 
   function searchCtrl(plan_fac, $state, store) {
 
+    document.body.style.backgroundImage = "";
+
     var vm = this;
     vm.search = {};
     vm.cityPlans = [];

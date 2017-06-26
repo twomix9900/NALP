@@ -5,6 +5,9 @@
   profileCtrl.$inject = ['$http', 'store', 'auth_fac'];
 
   function profileCtrl($http, store, auth_fac) {
+
+    document.body.style.backgroundImage = "";
+    
     auth_fac.private();
     
     var vm = this;
