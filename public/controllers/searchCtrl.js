@@ -2,17 +2,13 @@
   angular.module('NALP')
   .controller('searchCtrl', searchCtrl)
 
-  searchCtrl.$inject = ['plan_fac', '$state', 'store'];
+  searchCtrl.$inject = ['plan_fac', '$state'];
 
-  function searchCtrl(plan_fac, $state, store) {
+  function searchCtrl(plan_fac, $state) {
     var vm = this;
 
     vm.search = {};
     vm.plans = [];
-
-    // store.remove('profile');
-    // store.remove('id_token');
-    // store.remove('current_user_id');    
 
     vm.searchByCity = function(cityName) {
       console.log('SUBMITTED', cityName.city)
