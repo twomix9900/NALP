@@ -1,7 +1,9 @@
-<h2 style='color: black'><strong>Saved Plans & Activities</strong></h2>
-<div name='Activities' ng-controller='activitiesCtrl'>
+<br>
+<h2 style='color: #AA3939; font-size: 30pt'><strong>Saved Plans & Activities</strong></h2>
+<br>
+<div class='Activities' ng-controller='activitiesCtrl'>
   <div>
-    <nav>
+    <nav class='ActNavbar'>
       <ul class='ActNav'>
         <li class='ActNav' ng-click='activities_ctrl.userClickBookmarked()'
           ng-class='bm' ng-mouseenter='bm = "highlight"' ng-mouseleave='bm = "normal"'
@@ -16,11 +18,11 @@
     </nav>
   </div>
   <div>
-    <br></br>
+    <br>
     <p></p>
     <table class='table-striped activity_head'>
       <thead>
-          <br></br>
+          <br>
         <tr>
           <th class='viewtitle' ng-show='!activities_ctrl.plans[0].empty'>Title</th>
           <th class='viewcity' ng-show='!activities_ctrl.plans[0].empty'>City</th>
