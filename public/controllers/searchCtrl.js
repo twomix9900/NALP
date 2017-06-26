@@ -10,7 +10,7 @@
     var vm = this;
     vm.search = {};
     vm.cityPlans = [];
-    vm.allPlans
+    vm.allPlans  = [];
 
     vm.searchByCity = function(cityName) {
       console.log('SUBMITTED', cityName.city)

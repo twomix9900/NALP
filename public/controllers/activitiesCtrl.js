@@ -61,7 +61,11 @@
       });
 
     function renderPlans(res) {
+<<<<<<< HEAD
       console.log('res= ',res)
+=======
+      console.log('res =', res)
+>>>>>>> made search bar smaller
       vm.plans = res.data.plans;
     }
   }
