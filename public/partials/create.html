@@ -1,15 +1,426 @@
+<style>
+  @import 'https://fonts.googleapis.com/css?family=Lato:900,700,400';
+  .header-div-one {
+    width: 100%;
+    height: 30px;
+    background: #2c3e50;
+    border-radius: 3px;
+  }
+
+  .footer-div-one {
+    width: 100%;
+    height: 30px;
+    background: #2c3e50;
+    border-radius: 25px;
+    /*position: absolute;*/
+    z-index: 15;
+    /*left: 0;*/
+  }
+
+  .aaa {
+    height: 100% !important;
+  }
+
+  .container-wrapper-div {
+    margin-top: -30px;
+    margin-left: -8px;
+    background: rgb(213, 235, 251);
+    /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(213, 235, 251, 1) 0%, rgba(137, 195, 235, 1) 49%, rgba(171, 211, 238, 1) 50%, rgba(235, 241, 246, 1) 59%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(213, 235, 251, 1) 0%, rgba(137, 195, 235, 1) 49%, rgba(171, 211, 238, 1) 50%, rgba(235, 241, 246, 1) 59%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(213, 235, 251, 1) 0%, rgba(137, 195, 235, 1) 49%, rgba(171, 211, 238, 1) 50%, rgba(235, 241, 246, 1) 59%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d5ebfb', endColorstr='#ebf1f6', GradientType=0);
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;
+    z-index: 5;
+  }
+
+  .container {
+    overflow-y: scroll;
+    z-index: 10;
+    /*background: snow;*/
+    height: 100%;
+    border-radius: 25px;
+    position: relative;
+    /* gradient overlay background with image */
+    /*background: linear-gradient(
+                rgba(28,239,255, 0.75),
+                rgba(192,192,170, 0.75),
+                rgba(192,192,170, 0.75),
+                rgba(192,192,170, 0.75),
+                url('http://68.media.tumblr.com/897ae11f2b9ce062547f2347ad224730/tumblr_os0iqdC3Bd1ta0hnbo1_1280.jpg') center center no-repeat);*/
+    /*background: url('http://68.media.tumblr.com/897ae11f2b9ce062547f2347ad224730/tumblr_os0iqdC3Bd1ta0hnbo1_1280.jpg') center center no-repeat;*/
+    background: linear-gradient(to top, #FDB99B, #CF8BF3, #A770EF);
+    /* url you want: url('http://68.media.tumblr.com/897ae11f2b9ce062547f2347ad224730/tumblr_os0iqdC3Bd1ta0hnbo1_1280.jpg') center center no-repeat, */
+    /*background: #c0c0aa; 
+    background: -webkit-linear-gradient(; 
+    background: linear-gradient(to right, #c0c0aa, #1cefff);*/
+    /*&:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-image: linear-gradient(to right, #c0c0aa, #1cefff);
+      opacity: .6;
+
+    }*/
+  }
+
+  .container:before {
+    content: ' ';
+    display: block;
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0.7;
+    background-image: url('http://68.media.tumblr.com/897ae11f2b9ce062547f2347ad224730/tumblr_os0iqdC3Bd1ta0hnbo1_1280.jpg');
+    /*background-image: url('../css/greenfield-bg-option.jpg');*/
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+    -ms-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-size: 100% 100%;
+  }
+
+  .container-img-src {
+    position: absolute;
+    /*width: 100%;*/
+    /*height: auto;*/
+    opacity: 0.2;
+    z-index: 0;
+  }
+
+  .make-plan-btn {
+    background-color: #2980b9 !important;
+    color: white !important;
+  }
+
+  .add-evt-btn {
+    background-color: #2980b9 !important;
+    color: white !important;
+  }
+
+  .rem-evt-btn {
+    background-color: #2980b9 !important;
+    color: white !important;
+    font-family: "Lato", sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.60;
+    opacity: 0.70;
+  }
+
+  .title-input {
+    opacity: 1 !important;
+    width: 390px !important;
+    padding-top: 6px !important;
+    padding-bottom: 12px !important;
+    border-bottom-color: white;
+    background-color: white !important;
+    border: 2px solid black !important;
+    border-color: black !important;
+    border-radius: 11px !important;
+    border-width: 2px !important;
+    margin-top: 18px !important;
+    color: black;
+    font-size: 18px !important;
+    padding-left: 16px !important;
+    margin-left: 64px !important;
+    padding-right: 20px !important;
+    border-top: 2px solid black;
+    font-family: "Lato", sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.60;
+    opacity: 0.70;
+    margin-top: 0px;
+    margin-bottom: 25px;
+    letter-spacing: -0.30px;
+    word-spacing: -0.10px;
+    text-transform: none;
+    border: none !important;
+  }
+
+  .title-input-event-type {
+
+    width: 154px !important;
+    padding-top: 3px !important;
+    padding-bottom: 5px !important;
+    border-bottom-color: white;
+    background-color: white !important;
+    border: 2px solid black !important;
+    border-color: black !important;
+    border-radius: 11px !important;
+    border-width: -3px !important;
+    opacity: 1 !important;
+    margin-top: 0px !important;
+    z-index: 2000;
+    color: black;
+    font-size: 18px !important;
+    padding-left: 16px !important;
+    margin-left: -6px !important;
+    padding-right: 20px !important;
+    border-top: 2px solid black;
+    font-family: "Lato", sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.60;
+    opacity: 0.70;
+    margin-top: 0px;
+    margin-bottom: 25px;
+    letter-spacing: -0.30px;
+    word-spacing: -0.10px;
+    text-transform: none;
+    border: none !important;
+  }
+
+  .title-input-two {
+    opacity: 1 !important;
+    width: 290px !important;
+    padding-top: 6px !important;
+    padding-bottom: 12px !important;
+    border-bottom-color: white;
+    background-color: white !important;
+    border: 2px solid black !important;
+    border-color: black !important;
+    border-radius: 11px !important;
+    border-width: 2px !important;
+    margin-top: 18px !important;
+    color: black;
+    font-size: 18px !important;
+    padding-left: 16px !important;
+    margin-left: 64px !important;
+    padding-right: 20px !important;
+    border-top: 2px solid black;
+    font-family: "Lato", sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.60;
+    opacity: 0.70;
+    margin-top: 0px;
+    margin-bottom: 25px;
+    letter-spacing: -0.30px;
+    word-spacing: -0.10px;
+    text-transform: none;
+    border: none !important;
+  }
+  /*
+    background: #c0c0aa; 
+    background: -webkit-linear-gradient(to right, #c0c0aa, #1cefff); 
+    background: linear-gradient(to right, #c0c0aa, #1cefff);
+  */
+
+  .form-content-div {
+    z-index: 1000;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  .title-parent-div {
+    margin-left: 11px;
+    margin-bottom: -11px;
+  }
+
+  .title-parent-div-two {
+    margin-left: 11px;
+    margin-bottom: -8px;
+  }
+
+  .title-parent-div-three {
+    margin-left: 11px;
+    margin-bottom: 10px;
+  }
+
+  .title-parent-div label {
+    font-family: "Lato", sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.20;
+    opacity: 1.00;
+    color: #2c3e50 !important;
+    margin-top: 30px;
+    margin-bottom: 5px;
+    letter-spacing: -0.72px;
+    word-spacing: 0.00px;
+    text-transform: none;
+  }
+
+  .title-parent-div-three label {
+    font-family: "Lato", sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.20;
+    opacity: 1.00;
+    color: #2c3e50 !important;
+    margin-top: 30px;
+    margin-bottom: 5px;
+    letter-spacing: -0.72px;
+    word-spacing: 0.00px;
+    text-transform: none;
+  }
+
+  .title-parent-div-two label {
+    font-family: "Lato", sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.20;
+    opacity: 1.00;
+    color: #2c3e50 !important;
+    margin-top: 30px;
+    margin-bottom: 5px;
+    letter-spacing: -0.72px;
+    word-spacing: 0.00px;
+    text-transform: none;
+  }
+
+  .lato-create-h2 {
+    font-family: "Lato", sans-serif;
+    font-size: 55px;
+    font-weight: 900;
+    line-height: 1.20;
+    opacity: 1.00;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    letter-spacing: -0.72px;
+    word-spacing: 0.00px;
+    text-transform: none;
+  }
+
+  .create-plan-heading {
+    text-align: center;
+  }
+
+  .header-tr {
+    background: #FFF8E1;
+    font-size: 22px;
+  }
+
+  .table-container-table {
+    margin-left: 60px;
+    width: 94% !important;
+  }
+
+  #address-input-tag {
+    width: 350px !important;
+  }
+
+  #start_time_input {
+    width: 90px !important;
+    text-align: center;
+  }
+
+  #cost-tag {
+    width: 83px !important;
+  }
+
+  .events-heading-label-tag {
+    margin-left: 13px !important;
+  }
+
+  .parallax-container {
+    height: "50px";
+  }
+
+  .card-item-p-tag {
+    font-family: "Lato", sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.60;
+    opacity: 0.70;
+    margin-top: 0px;
+    margin-bottom: 25px;
+    letter-spacing: -0.30px;
+    word-spacing: -0.10px;
+    text-transform: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 10px !important;
+  }
+
+  .start-fil-tag {
+    font-family: "Lato", sans-serif;
+    font-size: 55px;
+    font-weight: 900;
+    line-height: 1.20;
+    opacity: 1.00;
+    color: #2c3e50 !important;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    letter-spacing: -0.72px;
+    word-spacing: 0.00px;
+    text-transform: none;
+  }
+
+  .collection-div-tag {
+    border: none !important;
+  }
+
+  .card-img-evt-photo {
+    height: 100% !important;
+    border-top-left-radius: 58px !important;
+    border-bottom-left-radius: 58px !important;
+  }
+
+  .card-ho-tag {
+    background-color: #ecf0f1 !important;
+    border-radius: 58px !important;
+    width: 88% !important;
+    margin-left: 43px !important;
+  }
+</style>
+
 <body>
-<h2>the Plan</h2>
-<div name='CreatePlan'>
-  <form>
-    <label>Title
-      <input type='text' name='title' ng-model='create_ctrl.newPlanInfo.title' required>
-    </label>
-    <label>Location
-      <input type='text' name='location' ng-model='create_ctrl.newPlanInfo.city' required>
-    </label>
-  </form>
-  <!--div id='createMap'>
+  <div class='container-wrapper-div'>
+    <div class='container'>
+      <!-- wip parallax for background <img src="" alt=""> -->
+      <!--<div class="parallax-container">
+        <div class="parallax">
+          <img class='container-img-src' src="http://68.media.tumblr.com/897ae11f2b9ce062547f2347ad224730/tumblr_os0iqdC3Bd1ta0hnbo1_1280.jpg">
+        </div>
+      </div>-->
+
+      <div class='form-content-div'>
+
+        <div class='row'>
+          <div class='col s12'>
+            <div class='header-div-one'></div>
+          </div>
+          <div class='col s12'>
+            <div class='create-plan-heading'>
+              <h1 class='lato-create-h2'>Create Your Plan</h1>
+            </div>
+            <div name='CreatePlan'>
+              <form>
+                <div class='row'>
+                  <div class='col s12'>
+                    <div class='title-parent-div'>
+                      <label>Title:</label>
+                    </div>
+                    <input class='title-input' type='text' name='title' ng-model='create_ctrl.newPlanInfo.title' placeholder='e.g. my new york adventure'
+                      required>
+                  </div>
+                </div>
+                <div class='title-parent-div-two'>
+                  <label>Location (city):</label>
+                </div>
+                <input class='title-input-two' type='text' name='location' ng-model='create_ctrl.newPlanInfo.city' placeholder='e.g. New York City'
+                  required>
+              </form>
+              <!--div id='createMap'>
   <script>
   function initMap() {
     var defaultLocation = {lat: -25.363, lng: 131.044};
@@ -24,61 +435,125 @@
   }
   </script>
   </div-->
-  <br></br>
-  <form><strong>Events</strong>
-    <table class='create_header'>
-      <thead>
-        <tr>
-          <th class='cr_title'>title</th>
-          <th class='cr_address'>address</th>
-          <th class='cr_time'>time</th>
-          <th class='cr_cost'>cost ($)</th>
-          <th class='cr_photo'>photolink</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><input type='text' ng-model='create_ctrl.newEventInfo.event_type'></td>
-          <td><input type='text' ng-model='create_ctrl.newEventInfo.address' id='google-address-input' ng-keyup='create_ctrl.showAutoSuggestions()' list='suggest-from-yelp-list'></td> 
-          <datalist id='suggest-from-yelp-list'>
-            <option ng-repeat='suggestion in create_ctrl.allPlaceSuggestions' ng-value="suggestion.name"></option>
-          </datalist>
-          <td><input type='text' ng-model='create_ctrl.newEventInfo.start_time' id='start_time_input'></td>
-          <td><input type='text' ng-model='create_ctrl.newEventInfo.cost'></td>
-          <!--<td><img ng-src="create_ctrl.current_place_img"></td>-->
-          <td>attach</td>
-          <td><button ng-click='create_ctrl.userDidClickAddEvent()'>Add Event</button></td>
-        </tr>
-      </tbody>
-    </table>
-  </form>
-  <table class='create_header'>Events List
-    <thead>
-      <th class='cr_title'>title</th>
-      <th class='cr_address'>address</th>
-      <th class='cr_time'>time</th>
-      <th class='cr_cost'>cost</th>
-      <th class='cr_photolink'>photolink</th>
-    </thead>
-    <tbody>
-      <tr ng-repeat='event in create_ctrl.addedEvents'>
-        <td><p>{{ event.event_type }}</p></td>
-        <td><p id='added-events-address-p'>{{ event.address }}</p></td>
-        <td><p>{{ event.start_time }}</p></td>
-        <td><p>{{ event.cost | currency }}</p></td>
-        <td><img style='width: 200px; height: 200px;' ng-src="{{event.photo}}"></td>
-        <td><button ng-click='create_ctrl.userDidClickRemoveFromAddedEvents(event)'>X</button></td>
-      </tr>
-    </tbody>
-  </table>
-  <input ng-click='create_ctrl.userDidClickMakePlan()' type='button' value='Make Plan'>
-  <!--<script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBVzNx4R3D71W4Cg0RrD06Q5i-7UP5l-pU&callback=initTest"></script>-->
-  <script>
-    // autocomplete
-    function initTest() {
-      // var new_event_address = document.querySelector('#google-address-input');
-      // var new_event_address_auto_complete = new google.maps.places.Autocomplete(new_event_address);
-    }
-  </script>
+              <br></br>
+              <form>
+                <div class='title-parent-div-three row'>
+                  <label class='col s6 events-heading-label-tag'>Events:</label>
+                  <button class=' col btn waves-effect waves-light add-evt-btn' ng-click='create_ctrl.userDidClickAddEvent()'>Add Event <i class='fa fa-map-marker material-icons right'></i></button>
+                </div>
+                <table class='create_header table-container-table'>
+                  <thead class='header-tr'>
+                    <tr>
+                      <th style='padding-left: 18px;' class='cr_title'>Event Type</th>
+                      <th class='cr_address'>Address</th>
+                      <th class='cr_time'>Time</th>
+                      <th class='cr_cost'>Cost ($)</th>
+                      <th class='cr_photo'>Photolink</th>
+                    </tr>
+                  </thead>
+                  <tbody style='background-color: #EDD49C;'>
+                    <tr>
+                      <td style='padding-left: 21px;'><input class='title-input-event-type' type='text' ng-model='create_ctrl.newEventInfo.event_type' placeholder='e.g. Dining'></td>
+                      <td><input class='title-input-event-type' id='address-input-tag' type='text' ng-model='create_ctrl.newEventInfo.address'
+                          id='google-address-input' ng-keyup='create_ctrl.showAutoSuggestions()' list='suggest-from-yelp-list'
+                          placeholder='e.g. The Halal Guys'></td>
+                      <datalist id='suggest-from-yelp-list'>
+                        <option ng-repeat='suggestion in create_ctrl.allPlaceSuggestions' ng-value="suggestion.name"></option>
+                      </datalist>
+                      <td><input class='title-input-event-type' type='text' ng-model='create_ctrl.newEventInfo.start_time' id='start_time_input'
+                          placeholder='e.g. 2:30pm'></td>
+                      <td><input id='cost-tag' class='title-input-event-type' type='text' ng-model='create_ctrl.newEventInfo.cost'
+                          placeholder='e.g. 12.00'></td>
+                      <!--<td><img ng-src="create_ctrl.current_place_img"></td>-->
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </form>
 
-  </body>
+              <div class='title-parent-div'>
+                <label>Events List:</label>
+              </div>
+
+              <!--<table class='create_header'>
+                <thead>
+                  <th class='cr_title'>title</th>
+                  <th class='cr_address'>address</th>
+                  <th class='cr_time'>time</th>
+                  <th class='cr_cost'>cost</th>
+                  <th class='cr_photolink'>photolink</th>
+                </thead>
+                <tbody>
+                  <tr ng-repeat='event in create_ctrl.addedEvents'>
+                    <td>
+                      <p>{{ event.event_type }}</p>
+                    </td>
+                    <td>
+                      <p id='added-events-address-p'>{{ event.address }}</p>
+                    </td>
+                    <td>
+                      <p>{{ event.start_time }}</p>
+                    </td>
+                    <td>
+                      <p>{{ event.cost | currency }}</p>
+                    </td>
+                    <td><img style='width: 200px; height: 200px;' ng-src="{{event.photo}}"></td>
+                    <td><button ng-click='create_ctrl.userDidClickRemoveFromAddedEvents(event)'>X</button></td>
+                  </tr>
+                </tbody>
+              </table>-->
+
+              <!-- work in progress - table for events list -->
+              <div class='collection collection-div-tag'>
+                <div style='background-color: transparent' class="col s12 collection-item" ng-repeat='event in create_ctrl.addedEvents'>
+                  <h1 class="header start-fil-tag">{{ event.start_time }}</h1>
+                  <div style='background-color: #ecf0f1 !important;' class="card horizontal card-ho-tag">
+                    <div class="card-image">
+                      <img class='card-img-evt-photo' ng-src="{{ event.photo }}">
+                    </div>
+                    <div class="card-stacked">
+                      <div class="card-content">
+                        <p class='card-item-p-tag'><b>Event Type:</b> {{ event.event_type }}</p>
+                        <p class='card-item-p-tag'><b>Address:</b> {{ event.address }}</p>
+                        <p class='card-item-p-tag'><b>Cost:</b> {{ event.cost | currency }}</p>
+                      </div>
+                      <div class="card-action">
+                        <button style='margin-left: 54%;' class=' col btn waves-effect waves-light rem-evt-btn' ng-click='create_ctrl.userDidClickRemoveFromAddedEvents(event)'>Remove Event <i class='fa fa-minus material-icons right'></i></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <a href='#' class='waves-effect waves-light btn make-plan-btn' ng-click='create_ctrl.userDidClickMakePlan()'>Make Plan</a>
+            </div>
+          </div>
+          <!--<footer class='page-footer aaa'>
+
+        </footer>-->
+        </div>
+        <!--<div class='col s12'>
+          <div class='footer-div-one'></div>
+        </div>-->
+      </div>
+    </div>
+    <!--<script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBVzNx4R3D71W4Cg0RrD06Q5i-7UP5l-pU&callback=initTest"></script>-->
+    <script>
+      // autocomplete
+      function initTest() {
+        // var new_event_address = document.querySelector('#google-address-input');
+        // var new_event_address_auto_complete = new google.maps.places.Autocomplete(new_event_address);
+      }
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <!--materialize-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+
+
+
+
+</body>
