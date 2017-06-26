@@ -1,17 +1,52 @@
-<div class="spacer"></div>
-<div class="jumbotron" >
-  <h2>Find a Nalp</h2>
-  <form ng-submit="search_ctrl.searchByCity(search_ctrl.search)">
-    <input type="text" placeholder="Search Nalps By City" ng-model="search_ctrl.search.city">
-  </form>
-  <button ng-click="search_ctrl.clickGetPlans()">Get All Plans</button>
-  <table class='table-striped'>
-    <div>
-      <br></br>
-      <tr ng-repeat="plan in search_ctrl.data" ng-click="search_ctrl.goToPlan(plan._id)" style='height: 40px'>  
-        <td><strong>{{ plan.title }}</strong></td>
-        <!--td>{{ plan creator by username MVP+ feature }}</td-->
-      </tr>
+<div class="highlight-clean"></div>
+<form class="search-form">
+    <h1 class="text-center" style="font-size:60px;"><strong>Search a NALP</strong></h1>
+    <div class="input-group">
+        <div class="input-group-addon"><span><i class="glyphicon glyphicon-search"></i></span></div>
+        <input class="form-control" type="text" placeholder="Search by City Name" ng-model="search_ctrl.search.city">
+        <div class="input-group-btn">
+            <button class="btn btn-default" type="button" style="background-color:rgba(0,0,0,0.298039);" ng-click="search_ctrl.searchByCity(search_ctrl.search)">Search </button>
+            <button class="btn btn-default" type="button" style="background-color:rgba(0,0,0,0.298039);" ng-click="search_ctrl.clickGetPlans()">Get All NALPs</button>
+        </div>
     </div>
-  </table>
+</form>
+<div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1 class="text-center"><strong>By City</strong></h1></div>
+            <div class="col-md-6">
+                <h1 class="text-center"><strong>All NALPs</strong></h1></div>
+        </div>
+    </div>
+</div>
+<div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-push-1 col-md-4">
+                <div class="media" ng-repeat="plan in search_ctrl.cityPlans" ng-click="search_ctrl.goToPlan(plan._id)">
+                    <div class="media-left"><a><span class="fa-stack fa-lg fa-2x"><i class="fa fa-circle fa-stack-2x text-primary"></i><i class="fa fa-map-pin fa-stack-1x fa-inverse"></i></span></a></div>
+                    <div class="media-body">
+                        <h4 class="text-left"><a href="#" style="color:#333333;font-size:30px;">{{plan.city}}: {{ plan.title }}</a></h4>
+                        <ul class="list-unstyled fa-ul">
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-push-3 col-md-4">
+                <div class="media" ng-repeat="plan in search_ctrl.allPlans" ng-click="search_ctrl.goToPlan(plan._id)">
+                    <div class="media-left"><a><span class="fa-stack fa-lg fa-2x"><i class="fa fa-circle fa-stack-2x text-primary"></i><i class="fa fa-map-pin fa-stack-1x fa-inverse"></i></span></a></div>
+                    <div class="media-body">
+                        <h4><a href="#" style="color:#333333;font-size:30px;">{{plan.city}}: {{ plan.title }}</a></h4>
+                        <ul class="list-unstyled fa-ul">
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

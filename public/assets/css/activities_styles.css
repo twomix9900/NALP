@@ -1,0 +1,21 @@
+body {
+  font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size:14px;
+  line-height:1.42857143;
+  color:#AA3939;
+  background-color:#fff;
+}
+
+.nav-tabs > li > a:hover {
+  border-color:#eee #eee #ddd;
+  background-color:#5da0a2;
+}
+
+.nav-tabs > li > a {
+  color:#555;
+  cursor:default;
+  background-color:#aacfd0;
+  border:1px solid #ddd;
+  border-bottom-color:transparent;
+}
+

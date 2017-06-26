@@ -1,4 +1,28 @@
+nav.navbar-default {
+  /*  background-color: #34495E; */
+  /*  background-color: #F8F8F8; */
+  background-image: linear-gradient(to bottom,#fff 0,#f8f8f8 100%);
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  overflow: hidden
+}
 
+body.main {
+  margin-top: 65px;
+  background-size: cover;
+}
+
+.table-striped>tbody>tr:nth-child(odd)>td, 
+.table-striped>tbody>tr:nth-child(odd)>th {
+   background-color: #d8dfe2;
+   padding: 10px;
+ }
+
+.table-striped>tbody>tr:nth-child(even)>td, 
+.table-striped>tbody>tr:nth-child(even)>th {
+   padding: 10px;
+ }
 
 .alert-complete {
   position: absolute !important;

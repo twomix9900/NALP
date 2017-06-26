@@ -148,7 +148,9 @@
       // Materialize.toast('Saved!! Plan successfully created!!', 50000000, 'alert-complete');
     }
 
+
     vm.userDidClickRemoveFromAddedEvents = function (event) {
+
       vm.addedEvents.splice(vm.addedEvents.indexOf(event), 1);
     }
   }
