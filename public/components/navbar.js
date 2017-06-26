@@ -57,7 +57,7 @@
       store.remove('id_token');
       store.remove('current_user_id');
       auth.signout();
-      $location.path('/search');  
+      $location.path('/home');  
     }
 
   }

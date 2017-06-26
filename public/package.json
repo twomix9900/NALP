@@ -12,11 +12,9 @@
   "dependencies": {
     "@uirouter/angularjs": "^1.0.4",
     "angular": "^1.6.4",
-    "angular-animate": "^1.6.4",
-    "angular-aria": "^1.6.4",
     "angular-jwt": "^0.1.9",
-    "angular-material": "^1.1.4",
     "angular-storage": "0.0.15",
-    "auth0-angular": "^4.2.7"
+    "auth0-angular": "^4.2.7",
+    "bootstrap": "^3.3.7"
   }
 }

@@ -1,20 +1,32 @@
-<md-content class="md-padding" layout="column">
-  <md-card>
-    <md-card-title>
-      <md-card-title-media>
-        <div class="md-media card-media" layout-padding>
-          <img src="{{ profile_ctrl.profile.picture }}" alt="profile-picture">
-        </div>
-        <md-card-actions layout="column" layout-align="end center">
-          <md-button ng-click="profile_ctrl.getMessage()">Get Message</md-button>
-          <md-button ng-click="profile_ctrl.getSecretMessage()">Get Secret</md-button>
-        </md-card-actions>
-      </md-card-title-media>
-      <md-card-titl-text>
-        <span class="md-headline">{{ profile_ctrl.profile.nickname }}</span>
-        <span class="subhead">{{ profile_ctrl.profile.email }}</span>
-        <h3>{{ profile_ctrl.message }}</h3>
-      </md-card-titl-text>
-    </md-card-title>
-  </md-card>
-</md-content>
+
+<div class="container">
+  <div class="spacer"></div>
+  <div class="jumbotron">
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+      <img src="{{ profile_ctrl.profile.picture }}" alt="profile-picture">
+    </div>
+    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+      <p>
+      Email: {{ profile_ctrl.profile.email }}
+      </p> 
+    </div>
+    <div class="jumbotron"></div>
+  </div>
+</div>
+
+
+
+
+<!--<div layout="row" layout-fill layout-align="center " class="jumbotron">
+  <div >
+    <img src="{{ profile_ctrl.profile.picture }}" alt="profile-picture">
+  <div>
+    {{ profile_ctrl.profile.nickname }}
+  </div>
+  <div>
+    {{ profile_ctrl.profile.email }}
+  </div>  
+  </div>
+</div>-->
+        
+     

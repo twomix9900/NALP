@@ -13,13 +13,13 @@ var fetch = require('node-fetch');
 var activityRoutes = require('./router/activity_router.js');
 
 //authentication
-// var jwt = require('express-jwt');
-// var cors = require('cors');
-// app.use(cors());
-// var authCheck = jwt({
-//   secret: new Buffer('WxgUVTWBJjGQPwprOqLrmZLklcUTGFiWAGtua9cmgUWBnM9rjULeRENjDGIqCzvR'),
-//   audience: 'p3YX25mAFylU7F6GadLITKleuETnTKiT'
-// })
+var jwt = require('express-jwt');
+var cors = require('cors');
+app.use(cors());
+var authCheck = jwt({
+  secret: new Buffer('WxgUVTWBJjGQPwprOqLrmZLklcUTGFiWAGtua9cmgUWBnM9rjULeRENjDGIqCzvR'),
+  audience: 'p3YX25mAFylU7F6GadLITKleuETnTKiT'
+})
 
 
 // app.get('/api/public', function(req, res) {

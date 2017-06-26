@@ -2,9 +2,10 @@
   angular.module('NALP')
   .controller('activitiesCtrl', activitiesCtrl)
 
-  activitiesCtrl.$inject = ['selectedPlans_fac', '$state', 'store'];
+  activitiesCtrl.$inject = ['selectedPlans_fac', '$state', 'store', 'auth_fac'];
 
-  function activitiesCtrl(selectedPlans_fac, $state, store) {
+  function activitiesCtrl(selectedPlans_fac, $state, store, auth_fac) {
+    auth_fac.private();
     
     document.body.style.backgroundImage = "url('../backgrounds/roller-skates.jpg')";
     

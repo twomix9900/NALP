@@ -6,7 +6,6 @@
 
 
   function searchCtrl(plan_fac, $state, store) {
-    document.body.style.backgroundImage = "url('../backgrounds/overlookingSF.jpeg')";
 
     var vm = this;
     vm.search = {};
