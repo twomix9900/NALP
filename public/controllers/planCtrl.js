@@ -6,7 +6,7 @@
 
   function planCtrl(selectedPlans_fac, $state, plan_fac, $stateParams, store) {
 
-    document.body.background = "";
+    document.body.style.backgroundImage = "";
     
     var vm = this;
     vm.title = 'plan view title'
