@@ -7,7 +7,7 @@
   function activitiesCtrl(selectedPlans_fac, $state, store, auth_fac) {
     auth_fac.private();
     
-  //  document.body.style.backgroundImage = "url('../backgrounds/roller-skates.jpg')";
+    document.body.style.backgroundImage = "url('../assets/img/roller-skates.jpg')";
     
     var vm = this;
     var viewtitle = '';
