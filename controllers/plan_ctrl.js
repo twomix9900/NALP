@@ -18,6 +18,7 @@ module.exports = {
   },
   index: function (req, res) {
     var searchBy = {};
+    
     if (req.params.city) {
       searchBy['city'] = req.params.city
     }
@@ -179,6 +180,7 @@ module.exports = {
   },
 
   mark_plan_incomplete: function(req, res) {
+    console.log('req.body = ', req.body)
     User
       .findOne({_id: req.body.user_id})
       .exec(function(err, user) {

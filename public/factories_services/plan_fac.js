@@ -9,6 +9,7 @@
       var service = {
         createPlan: createPlan,
         getAllPlans: getAllPlans,
+        getPlansByCity: getPlansByCity,
         auto_suggest: auto_suggest,
         show: show,
         mark_plan_complete: mark_plan_complete,
@@ -18,7 +19,10 @@
       function createPlan(id, data) {
         return $http.post(api + id, data);
       }
-      function getAllPlans(params) {
+      function getAllPlans() {
+        return $http.get(api);
+      }
+      function getPlansByCity(params) {
         return $http.get(api + params);
       }
       function auto_suggest(data) {

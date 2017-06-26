@@ -9,14 +9,18 @@
   //   }
   // }];
 
-  createCtrl.$inject = ['plan_fac', '$http', '$state', 'store'];
+  createCtrl.$inject = ['plan_fac', '$http', '$state', 'store', 'auth_fac'];
 
-  function createCtrl(plan_fac, $http, $state, store) {
+  function createCtrl(plan_fac, $http, $state, store, auth_fac) {
+    auth_fac.private();
+    
     var vm = this;
     vm.title = 'create plan view title'
     vm.some_user_id = store.get('current_user_id');
+
     vm.newEventInfo = {};
     vm.newPlanInfo = {};
+    vm.newPlanInfo.total_cost = 0;
     vm.addedEvents = [];
     vm.cityLoc = {};
     vm.findEventName = {};
@@ -103,6 +107,7 @@
       console.log(vm.newEventInfo);
       var event = {};
       for (var key in vm.newEventInfo) {
+
         event[key] = vm.newEventInfo[key]
       }
       event['address'] = $('#address-input-tag').val();
@@ -124,9 +129,11 @@
 
     };
     vm.userDidClickMakePlan = function () {
+
       var plan = {
         title: vm.newPlanInfo.title,
         city: vm.newPlanInfo.city,
+        total_cost: vm.newPlanInfo.total_cost,
         events: vm.addedEvents
       }
       console.log(plan)
@@ -143,7 +150,9 @@
       // Materialize.toast('Saved!! Plan successfully created!!', 50000000, 'alert-complete');
     }
 
+
     vm.userDidClickRemoveFromAddedEvents = function (event) {
+
       vm.addedEvents.splice(vm.addedEvents.indexOf(event), 1);
     }
   }

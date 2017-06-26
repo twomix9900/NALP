@@ -1,38 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+
+  <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="node_modules/angular-material/angular-material.css">
   <!-- Login Widget Latest major release -->
   <script src="https://cdn.auth0.com/js/lock-9.min.js"></script>
   <!--scale view for mobile-->
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
   <!-- jquery-timepicker -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.css">
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script> <!-- jquery cdn -->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <link src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css' rel='stylesheet'>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.min.js'></script>
+
+  <!--links to home_css files-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/readable/bootstrap.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,700">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/home_css/home_styles.css">
+  <!--links to search_css files-->
+  <link rel="stylesheet" href="assets/search_css/Highlight-Clean.css">
+  <link rel="stylesheet" href="assets/search_css/Pretty-Search-Form.css">
+  <link rel="stylesheet" href="assets/search_css/search_styles.css">
+  <!--links to profile_css files-->
+  <link rel="stylesheet" href="assets/profile_css/Pretty-Product-List.css">
+  <link rel="stylesheet" href="assets/profile_css/profile_styles.css">
+
   <!-- font awesome cdn -> for icons -->
   <script src="https://use.fontawesome.com/4ee3569224.js"></script>
   <title>NALP</title>
 </head>
-<body ng-app="NALP">
+
+<body ng-app="NALP" class="main">
 
   <navbar></navbar>
 
-  <div layout-padding>
-    <ui-view>Loading Page</ui-view>
-  </div>
+
+  <ui-view>Loading Page</ui-view>
+
+
 
   <script src="node_modules/angular/angular.js"></script>
-  <script src="node_modules/angular-animate/angular-animate.js"></script>
-  <script src="node_modules/angular-aria/angular-aria.js"></script>
-  <script src="node_modules/angular-material/angular-material.js"></script>
   <script src="node_modules/angular-jwt/dist/angular-jwt.js"></script>
   <script src="node_modules/angular-storage/dist/angular-storage.js"></script>
   <script src="node_modules/auth0-angular/build/auth0-angular.js"></script>
@@ -43,11 +60,16 @@
   <script src="./components/navbar.js"></script>
   <script src="./controllers/profileCtrl.js"></script>
   <script src="./controllers/searchCtrl.js"></script>
-
+  <script src="./controllers/homeCtrl.js"></script>
   <script src='./controllers/createCtrl.js'></script>
   <script src='./controllers/planCtrl.js'></script>
   <script src="./factories_services/plan_fac.js"></script>
   <script src="./factories_services/selectedPlans_fac.js"></script>
+  <script src="./factories_services/auth_fac.js"></script>
   <script src="./controllers/activitiesCtrl.js"></script>
-  
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+</body>
+
 </html>
