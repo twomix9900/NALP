@@ -34,9 +34,20 @@
         console.log('error getting plans', err);
       })
     }
+   
+    var err_callback = function(err) {
+      console.log('err >>', err);
+    }
+
     vm.goToPlan = function(p_id) {
-      $state.go('plan', { plan_id: p_id });
-      store.set('plan_id', p_id);
+      plan_fac
+        .show(p_id)
+        .then(function(res) {
+          console.log(res.data, '<< success')
+          $state.go('plan', {plan_id: res.data.plan._id})
+        }, err_callback)
+      // $state.go('plan', { plan_id: p_id });
+      // store.set('plan_id', p_id);
     }
   }
 })()

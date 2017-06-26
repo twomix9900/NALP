@@ -18,6 +18,7 @@ module.exports = {
   },
   index: function (req, res) {
     var searchBy = {};
+    
     if (req.params.city) {
       searchBy['city'] = req.params.city
     }
