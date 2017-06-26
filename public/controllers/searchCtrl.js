@@ -9,14 +9,15 @@
 
     var vm = this;
     vm.search = {};
-    vm.plans = [];
+    vm.cityPlans = [];
+    vm.allPlans
 
     vm.searchByCity = function(cityName) {
       console.log('SUBMITTED', cityName.city)
       plan_fac.getPlansByCity('city/' + cityName.city)
       .then((plans) => {
         console.log('plans = ', plans)
-        vm.data = plans.data.plans;
+        vm.cityPlans = plans.data.plans;
       })
       .catch((err) => {
         console.log('error getting plans', err);
@@ -28,7 +29,7 @@
       plan_fac.getAllPlans()
       .then((plans) => {
         console.log(plans.data.plans)
-        vm.data = plans.data.plans;
+        vm.allPlans = plans.data.plans;
       }).catch((err) => {
         console.log('error getting plans', err);
       })
