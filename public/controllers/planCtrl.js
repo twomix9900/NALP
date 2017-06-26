@@ -13,11 +13,9 @@
     vm.some_user_id = store.get('current_user_id');
     vm.addedEvents = [];
     vm.totalCost = 0;
-    vm.isCompleted;
+    vm.isNotComplete;
     vm.isBookmarked;
     vm.showButtons = false;
-
-
 
     var err_callback = function (err) {
       console.log('err >>', err);
@@ -34,17 +32,16 @@
       vm.currentPlanUserId = res.data.plan.created_by_id;
       vm.ratings = res.data.plan.ratings.length;
       vm.bookmarks = res.data.plan.bookmarks.length;
-      console.log('res.data.plan.bookmarks = ', res.data.plan)
 
       for (let i = 0; i < vm.addedEvents.length; i++) {
         vm.totalCost += parseFloat(vm.addedEvents[i].cost);
       }
 
-      if (res.data.plan.ratings.indexOf(vm.currentPlanId) === -1) {
-        vm.isCompleted = false;
+      if (res.data.plan.ratings.indexOf(vm.some_user_id) !== -1) {
+        vm.isNotComplete = true;
       }
 
-      if (res.data.plan.bookmarks.indexOf(vm.currentPlanId) === -1) {
+      if (res.data.plan.bookmarks.indexOf(vm.some_user_id) === -1) {
         vm.isBookmarked = true;
       }
 
@@ -56,7 +53,6 @@
     }
 
     vm.userDidClickMarkAsComplete = function () {
-      console.log('button clicked!');
       vm.option = 'completed';
       plan_fac
         .mark_plan_complete(vm.currentPlanId, {
@@ -67,13 +63,11 @@
     }
 
     function mark_com_res(res) {
-      console.log(res, '< success')
-      vm.isCompleted = true;
+      vm.isNotComplete = true;
       vm.ratings = res.data.plan.ratings.length;
     }
 
     vm.userDidClickMarkAsIncomplete = function () {
-      console.log('clicked incomplete')
       plan_fac
         .mark_plan_incomplete(vm.currentPlanId, {
           user_id: vm.some_user_id,
@@ -83,13 +77,11 @@
     }
 
     function mark_incomplete_res(res) {
-      console.log(res, '<< successfully marked incomplete');
-      vm.isCompleted = false;
+      vm.isNotComplete = false;
       vm.ratings = res.data.plan.ratings.length;
     }
 
     vm.userDidClickBookmark = function () {
-      console.log('clicked bookmark')
       plan_fac
         .bookmark(vm.currentPlanId, {
           user_id: vm.some_user_id,
@@ -99,13 +91,11 @@
     }
 
     function bookmark_res(res) {
-      console.log(res, 'success bookmark res')
-      vm.isBookmarked = true;
+      vm.isBookmarked = false;
       vm.bookmarks = res.data.plan.bookmarks.length;
     }
 
     vm.userDidClickRemoveBookmark = function () {
-      console.log('clicked remove bookmark');
       plan_fac
         .bookmark(vm.currentPlanId, {
           user_id: vm.some_user_id,
@@ -115,8 +105,7 @@
     }
 
     function remove_bookmark_res(res) {
-      console.log(res, 'success, bookmark removed')
-      vm.isBookmarked = false;
+      vm.isBookmarked = true;
       vm.bookmarks = res.data.plan.bookmarks.length;
     }
 
