@@ -107,7 +107,6 @@
       console.log(vm.newEventInfo);
       var event = {};
       for (var key in vm.newEventInfo) {
-
         event[key] = vm.newEventInfo[key]
       }
       event['address'] = $('#address-input-tag').val();
@@ -129,7 +128,6 @@
 
     };
     vm.userDidClickMakePlan = function () {
-
       var plan = {
         title: vm.newPlanInfo.title,
         city: vm.newPlanInfo.city,
