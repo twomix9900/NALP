@@ -5,6 +5,7 @@ var Schema = mongoose.Schema;
 var eventSchema = Schema({
   address: { type: String, required: true },
   photo: { type: String },
+  name: {type: String},
   start_time: { type: String, required: true}, // make start time unique 
   event_type: { type: String },
   plan_id: { type: Schema.Types.ObjectId, ref: 'Plan' },
