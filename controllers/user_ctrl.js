@@ -10,6 +10,14 @@ module.exports = {
         res.json({ success: true, message: 'all users', users: users })
       })
   },
+  show_test: function(req, res) {
+    User
+      .findOne({_id: req.params.id})
+      .exec(function(err, user) {
+        if (err) return console.log(err)
+
+      })
+  },
   create: function(req, res) {
     var newUser = new User(req.body);
     newUser.save(function(err, user) {
