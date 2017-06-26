@@ -1,4 +1,4 @@
-<h2>Activities</h2>
+<h2 style='color: black'><strong>Saved Plans & Activities</strong></h2>
 <div name='Activities' ng-controller='activitiesCtrl'>
   <div>
     <nav>
@@ -18,19 +18,20 @@
   <div>
     <br></br>
     <p></p>
-    <table class='activity_header'>
+    <table class='table-striped activity_head'>
       <thead>
+          <br></br>
         <tr>
-          <th class='viewtitle'>Title</th>
-          <th class='viewcity'>City</th>
-          <th class='viewcosts'>Costs</th>
+          <th class='viewtitle' ng-show='!activities_ctrl.plans[0].empty'>Title</th>
+          <th class='viewcity' ng-show='!activities_ctrl.plans[0].empty'>City</th>
+          <th class='viewcosts' ng-show='!activities_ctrl.plans[0].empty'>Total Cost</th>
         </tr>
       </thead>
       <tbody>
         <tr ng-repeat='plan in activities_ctrl.plans' ng-dblclick='activities_ctrl.userClickPlanEntry(plan.p_id)'>
-          <td>{{plan.title}}</td>
-          <td>{{plan.city}}</td>
-          <td>{{plan.total_cost}}</td>
+          <td class='viewtitle'>{{ plan.title }}</td>
+          <td class='viewcity'>{{ plan.city }}</td>
+          <td class='viewcosts'>{{ plan.total_cost | currency }}</td>
         </tr>
       </tbody>
   </div>  

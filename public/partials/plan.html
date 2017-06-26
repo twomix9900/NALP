@@ -3,8 +3,8 @@
 <head>
   <style>
     #map {
-      height: 50%;
-      width: 30%;
+      height: 55%;
+      width: 80%;
       padding: 150px;
     }
 
@@ -41,7 +41,6 @@
           method: "GET"
         })
         .done(function (data) {
-          console.log('success! jquery data = ', data);
           for (let i = 0; i < data.plan.events.length; i++) {
             address = data.plan.events[i].address;
             geocodeAddress(geocoder, map, i, address);
@@ -125,37 +124,48 @@
   </script>
 
   <div name='plans'>
-    Completions: {{plan_ctrl.ratings}} Bookmarks: {{plan_ctrl.bookmarks}} 
-    <br>
-    <table>
+    <h4>Completions: {{plan_ctrl.ratings}} Bookmarks: {{plan_ctrl.bookmarks}}</h4>
+    <div ng-if='plan_ctrl.showButtons'>
+      <input ng-if='plan_ctrl.isCompleted' ng-click='plan_ctrl.userDidClickMarkAsComplete()' type='button' class="btn btn-primary btn-xs"
+        value='Complete'>
+      <input ng-if='!plan_ctrl.isCompleted' ng-click='plan_ctrl.userDidClickMarkAsIncomplete()' type='button' class="btn btn-primary btn-xs"
+        value='Undo Complete'>
+      <input ng-if='!plan_ctrl.isBookmarked' ng-click='plan_ctrl.userDidClickBookmark()' type='button' class="btn btn-primary btn-xs"
+        value='Bookmark'>
+      <input ng-if='plan_ctrl.isBookmarked' ng-click='plan_ctrl.userDidClickRemoveBookmark()' type='button' class="btn btn-primary btn-xs"
+        value='Undo Bookmark'>
+    </div>
+    <span style="display:block; height: 50px;"></span>
+    <table class="table-hover">
       <thead>
         <tr>
-          <th style='width: 150px;'>Itinerary</th>
-          <th style='width: 50px;'>Time</th>
-          <th style='width: 50px;'>Cost</th>
+          <th style='width: 200px;' class="text-left"><strong>Event</strong></th>
+          <th style='width: 500px;' class="text-left">Address</th>
+          <th style='width: 100px;' class="text-left">Time</th>
+          <th style='width: 10px;' class="text-left">Cost</th>
         </tr>
       </thead>
     </table>
 
-    <table>
+    <table class="table-striped">
       <tbody>
         <tr ng-repeat='event in plan_ctrl.addedEvents'>
           <td>
-            <p style='width: 150px;' id='added-events-address-p'>{{ event.address }}</p>
+            <p style='width: 200px;' id='added-events-address-p' class="text-capitalize" class="text-left">{{ event.event_type }}</p>
           </td>
           <td>
-            <p style='width: 50px;' id='added-events-address-p'>{{ event.start_time }}</p>
+            <p style='width: 500px;' id='added-events-address-p' class="text-left">
+              <address>{{ event.address }}</address>
+            </p>
           </td>
           <td>
-            <p style='width: 50px;' id='added-events-address-p'>${{ event.cost }}</p>
+            <p style='width: 100px;' id='added-events-address-p' class="text-left">{{ event.start_time }}</p>
+          </td>
+          <td>
+            <p style='width: 100px;' id='added-events-address-p' class="text-left">{{ event.cost | currency}}</p>
           </td>
         </tr>
       </tbody>
     </table>
-    <div style='width: 150px;'> total cost: ${{plan_ctrl.totalCost}}</div>
-    <br>
-    <input ng-if='plan_ctrl.isNotComplete' ng-click='plan_ctrl.userDidClickMarkAsComplete()' type='button' value='Mark As Complete'>
-    <input ng-if='!plan_ctrl.isNotComplete' ng-click='plan_ctrl.userDidClickMarkAsIncomplete()' type='button' value='Mark As Not Complete'>
-    <input ng-if='!plan_ctrl.isBookmarked' type='button' value='Bookmark' ng-click='plan_ctrl.userDidClickBookmark()'>
-    <input ng-if='plan_ctrl.isBookmarked' type='button' value='Remove plan from bookmarks' ng-click='plan_ctrl.userDidClickRemoveBookmark()'>
+    <div style='width: 1650px' class='text-center'> <strong>{{plan_ctrl.totalCost | currency}}</strong></div>
 </body>

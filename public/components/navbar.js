@@ -39,7 +39,7 @@
             console.log('couldnt post user', err);
             $http.get(api + 'email/' + profile.email)
               .then((user) => {
-                console.log('existing user', user);
+                console.log('existing user data', user.data);
                 store.set('current_user_id', user.data.user._id);
               }, function (err) {
                 console.log('testing err happended while getting user ', err)
@@ -55,8 +55,9 @@
     function logout() {
       store.remove('profile');
       store.remove('id_token');
+      store.remove('current_user_id');
       auth.signout();
-      $location.path('/search');
+      $location.path('/search');  
     }
 
   }

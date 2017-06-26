@@ -12,11 +12,16 @@
   createCtrl.$inject = ['plan_fac', '$http', '$state', 'store'];
 
   function createCtrl(plan_fac, $http, $state, store) {
+
+    document.body.background = "";
+    
     var vm = this;
     vm.title = 'create plan view title'
     vm.some_user_id = store.get('current_user_id');
+
     vm.newEventInfo = {};
     vm.newPlanInfo = {};
+    vm.newPlanInfo.total_cost = 0;
     vm.addedEvents = [];
     vm.cityLoc = {};
 
@@ -57,8 +62,13 @@
       console.log(vm.newEventInfo);
       var event = {};
       for (var key in vm.newEventInfo) {
-        event[key] = vm.newEventInfo[key]
-      }
+        event[key] = vm.newEventInfo[key];
+        console.log('what is this: ', event[key], key);
+
+      };
+      console.log('cost ', event.cost, Number(event.cost));
+      vm.newPlanInfo.total_cost += Number(event.cost);
+      console.log('newPlanInfo Object: ', vm.newPlanInfo, 'newPlanInfo total cost', vm.newPlanInfo.total_cost);
       event['address'] = $('#google-address-input').val();
       plan_fac
           .auto_suggest({ search_term: event.address, search_location: vm.newPlanInfo.city })
@@ -72,12 +82,14 @@
             vm.newEventInfo = {};
             vm.current_place_img = '';
           }, err_callback)
-     
+      
     };
     vm.userDidClickMakePlan = function() {
+      console.log('how much is this gonna break me?', vm.newPlanInfo);
       var plan = {
         title: vm.newPlanInfo.title,
         city: vm.newPlanInfo.city,
+        total_cost: vm.newPlanInfo.total_cost,
         events: vm.addedEvents
       }
       console.log(plan)
@@ -95,6 +107,7 @@
     }
 
     vm.userDidClickRemoveFromAddedEvents = function(event) {
+      vm.newPlanInfo.total_cost -= Number(event.cost);
       vm.addedEvents.splice(vm.addedEvents.indexOf(event), 1);
     }
   }

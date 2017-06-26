@@ -3,6 +3,12 @@
   <input type="text" placeholder="Search Plans By City" ng-model="search_ctrl.search.city">
 </form>
 <button ng-click="search_ctrl.clickGetPlans()">Get All Plans</button>
-<div ng-repeat="plan in search_ctrl.data" ng-click="search_ctrl.goToPlan(plan._id)">
-  {{plan.title}}
-</div>
+<table class='table-striped'>
+  <div>
+    <br></br>
+    <tr ng-repeat="plan in search_ctrl.data" ng-click="search_ctrl.goToPlan(plan._id)" style='height: 40px'>  
+      <td><strong>{{ plan.title }}</strong></td>
+      <!--td>{{ plan creator by username MVP+ feature }}</td-->
+    </tr>
+  </div>
+</table>
