@@ -6,7 +6,7 @@
 
   function activitiesCtrl(selectedPlans_fac, $state, store) {
     
-    document.body.background = "https://cdn.pixabay.com/photo/2014/07/01/12/25/roller-skates-381216_960_720.jpg";
+    document.body.style.backgroundImage = "url('../backgrounds/roller-skates.jpg')";
     
     var vm = this;
     var viewtitle = '';
