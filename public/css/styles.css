@@ -24,6 +24,18 @@ body.main {
    padding: 10px;
  }
 
+ .table-striped2>tbody>tr:nth-child(odd)>td, 
+.table-striped2>tbody>tr:nth-child(odd)>th {
+   background-color: #d8dfe2;
+   padding: 10px;
+ }
+
+.table-striped2>tbody>tr:nth-child(even)>td, 
+.table-striped2>tbody>tr:nth-child(even)>th {
+   padding: 10px;
+   color: white;
+ }
+
 .alert-complete {
   position: absolute !important;
   background: green !important;
