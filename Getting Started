@@ -1,0 +1,38 @@
+NALP make it easy for you to plot out exactly where you were and what you did and the total 
+cost of all those activities so that maybe someone else can see your itinerary and give it a 
+shot (or even tweak it to to suit their needs).
+
+Getting Started:
+1. npm install
+2. download mlab and create a mlab account
+3. in mlab - set a admin login/password and name your database
+4. get a yelp API key
+5. create a .env file with 
+DB_URL = mongodb://ADMIN_LOGIN:PASSWORD@COPY_DBASE_URL_FROM MLAB
+yelpToken=YELP_KEY_HERE
+6. get your own Google Maps API key
+7. in public/partials/plan.html, fill in your API key in this line:
+<script async src="https://maps.googleapis.com/maps/api/js?key=YOURAPIKEYHERE&callback=initMap">
+8. npm start
+9. open localhost:3002 in your browser
+
+Development env / Tech Stack Used:
+
+MongoDB/Mongoose
+Express
+AngularJS
+  ui-router/ui-view
+Node.js
+
+Auth0 for login authorization - Please replace Auth0 Key with your own keys in server.js
+APIs  Google Map/Places API for map/location rendering - Please replace Google API Key in plan.html with your own
+Yelp API  For autofill and auto-photolink
+
+Bootstrap was used for majority of css styling
+Materialize was used for create.html - did not have time to refactor before MVP presentation
+
+Authors:
+Lewis Bracey
+Howard Chen
+Kay Kim (Scrum Master)
+Sho Nguyen (Product Owner)
