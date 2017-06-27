@@ -38,15 +38,15 @@
       }
 
       if (res.data.plan.ratings.indexOf(vm.some_user_id) !== -1) {
-        vm.isNotComplete = true;
+        vm.isNotComplete = true;    // flag to show whether undo complete/complete button is shown
       }
 
       if (res.data.plan.bookmarks.indexOf(vm.some_user_id) === -1) {
-        vm.isBookmarked = true;
+        vm.isBookmarked = true;  // flag to show whether undo bookmark/bookmkar button is shown
       }
 
       if (vm.some_user_id) {
-        vm.showButtons = true;
+        vm.showButtons = true;  // flag to show buttons when user is logged in/out
       }
 
 
@@ -92,7 +92,7 @@
 
     function bookmark_res(res) {
       vm.isBookmarked = false;
-      vm.bookmarks = res.data.plan.bookmarks.length;
+      vm.bookmarks = res.data.plan.bookmarks.length; // the length of the array determines how many people completed or bookmarked a plan (each bookmark/completion pushes the user ID into bookmarks/completion array)
     }
 
     vm.userDidClickRemoveBookmark = function () {

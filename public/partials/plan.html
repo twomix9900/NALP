@@ -65,7 +65,7 @@
         });
         var geocoder = new google.maps.Geocoder();
         var planIdURL = window.location.href.slice(30);
-
+        // the URL bar shows the plan ID, which is used to get the data here. SetTimeOut isn't strictly necessary here but added as a precaution due to asynchronous nature of these functions.
         setTimeout(function () {
           $.ajax({
               url: "/plans/" + planIdURL,
@@ -123,7 +123,7 @@
             if (status === 'OK') {
               directionsDisplay.setMap(resultsMap);
               directionsDisplay.setOptions({
-                suppressMarkers: true,
+                suppressMarkers: true, // These options here prevent the zoom from being wonky after directions get rendered
                 preserveViewport: true
               });
               resultsMap.setCenter(results[0].geometry.location);
@@ -135,7 +135,7 @@
                 position: results[0].geometry.location,
                 title: address,
                 icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' + (i + 1) +
-                  '|FF0000|000000'
+                  '|FF0000|000000' // the numbered markers are created here
               });
 
               infowindow = new google.maps.InfoWindow({
@@ -155,11 +155,11 @@
               }
               resultsMap.fitBounds(bounds);
               resultsMaps.push(results[0].formatted_address);
-              var start = resultsMaps[resultsMaps.length - 2];
+              var start = resultsMaps[resultsMaps.length - 2]; 
               var end = resultsMaps[resultsMaps.length - 1];
 
               function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-                if (start) {
+                if (start) { // directions won't start rendering until at least 2 markers are pushed into markers array
                   directionsService.route({
                     origin: start,
                     destination: end,
@@ -180,7 +180,7 @@
           });
         }
       </script>
-      <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVzNx4R3D71W4Cg0RrD06Q5i-7UP5l-pU&callback=initMap">
+      <script async src="https://maps.googleapis.com/maps/api/js?key=YOURAPIKEY&callback=initMap">
       </script>
       <div class="row product">
         <div class="col-md-12">
