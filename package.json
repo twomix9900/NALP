@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "angular": "^1.6.5",
     "auth0-js": "^8.7.0",
     "body-parser": "^1.17.2",
     "cors": "^2.8.3",
