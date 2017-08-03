@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 
 <head>
@@ -9,7 +8,6 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,700">
   <link rel="stylesheet" href="assets/css/user.css">
   <link rel="stylesheet" href="assets/css/Map-Clean.css">
-
 
   <style>
     #map {
@@ -37,15 +35,8 @@
   </style>
 </head>
 
-
-
-
-
-
-
 <body>
-     <navbar></navbar>
-
+  <navbar></navbar>
   <div class="container">
     <div id="map"></div>
     <script>
@@ -65,12 +56,12 @@
         });
         var geocoder = new google.maps.Geocoder();
         var planIdURL = window.location.href.slice(30);
-        // the URL bar shows the plan ID, which is used to get the data here. SetTimeOut isn't strictly necessary here but added as a precaution due to asynchronous nature of these functions.
+
         setTimeout(function () {
           $.ajax({
-              url: "/plans/" + planIdURL,
-              method: "GET"
-            })
+            url: "/plans/" + planIdURL,
+            method: "GET"
+          })
             .done(function (data) {
               for (let i = 0; i < data.plan.events.length; i++) {
                 address = data.plan.events[i].address;
@@ -107,82 +98,53 @@
               position: results[0].geometry.location,
               title: address,
               icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' + (i + 1) +
-                '|FF0000|000000'
+              '|FF0000|000000'
             });
 
+            infowindow = new google.maps.InfoWindow({
+              content: marker.title
+            });
 
-        function geocodeAddress(geocoder, resultsMap, i, address) {
-          var directionsDisplay = new google.maps.DirectionsRenderer({
-            map: resultsMap
-          });
-          var directionsService = new google.maps.DirectionsService;
+            marker.addListener('click', function () {
+              infowindow.setContent(marker.title);
+              infowindow.open(resultsMap, this);
+            });
 
-          geocoder.geocode({
-            'address': address
-          }, function (results, status) {
-            if (status === 'OK') {
-              directionsDisplay.setMap(resultsMap);
-              directionsDisplay.setOptions({
-                suppressMarkers: true, // These options here prevent the zoom from being wonky after directions get rendered
-                preserveViewport: true
-              });
-              resultsMap.setCenter(results[0].geometry.location);
-              var marker = new google.maps.Marker({
-                map: resultsMap,
-                draggable: false,
-                clickable: true,
-                optimized: true,
-                position: results[0].geometry.location,
-                title: address,
-                icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=' + (i + 1) +
-                  '|FF0000|000000' // the numbered markers are created here
-              });
+            markers.push(marker);
+            var bounds = new google.maps.LatLngBounds();
+            for (let i = 0; i < markers.length; i++) {
 
-              infowindow = new google.maps.InfoWindow({
-                content: marker.title
-              });
-
-              marker.addListener('click', function () {
-                infowindow.setContent(marker.title);
-                infowindow.open(resultsMap, this);
-              });
-
-              markers.push(marker);
-              var bounds = new google.maps.LatLngBounds();
-              for (let i = 0; i < markers.length; i++) {
-
-                bounds.extend(markers[i].getPosition());
-              }
-              resultsMap.fitBounds(bounds);
-              resultsMaps.push(results[0].formatted_address);
-              var start = resultsMaps[resultsMaps.length - 2]; 
-              var end = resultsMaps[resultsMaps.length - 1];
-
-              function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-                if (start) { // directions won't start rendering until at least 2 markers are pushed into markers array
-                  directionsService.route({
-                    origin: start,
-                    destination: end,
-                    travelMode: 'DRIVING'
-                  }, function (response, status) {
-                    if (status === 'OK') {
-                      directionsDisplay.setDirections(response);
-                    } else {
-                      console.log('Directions request failed: ', status);
-                    }
-                  });
-                }
-              }
-              calculateAndDisplayRoute(directionsService, directionsDisplay);
-            } else {
-              alert('Invalid address! ERROR CODE: ' + status);
+              bounds.extend(markers[i].getPosition());
             }
-          });
-        }
-      </script>
-      <script async src="https://maps.googleapis.com/maps/api/js?key=YOURAPIKEY&callback=initMap">
-      </script>
-      <div class="row product">
+            resultsMap.fitBounds(bounds);
+            resultsMaps.push(results[0].formatted_address);
+            var start = resultsMaps[resultsMaps.length - 2];
+            var end = resultsMaps[resultsMaps.length - 1];
+
+            function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+              if (start) {
+                directionsService.route({
+                  origin: start,
+                  destination: end,
+                  travelMode: 'DRIVING'
+                }, function (response, status) {
+                  if (status === 'OK') {
+                    directionsDisplay.setDirections(response);
+                  } else {
+                    console.log('Directions request failed: ', status);
+                  }
+                });
+              }
+            }
+            calculateAndDisplayRoute(directionsService, directionsDisplay);
+          } else {
+            alert('Invalid address! ERROR CODE: ' + status);
+          }
+        });
+      }
+    </script>
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVzNx4R3D71W4Cg0RrD06Q5i-7UP5l-pU&callback=initMap"></script>
+    <div class="row product">
         <div class="col-md-12">
           <div class="table-responsive">
             <div ng-if='plan_ctrl.showButtons'>
@@ -205,7 +167,6 @@
             </tr>
             </thead>
             <tbody>
-
               <tr></tr>
             </tbody>
             </table>
@@ -239,10 +200,8 @@
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
     crossorigin="anonymous">
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/readable/bootstrap.min.css">
 </body>
 </html>
