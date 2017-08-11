@@ -16,8 +16,8 @@
     $urlRouterProvider.otherwise('/home');
 
     authProvider.init({
-      clientID: 'p3YX25mAFylU7F6GadLITKleuETnTKiT',
-      domain: 'nalp.auth0.com'
+      clientID: 'hFpqq7KVn5xAv5PaAP31pccmGevfecYa',
+      domain: 'twomix9900.auth0.com'
     });
 
     jwtInterceptorProvider.tokenGetter = function(store) {
