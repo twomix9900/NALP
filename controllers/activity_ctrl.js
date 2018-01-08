@@ -6,7 +6,6 @@ errHandler = (err, errStatus) => {
   res.sendStatus(errStatus);
 }
 
-
 module.exports = {
   bookmarked: (req,res) => {
     console.log('req.params ', req.params);
